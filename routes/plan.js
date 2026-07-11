@@ -152,7 +152,7 @@ JSON格式（所有字段必填）：
               { role: 'user', content: prompt }
             ],
             temperature: 0.7,
-            max_tokens: 3500
+            max_tokens: 2000
           }),
           signal: controller.signal
         });
@@ -187,7 +187,7 @@ JSON格式（所有字段必填）：
               { role: 'user', content: prompt }
             ],
             temperature: 0.7,
-            max_tokens: 3000
+            max_tokens: 2000
           }),
           signal: controller.signal
         });
@@ -211,12 +211,14 @@ JSON格式（所有字段必填）：
     // ── Parse JSON ──
     let plan = null;
     try {
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      // Strip markdown code blocks first
+      let cleaned = content.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+      const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         plan = JSON.parse(jsonMatch[0]);
       }
     } catch (e) {
-      console.error('[plan/generate] JSON parse error:', e.message, 'Raw:', content.substring(0, 200));
+      console.error('[plan/generate] JSON parse error:', e.message, 'Raw:', content.substring(0, 300));
     }
 
     if (!plan) {
