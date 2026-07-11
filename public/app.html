@@ -143,31 +143,205 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
               </select>
             </div>
             <div class="form-group">
-              <label>梦校</label>
-              <input type="text" id="pf-dream" placeholder="Stanford, 牛津, NYU...">
+              <label>目标专业</label>
+              <input type="text" id="pf-major" placeholder="例如：计算机、经济学">
+            </div>
+            <div class="form-group" style="grid-column:1/-1">
+              <label>梦想学校（多选，用逗号分隔）</label>
+              <input type="text" id="pf-dream" placeholder="例如：MIT, Stanford, 牛津, CMU">
             </div>
             <div class="form-group">
               <label>SAT 成绩</label>
               <input type="number" id="pf-sat" placeholder="例如：1400" min="400" max="1600">
             </div>
             <div class="form-group">
-              <label>托福成绩</label>
-              <input type="number" id="pf-toefl" placeholder="例如：100" min="0" max="120">
+              <label>托福/雅思成绩</label>
+              <input type="number" id="pf-toefl" placeholder="托福总分" min="0" max="120">
             </div>
           </div>
           <div class="form-group form-grid">
             <label>GPA</label>
             <input type="text" id="pf-gpa" placeholder="例如：3.8">
-              <select id="pf-gpa-scale" style="margin-top:4px;padding:8px;border:1px solid #d1d5db;border-radius:6px;width:100%;font-size:14px">
-                <option value="4.0">4.0 制 (Unweighted)</option>
-                <option value="5.0">5.0 制 (AP/IB加权)</option>
-                <option value="100">百分制</option>
-                <option value="percentile">年级排名 (前X%)</option>
+            <select id="pf-gpa-scale" style="margin-top:4px;padding:8px;border:1px solid #d1d5db;border-radius:6px;width:100%;font-size:14px">
+              <option value="4.0">4.0 制 (Unweighted)</option>
+              <option value="5.0">5.0 制 (AP/IB加权)</option>
+              <option value="100">百分制</option>
+              <option value="percentile">年级排名 (前X%)</option>
+            </select>
+          </div>
+          <div class="grid2 form-grid" style="margin-top:8px">
+            <div class="form-group">
+              <label>MBTI 性格类型</label>
+              <select id="pf-mbti">
+                <option value="">待测试/未知</option>
+                <option value="INTJ">INTJ 建筑师</option>
+                <option value="INTP">INTP 逻辑学家</option>
+                <option value="ENTJ">ENTJ 指挥官</option>
+                <option value="ENTP">ENTP 辩论家</option>
+                <option value="INFJ">INFJ 提倡者</option>
+                <option value="INFP">INFP 调停者</option>
+                <option value="ENFJ">ENFJ 主人公</option>
+                <option value="ENFP">ENFP 竞选者</option>
+                <option value="ISTJ">ISTJ 物流师</option>
+                <option value="ISFJ">ISFJ 守护者</option>
+                <option value="ESTJ">ESTJ 总经理</option>
+                <option value="ESFJ">ESFJ 执政官</option>
+                <option value="ISTP">ISTP 鉴赏家</option>
+                <option value="ISFP">ISFP 探险家</option>
+                <option value="ESTP">ESTP 企业家</option>
+                <option value="ESFP">ESFP 表演者</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label>Holland 职业兴趣类型</label>
+              <select id="pf-holland">
+                <option value="">选择类型</option>
+                <option value="RIASEC">R 实际型</option>
+                <option value="RI">RI 研究型</option>
+                <option value="IA">IA 艺术型</option>
+                <option value="AS">AS 艺术型</option>
+                <option value="SEC">SEC 社会型</option>
+                <option value="EC">EC 企业型</option>
+                <option value="CI">CI 传统型</option>
+                <option value="RCA">RCA</option>
+                <option value="ICE">ICE</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:12px">
+            <label>兴趣爱好（选填，多选用逗号分隔）</label>
+            <input type="text" id="pf-interests" placeholder="例如：编程、数学竞赛、篮球、钢琴、志愿者">
+          </div>
+          <div class="form-group">
+            <label>学习习惯</label>
+            <select id="pf-study-habit">
+              <option value="">请选择</option>
+              <option value="high">自律型 — 能独立规划学习</option>
+              <option value="medium">一般型 — 需要一定督促</option>
+              <option value="low">松散型 — 需要较强监督</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>目标院校层次</label>
+            <select id="pf-target-tier">
+              <option value="">请选择</option>
+              <option value="elite">顶尖名校 — 哈耶普斯麻/牛剑</option>
+              <option value="selective">精英院校 — T20-T30</option>
+              <option value="good">优质院校 — T30-T50</option>
+            </select>
           </div>
           <button type="submit" class="btn" style="width:100%;padding:12px;margin-top:8px">💾 保存档案</button>
           <div class="error-text" id="profile-error"></div>
         </form>
+      </div>
+
+      <!-- Grade History -->
+      <div class="card" style="margin-top:16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3>📊 历史成绩</h3>
+          <button class="btn" onclick="showGradeForm()">+ 录入成绩</button>
+        </div>
+        <div id="grade-form" style="display:none;background:var(--bg);border-radius:8px;padding:16px;margin-bottom:16px">
+          <h4 id="grade-form-title" style="margin-bottom:12px">录入新成绩</h4>
+          <div class="grid2 form-grid">
+            <div class="form-group"><label>SAT</label><input type="number" id="gf-sat" min="400" max="1600" placeholder="如：1380"></div>
+            <div class="form-group"><label>托福</label><input type="number" id="gf-toefl" min="0" max="120" placeholder="如：105"></div>
+            <div class="form-group"><label>ACT</label><input type="number" id="gf-act" min="1" max="36" placeholder="如：32"></div>
+            <div class="form-group"><label>雅思</label><input type="number" id="gf-ielts" min="0" max="9" step="0.5" placeholder="如：7.0"></div>
+            <div class="form-group"><label>GPA</label><input type="number" id="gf-gpa" min="0" max="4.0" step="0.01" placeholder="如：3.8"></div>
+          </div>
+          <div class="form-group"><label>记录日期</label><input type="month" id="gf-date"></div>
+          <div class="form-group"><label>备注</label><input type="text" id="gf-note" placeholder="如：第一次模拟考"></div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" onclick="submitGradeForm()">保存</button>
+            <button class="btn" style="background:var(--muted)" onclick="hideGradeForm()">取消</button>
+          </div>
+        </div>
+        <div id="grade-list"></div>
+      </div>
+
+      <!-- Competitions -->
+      <div class="card" style="margin-top:16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3>🏆 竞赛记录</h3>
+          <button class="btn" onclick="showCompForm()">+ 添加竞赛</button>
+        </div>
+        <div id="comp-form" style="display:none;background:var(--bg);border-radius:8px;padding:16px;margin-bottom:16px">
+          <h4 id="comp-form-title" style="margin-bottom:12px">添加竞赛</h4>
+          <div class="grid2 form-grid">
+            <div class="form-group" style="grid-column:1/-1"><label>竞赛名称 <span style="color:var(--red)">*</span></label><input type="text" id="cf-name" placeholder="如：AMC12 数学竞赛"></div>
+            <div class="form-group">
+              <label>学科</label>
+              <select id="cf-subject">
+                <option value="">选择学科</option>
+                <option value="数学">数学</option>
+                <option value="物理">物理</option>
+                <option value="化学">化学</option>
+                <option value="生物">生物</option>
+                <option value="计算机">计算机</option>
+                <option value="商科">商科</option>
+                <option value="其他">其他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>级别</label>
+              <select id="cf-level">
+                <option value="">选择级别</option>
+                <option value="校级">校级</option>
+                <option value="省级">省级</option>
+                <option value="国家级">国家级</option>
+                <option value="国际级">国际级</option>
+              </select>
+            </div>
+            <div class="form-group"><label>成绩/奖项</label><input type="text" id="cf-result" placeholder="如：省级一等奖"></div>
+            <div class="form-group">
+              <label>参赛年级</label>
+              <select id="cf-grade">
+                <option value="">选择年级</option>
+                <option value="G9">G9</option>
+                <option value="G10">G10</option>
+                <option value="G11">G11</option>
+                <option value="G12">G12</option>
+              </select>
+            </div>
+            <div class="form-group"><label>获奖日期</label><input type="month" id="cf-date"></div>
+          </div>
+          <div class="form-group"><label>备注</label><input type="text" id="cf-note" placeholder="证书编号等"></div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" onclick="submitCompForm()">保存</button>
+            <button class="btn" style="background:var(--muted)" onclick="hideCompForm()">取消</button>
+          </div>
+        </div>
+        <div id="comp-list"></div>
+      </div>
+
+      <!-- Language Records -->
+      <div class="card" style="margin-top:16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3>🌐 语言考试成绩</h3>
+          <button class="btn" onclick="showLangForm()">+ 录入语言成绩</button>
+        </div>
+        <div id="lang-form" style="display:none;background:var(--bg);border-radius:8px;padding:16px;margin-bottom:16px">
+          <h4 style="margin-bottom:12px">录入语言成绩</h4>
+          <div class="grid2 form-grid">
+            <div class="form-group">
+              <label>考试类型</label>
+              <select id="lf-type">
+                <option value="TOEFL">托福 TOEFL</option>
+                <option value="IELTS">雅思 IELTS</option>
+                <option value="SAT">SAT</option>
+                <option value="ACT">ACT</option>
+              </select>
+            </div>
+            <div class="form-group"><label>总分</label><input type="number" id="lf-score" placeholder="如：105"></div>
+            <div class="form-group"><label>考试日期</label><input type="month" id="lf-date"></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" onclick="submitLangForm()">保存</button>
+            <button class="btn" style="background:var(--muted)" onclick="hideLangForm()">取消</button>
+          </div>
+        </div>
+        <div id="lang-list"></div>
       </div>
     </div>
 
@@ -257,7 +431,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 const TK = 'student_token';
 let token = localStorage.getItem(TK) || '';
 let user = null;
-let profile = { grade:'', curriculum:'', target_country:'', dream_school:'', mbti:'', sat:0, toefl:0, gpa:'', gpa_scale:'4.0' };
+let profile = {
+  grade:'', curriculum:'', target_country:'', target_major:'',
+  dream_school:'', dream_schools:[], mbti:'', holland_type:'',
+  sat:0, toefl:0, gpa:'', gpa_scale:'4.0', act:0, ielts:0,
+  interests:[], study_habit:'', target_tier:'',
+  strengths:[], awards:[], extracurriculars:[]
+};
 let activePlanData = null;
 let pipelineData = null;
 
@@ -274,7 +454,12 @@ async function init() {
     if (!u) { throw new Error('No user'); }
     
     user = u;
-    if (u.profile) profile = { ...profile, ...u.profile };
+    if (u.profile) {
+      profile = { ...profile, ...u.profile };
+      if (u.profile.dream_schools && Array.isArray(u.profile.dream_schools)) {
+        profile.dream_schools = u.profile.dream_schools;
+      }
+    }
     
     showApp();
   } catch(e) {
@@ -295,6 +480,7 @@ async function showApp() {
   renderDashboard();
   fillProfileForm();
   await loadPlanning();
+  await loadStudentHistory();
 }
 
 // ═══════ Tabs ═══════
@@ -372,11 +558,17 @@ function fillProfileForm() {
   document.getElementById('pf-grade').value = profile.grade || '';
   document.getElementById('pf-curriculum').value = profile.curriculum || '';
   document.getElementById('pf-target').value = profile.target_country || '';
-  document.getElementById('pf-dream').value = profile.dream_school || '';
+  document.getElementById('pf-major').value = profile.target_major || '';
+  document.getElementById('pf-dream').value = profile.dream_schools ? profile.dream_schools.join(', ') : (profile.dream_school || '');
   document.getElementById('pf-sat').value = profile.sat || '';
-  document.getElementById('pf-gpa-scale').value = profile.gpa_scale || '4.0';
   document.getElementById('pf-toefl').value = profile.toefl || '';
+  document.getElementById('pf-gpa-scale').value = profile.gpa_scale || '4.0';
   document.getElementById('pf-gpa').value = profile.gpa || '';
+  document.getElementById('pf-mbti').value = profile.mbti || '';
+  document.getElementById('pf-holland').value = profile.holland_type || '';
+  document.getElementById('pf-interests').value = profile.interests ? profile.interests.join(', ') : '';
+  document.getElementById('pf-study-habit').value = profile.study_habit || '';
+  document.getElementById('pf-target-tier').value = profile.target_tier || '';
 }
 
 document.getElementById('profile-form').onsubmit = async function(e) {
@@ -384,15 +576,24 @@ document.getElementById('profile-form').onsubmit = async function(e) {
   const err = document.getElementById('profile-error');
   err.textContent = '';
   
+  const dreamRaw = document.getElementById('pf-dream').value;
+  const interestsRaw = document.getElementById('pf-interests').value;
   const fields = {
     grade: document.getElementById('pf-grade').value,
     curriculum: document.getElementById('pf-curriculum').value,
     target_country: document.getElementById('pf-target').value,
-    dream_school: document.getElementById('pf-dream').value,
+    target_major: document.getElementById('pf-major').value,
+    dream_school: dreamRaw,
+    dream_schools: dreamRaw.split(',').map(s=>s.trim()).filter(Boolean),
     sat: parseInt(document.getElementById('pf-sat').value) || 0,
     toefl: parseInt(document.getElementById('pf-toefl').value) || 0,
     gpa: document.getElementById('pf-gpa').value,
     gpa_scale: document.getElementById('pf-gpa-scale').value,
+    mbti: document.getElementById('pf-mbti').value,
+    holland_type: document.getElementById('pf-holland').value,
+    interests: interestsRaw ? interestsRaw.split(',').map(s=>s.trim()).filter(Boolean) : [],
+    study_habit: document.getElementById('pf-study-habit').value,
+    target_tier: document.getElementById('pf-target-tier').value,
   };
   
   try {
@@ -415,6 +616,178 @@ document.getElementById('profile-form').onsubmit = async function(e) {
 
 // ═══════ Activities ═══════
 let editingActivityId = null;
+let editingGradeId = null;
+let editingCompId = null;
+
+// ═══════ Grade Records ═══════
+function showGradeForm(grade) {
+  editingGradeId = grade ? grade.id : null;
+  document.getElementById('grade-form-title').textContent = grade ? '编辑成绩' : '录入新成绩';
+  document.getElementById('gf-sat').value = grade ? (grade.sat || '') : '';
+  document.getElementById('gf-toefl').value = grade ? (grade.toefl || '') : '';
+  document.getElementById('gf-act').value = grade ? (grade.act || '') : '';
+  document.getElementById('gf-ielts').value = grade ? (grade.ielts || '') : '';
+  document.getElementById('gf-gpa').value = grade ? (grade.gpa || '') : '';
+  document.getElementById('gf-date').value = grade ? (grade.record_date || '') : '';
+  document.getElementById('gf-note').value = grade ? (grade.note || '') : '';
+  document.getElementById('grade-form').style.display = 'block';
+  document.getElementById('grade-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function hideGradeForm() { document.getElementById('grade-form').style.display = 'none'; editingGradeId = null; }
+
+async function submitGradeForm() {
+  const sat = parseInt(document.getElementById('gf-sat').value) || 0;
+  const toefl = parseInt(document.getElementById('gf-toefl').value) || 0;
+  const act = parseInt(document.getElementById('gf-act').value) || 0;
+  const ielts = parseFloat(document.getElementById('gf-ielts').value) || 0;
+  const gpa = parseFloat(document.getElementById('gf-gpa').value) || 0;
+  const record_date = document.getElementById('gf-date').value;
+  const note = document.getElementById('gf-note').value;
+  if (!sat && !toefl && !act && !ielts && !gpa) { alert('请至少填写一项成绩'); return; }
+  const body = { sat, toefl, act, ielts, gpa, record_date, note };
+  const url = editingGradeId ? \`/api/student/grades/\${editingGradeId}\` : '/api/student/grades';
+  const method = editingGradeId ? 'PUT' : 'POST';
+  const r = await fetch(url, { method, headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok) { alert('保存失败'); return; }
+  hideGradeForm();
+  await loadGrades();
+  await loadStudentHistory();
+}
+
+async function loadGrades() {
+  const r = await fetch('/api/student/grades', { headers: { 'Authorization': 'Bearer ' + token } });
+  if (!r.ok) return;
+  const grades = await r.json();
+  if (!grades.length) {
+    document.getElementById('grade-list').innerHTML = '<div style="color:var(--muted);font-size:13px">暂无成绩记录，点击右上角录入</div>';
+    return;
+  }
+  const html = grades.map(g => \`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+    <div>
+      <div style="font-size:13px">\${g.record_date || '未知日期'}</div>
+      <div style="font-size:12px;color:var(--muted)">\${[g.sat?'SAT:'+g.sat:'',g.toefl?'托福:'+g.toefl:'',g.act?'ACT:'+g.act:'',g.ielts?'雅思:'+g.ielts:'',g.gpa?'GPA:'+g.gpa:''].filter(Boolean).join(' · ')} \${g.note ? '· '+g.note : ''}</div>
+    </div>
+    <button class="btn btn-sm" style="background:var(--muted)" onclick="showGradeForm(\${JSON.stringify(g)})">编辑</button>
+  </div>\`).join('');
+  document.getElementById('grade-list').innerHTML = html;
+}
+
+// ═══════ Competition Records ═══════
+let editingCompId = null;
+function showCompForm(comp) {
+  editingCompId = comp ? comp.id : null;
+  document.getElementById('comp-form-title').textContent = comp ? '编辑竞赛' : '添加竞赛';
+  document.getElementById('cf-name').value = comp ? (comp.name || '') : '';
+  document.getElementById('cf-subject').value = comp ? (comp.subject || '') : '';
+  document.getElementById('cf-level').value = comp ? (comp.level || '') : '';
+  document.getElementById('cf-result').value = comp ? (comp.result || '') : '';
+  document.getElementById('cf-grade').value = comp ? (comp.grade_participated || '') : '';
+  document.getElementById('cf-date').value = comp ? (comp.date || '') : '';
+  document.getElementById('cf-note').value = comp ? (comp.note || '') : '';
+  document.getElementById('comp-form').style.display = 'block';
+  document.getElementById('comp-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function hideCompForm() { document.getElementById('comp-form').style.display = 'none'; editingCompId = null; }
+
+async function submitCompForm() {
+  const name = document.getElementById('cf-name').value.trim();
+  if (!name) { alert('竞赛名称不能为空'); return; }
+  const body = {
+    name, subject: document.getElementById('cf-subject').value,
+    level: document.getElementById('cf-level').value,
+    result: document.getElementById('cf-result').value,
+    grade_participated: document.getElementById('cf-grade').value,
+    date: document.getElementById('cf-date').value,
+    note: document.getElementById('cf-note').value,
+  };
+  if (editingCompId) {
+    await fetch(\`/api/student/competitions/\${editingCompId}\`, { method: 'PUT', headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  } else {
+    await fetch('/api/student/competitions', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  }
+  hideCompForm();
+  await loadCompetitions();
+}
+async function deleteComp(id) {
+  if (!confirm('确认删除？')) return;
+  await fetch(\`/api/student/competitions/\${id}\`, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + token } });
+  await loadCompetitions();
+}
+
+async function loadCompetitions() {
+  const r = await fetch('/api/student/competitions', { headers: { 'Authorization': 'Bearer ' + token } });
+  if (!r.ok) return;
+  const comps = await r.json();
+  if (!comps.length) {
+    document.getElementById('comp-list').innerHTML = '<div style="color:var(--muted);font-size:13px">暂无竞赛记录，点击右上角添加</div>';
+    return;
+  }
+  const html = comps.map(c => \`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+    <div>
+      <div style="font-size:13px;font-weight:600">\${c.name}</div>
+      <div style="font-size:12px;color:var(--muted)">\${[c.subject, c.level, c.result, c.grade_participated ? 'G'+c.grade_participated.replace('G','') : ''].filter(Boolean).join(' · ')}</div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <button class="btn btn-sm" onclick="showCompForm(\${JSON.stringify(c)})">编辑</button>
+      <button class="btn btn-sm" style="background:var(--red)" onclick="deleteComp(\${c.id})">删除</button>
+    </div>
+  </div>\`).join('');
+  document.getElementById('comp-list').innerHTML = html;
+}
+
+// ═══════ Language Records ═══════
+function showLangForm() {
+  document.getElementById('lang-form').style.display = 'block';
+  document.getElementById('lf-type').value = 'TOEFL';
+  document.getElementById('lf-score').value = '';
+  document.getElementById('lf-date').value = '';
+}
+function hideLangForm() { document.getElementById('lang-form').style.display = 'none'; }
+
+async function submitLangForm() {
+  const exam_type = document.getElementById('lf-type').value;
+  const score = parseInt(document.getElementById('lf-score').value);
+  const exam_date = document.getElementById('lf-date').value;
+  if (!score) { alert('请填写成绩'); return; }
+  await fetch('/api/student/languages', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }, body: JSON.stringify({ exam_type, score, exam_date }) });
+  hideLangForm();
+  await loadLanguages();
+}
+
+async function loadLanguages() {
+  const r = await fetch('/api/student/languages', { headers: { 'Authorization': 'Bearer ' + token } });
+  if (!r.ok) return;
+  const langs = await r.json();
+  if (!langs.length) {
+    document.getElementById('lang-list').innerHTML = '<div style="color:var(--muted);font-size:13px">暂无语言成绩记录</div>';
+    return;
+  }
+  const html = langs.map(l => \`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px">
+    <span>\${l.exam_type} 第\${l.attempt_no}次</span>
+    <span style="font-weight:700">\${l.score}</span>
+    <span style="color:var(--muted)">\${l.exam_date || ''}</span>
+  </div>\`).join('');
+  document.getElementById('lang-list').innerHTML = html;
+}
+
+// ═══════ Load all student data on profile tab ═══════
+async function loadStudentHistory() {
+  const r = await fetch('/api/student/history', { headers: { 'Authorization': 'Bearer ' + token } });
+  if (!r.ok) return;
+  const data = await r.json();
+  if (data.profile) {
+    profile = { ...profile, ...data.profile };
+    fillProfileForm();
+  }
+  window._studentGrades = data.grades || [];
+  window._studentComps = data.competitions || [];
+  window._studentActs = data.activities || [];
+  window._studentLangs = data.languages || [];
+  if (data.competitions && data.competitions.length) loadCompetitions();
+  if (data.languages && data.languages.length) loadLanguages();
+  if (data.grades && data.grades.length) loadGrades();
+}
+
 
 function showActivityForm(activity) {
   editingActivityId = activity ? activity.id : null;
@@ -676,9 +1049,13 @@ async function generatePlan() {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        target_schools: profile.dream_school ? [profile.dream_school] : [],
-        target_major: (profile.majors && profile.majors.join(',')) || '',
-        focus_areas: '综合提升'
+        target_schools: profile.dream_schools || (profile.dream_school ? [profile.dream_school] : []),
+        target_major: profile.target_major || '',
+        focus_areas: '综合提升',
+        grades: window._studentGrades || [],
+        competitions: window._studentComps || [],
+        activities: window._studentActs || [],
+        languages: window._studentLangs || [],
       }),
       signal: controller.signal
     });

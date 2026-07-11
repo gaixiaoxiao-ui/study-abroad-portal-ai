@@ -135,6 +135,30 @@ router.post('/competitions', requireAuth, (req, res) => {
   const { name, subject, level, result, grade_participated, date, certificate_no, note } = req.body;
   if (!name) return res.status(400).json({ error: '竞赛名称不能为空' });
 
+
+// PUT /api/student/grades/:id
+router.put('/grades/:id', requireAuth, (req, res) => {
+  const { sat, act, toefl, ielts, gpa, note, record_date } = req.body;
+  const r = req.app.locals.db.prepare(`
+    UPDATE grade_records SET sat=?, act=?, toefl=?, ielts=?, gpa=?, note=?, record_date=? WHERE id=? AND user_id=?
+  `).run(sat||null, act||null, toefl||null, ielts||null, gpa||null, note||null, record_date||null, req.params.id, req.userId);
+  res.json({ success: r.changes > 0 });
+});
+router.delete('/grades/:id', requireAuth, (req, res) => {
+  const r = req.app.locals.db.prepare('DELETE FROM grade_records WHERE id=? AND user_id=?').run(req.params.id, req.userId);
+  res.json({ success: r.changes > 0 });
+});
+
+// PUT /api/student/competitions/:id
+router.put('/competitions/:id', requireAuth, (req, res) => {
+  const { name, subject, level, result, grade_participated, date, certificate_no, note } = req.body;
+  const r = req.app.locals.db.prepare(`
+    UPDATE competition_records SET name=?, subject=?, level=?, result=?, grade_participated=?, date=?, certificate_no=?, note=?
+    WHERE id=? AND user_id=?
+  `).run(name, subject||null, level||null, result||null, grade_participated||null, date||null, certificate_no||null, note||null, req.params.id, req.userId);
+  res.json({ success: r.changes > 0 });
+});
+
   const id = req.app.locals.db.prepare(`
     INSERT INTO competition_records (user_id, name, subject, level, result, grade_participated, date, certificate_no, note)
     VALUES (?,?,?,?,?,?,?,?,?)
@@ -160,6 +184,30 @@ router.get('/activities', requireAuth, (req, res) => {
 router.post('/activities', requireAuth, (req, res) => {
   const { name, role, organization, start_date, end_date, hours_per_week, description, achievements, category } = req.body;
   if (!name) return res.status(400).json({ error: '活动名称不能为空' });
+
+
+// PUT /api/student/grades/:id
+router.put('/grades/:id', requireAuth, (req, res) => {
+  const { sat, act, toefl, ielts, gpa, note, record_date } = req.body;
+  const r = req.app.locals.db.prepare(`
+    UPDATE grade_records SET sat=?, act=?, toefl=?, ielts=?, gpa=?, note=?, record_date=? WHERE id=? AND user_id=?
+  `).run(sat||null, act||null, toefl||null, ielts||null, gpa||null, note||null, record_date||null, req.params.id, req.userId);
+  res.json({ success: r.changes > 0 });
+});
+router.delete('/grades/:id', requireAuth, (req, res) => {
+  const r = req.app.locals.db.prepare('DELETE FROM grade_records WHERE id=? AND user_id=?').run(req.params.id, req.userId);
+  res.json({ success: r.changes > 0 });
+});
+
+// PUT /api/student/competitions/:id
+router.put('/competitions/:id', requireAuth, (req, res) => {
+  const { name, subject, level, result, grade_participated, date, certificate_no, note } = req.body;
+  const r = req.app.locals.db.prepare(`
+    UPDATE competition_records SET name=?, subject=?, level=?, result=?, grade_participated=?, date=?, certificate_no=?, note=?
+    WHERE id=? AND user_id=?
+  `).run(name, subject||null, level||null, result||null, grade_participated||null, date||null, certificate_no||null, note||null, req.params.id, req.userId);
+  res.json({ success: r.changes > 0 });
+});
 
   const id = req.app.locals.db.prepare(`
     INSERT INTO activity_records (user_id, name, role, organization, start_date, end_date, hours_per_week, description, achievements, category)
