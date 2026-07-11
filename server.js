@@ -2,6 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const Database = require('better-sqlite3');
+
+// ─── Shared Database (for new routes) ───────────────────
+const db = new Database(path.join(__dirname, 'data', 'app.db'));
+db.pragma('journal_mode = WAL');
 
 // ─── Config ─────────────────────────────────────────────
 const PORT = process.env.PORT || 3004;
@@ -39,12 +44,14 @@ const academicRoutes = require('./routes/academic');
 const parentRoutes   = require('./routes/parent');
 const timelineRoutes = require('./routes/timeline');
 const planRoutes = require('./routes/plan');
-const planningRoutes = require("./routes/planning");
+const planningRoutes = require('./routes/planning');
 const adminRoutes = require('./routes/admin');
 const pipelineRoutes = require('./routes/pipeline');
 const activityRoutes = require('./routes/activities');
-const matchRoutes = require("./routes/match");
-const schoolRoutes = require("./routes/schools");
+const matchRoutes = require('./routes/match');
+const schoolRoutes = require('./routes/schools');
+const studentDataRoutes = require('./routes/studentData');
+const planArchiveRoutes = require('./routes/planArchive');
 
 // Mount routes
 
@@ -72,6 +79,10 @@ app.use('/api/activities', activityRoutes);
 app.use("/api/match", matchRoutes);
 app.use("/api/schools", schoolRoutes);
 app.use('/api/timeline', timelineRoutes);
+app.use('/api/student', studentDataRoutes);
+app.use('/api/plans', planArchiveRoutes);
+
+app.locals.db = db;
 
 // ─── Helpers ─────────────────────────────────────────────
 

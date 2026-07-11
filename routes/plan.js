@@ -152,7 +152,7 @@ JSON格式（所有字段必填）：
               { role: 'user', content: prompt }
             ],
             temperature: 0.7,
-            max_tokens: 2000
+            max_tokens: 4000
           }),
           signal: controller.signal
         });
@@ -187,7 +187,7 @@ JSON格式（所有字段必填）：
               { role: 'user', content: prompt }
             ],
             temperature: 0.7,
-            max_tokens: 2000
+            max_tokens: 4000
           }),
           signal: controller.signal
         });
@@ -230,15 +230,38 @@ JSON格式（所有字段必填）：
       });
     }
 
-    // ── Save plan to user ──
+    // ── Archive plan case to database ──
     try {
-      const userStore = require('../utils/userStore');
-      const plans = typeof user.plans === 'string' ? JSON.parse(user.plans || '{}') : (user.plans || {});
-      const planId = 'plan_' + Date.now().toString(36);
-      plans[planId] = { ...plan, createdAt: new Date().toISOString(), target_schools, target_major };
-      userStore.updatePlans(user.id, plans);
-      userStore.setActivePlan(user.id, planId);
-    } catch (e) { console.error('[plan/generate] Failed to save plan:', e.message); }
+      const planId = 'pc_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
+      const snapshot = JSON.stringify({
+        profile: user.profile,
+        grades: req.body.grades || [],
+        competitions: req.body.competitions || [],
+        activities: req.body.activities || [],
+        languages: req.body.languages || [],
+        target_schools: req.body.target_schools,
+        target_major: req.body.target_major,
+        focus_areas: req.body.focus_areas,
+        generatedAt: new Date().toISOString()
+      });
+      req.app.locals.db.prepare(`
+        INSERT INTO plan_cases
+          (id, user_id, student_snapshot, plan_raw, plan_parsed, target_schools, target_major, focus_areas, model_used, tokens_used, status)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?)
+      `).run(
+        planId, user.id,
+        snapshot,
+        content,
+        JSON.stringify(plan),
+        JSON.stringify(target_schools || []),
+        target_major || null,
+        focus_areas || null,
+        'MiniMax-M2.7',
+        0,
+        'active'
+      );
+      plan.caseId = planId;
+    } catch (e) { console.error('[plan/generate] Failed to archive plan case:', e.message); }
 
     res.json(plan);
   } catch (err) {

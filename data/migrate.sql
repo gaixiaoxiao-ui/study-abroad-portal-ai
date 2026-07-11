@@ -1,14 +1,155 @@
-BEGIN;
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mp4q0mfx_vdc1nk', 'testuser', 'test@example.com', '$2b$12$gXexXxx2mqWFbNDA8z9pqeYBKWmEdjYFtsgIeX7mxePww.KBDdXqO', 'testuser', null, '{"mbti": "ENFP", "holland": "SAE", "holland_secondary": null, "sat": 1350, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": "G10", "target_country": "UK", "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-05-13T23:58:52.317Z', '2026-05-14T00:30:47.433Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mp4qhvtu_aj5gs3', 'jimmy', 'gaixiaoxiao@163.com', '$2b$12$gXexXxx2mqWFbNDA8z9pqeYBKWmEdjYFtsgIeX7mxePww.KBDdXqO', 'Jimmy', null, '{"mbti": "", "holland": "IRC", "holland_secondary": null, "sat": 0, "act": null, "toefl": 0, "a_level": null, "ib_score": null, "ielts": null, "grade": "G10", "target_country": "UK", "majors": [], "courses": [], "gpa": ""}', '{"University of Cambridge::计算机科学与人工智能": {"school": "University of Cambridge", "major": "计算机科学与人工智能", "assessment": "学生目前G10，A-Level体系，目标剑桥大学计算机科学与人工智能专业，匹配度高。优势：A-Level体系与剑桥录取偏好高度契合，且专业方向明确；数学、计算机基础较好的学生更具竞争力。差距：当前无标化成绩（TOEFL、GPA未录入），需尽早启动语言和学术成绩准备；MBTI未测评，建议完成以匹配剑桥典型INTJ/INTP画像；缺乏竞赛和科研背景，需规划高含金量活动。剑桥录取率约14.6%，竞争激烈，需在学术深度和独特性上突出。", "phases": [{"title": "学术基础夯实期", "period": "G10上学期—G10暑假", "items": ["完成MBTI测评，明确学习风格", "启动TOEFL备考，目标100+", "精修A-Level数学、物理基础", "参加编程入门项目（Python）", "阅读剑桥CS推荐书目"]}, {"title": "竞赛与科研探索期", "period": "G11上学期—G11暑假", "items": ["参加UKMT或BMO数学竞赛", "启动CS自学（数据结构、算法）", "参加暑期科研项目（AI/ML方向）", "强化TOEFL至110+", "准备剑桥STEP数学考试"]}, {"title": "申请冲刺与深化期", "period": "G12上学期—G12寒假", "items": ["完成A-Level预估分（4A*）", "提交UCAS申请（10月截止）", "准备剑桥面试（CS方向）", "参加IOI或USACO竞赛", "撰写个人陈述（突出AI项目）"]}, {"title": "录取与过渡期", "period": "G12下学期—G12暑假", "items": ["等待录取结果并确认offer", "参加剑桥预科课程（若有）", "强化数学与编程基础", "准备签证与行前安排"]}], "milestones": [{"month": 9, "year": 2026, "grade": "G10上", "label": "MBTI测评", "detail": "完成性格测评，匹配专业", "category": "academic", "status": "upcoming", "tip": "完成性格测评，匹配专业"}, {"month": 11, "year": 2026, "grade": "G10上", "label": "TOEFL首考", "detail": "目标90+，摸底测试", "category": "test", "status": "upcoming", "tip": "目标90+，摸底测试"}, {"month": 1, "year": 2027, "grade": "G10下", "label": "A-Level选课确定", "detail": "数学、高数、CS、物理", "category": "academic", "status": "upcoming", "tip": "数学、高数、CS、物理"}, {"month": 3, "year": 2027, "grade": "G10下", "label": "Python项目启动", "detail": "完成基础编程项目", "category": "activity", "status": "upcoming", "tip": "完成基础编程项目"}, {"month": 6, "year": 2027, "grade": "G10暑假", "label": "暑期科研营", "detail": "参加AI/ML线上科研", "category": "activity", "status": "upcoming", "tip": "参加AI/ML线上科研"}, {"month": 9, "year": 2027, "grade": "G11上", "label": "UKMT参赛", "detail": "参加英国数学竞赛", "category": "activity", "status": "upcoming", "tip": "参加英国数学竞赛"}, {"month": 11, "year": 2027, "grade": "G11上", "label": "TOEFL二考", "detail": "目标105+", "category": "test", "status": "upcoming", "tip": "目标105+"}, {"month": 1, "year": 2028, "grade": "G11下", "label": "STEP考试准备", "detail": "开始STEP 2备考", "category": "academic", "status": "upcoming", "tip": "开始STEP 2备考"}, {"month": 3, "year": 2028, "grade": "G11下", "label": "USACO参赛", "detail": "目标银级", "category": "activity", "status": "upcoming", "tip": "目标银级"}, {"month": 6, "year": 2028, "grade": "G11暑假", "label": "实习/项目深化", "detail": "AI相关实习或开源贡献", "category": "activity", "status": "upcoming", "tip": "AI相关实习或开源贡献"}, {"month": 9, "year": 2028, "grade": "G12上", "label": "UCAS提交", "detail": "10月15日截止", "category": "application", "status": "upcoming", "tip": "10月15日截止"}, {"month": 11, "year": 2028, "grade": "G12上", "label": "剑桥面试准备", "detail": "模拟面试与编程题", "category": "application", "status": "upcoming", "tip": "模拟面试与编程题"}, {"month": 1, "year": 2029, "grade": "G12下", "label": "A-Level大考", "detail": "冲刺4A*", "category": "academic", "status": "upcoming", "tip": "冲刺4A*"}, {"month": 3, "year": 2029, "grade": "G12下", "label": "录取结果", "detail": "等待剑桥offer", "category": "application", "status": "upcoming", "tip": "等待剑桥offer"}], "score_targets": {"sat": "N/A", "toefl": 110, "gpa": "4A* (A-Level)"}, "course_plan": ["Mathematics (A-Level, 必修, 争取A*)", "Further Mathematics (A-Level, 必修, 争取A*)", "Computer Science (A-Level, 必修, 争取A*)", "Physics (A-Level, 辅助, 争取A*)"], "competitions": [{"name": "UKMT Senior Mathematical Challenge (英国数学竞赛)", "timing": "G11上学期（11月）"}, {"name": "USACO (美国计算机奥林匹克)", "timing": "G11下学期（12月-3月）"}, {"name": "IOI (国际信息学奥林匹克) 选拔或BMO", "timing": "G11暑假至G12上学期"}], "summary": "你的目标是剑桥计算机科学，这是全球最顶尖的CS项目之一。建议从G10起强化数学和编程基础，尽早完成TOEFL（110+），并投入高含金量竞赛（UKMT、USACO）和科研项目。A-Level选课以数学、高数、CS、物理为核心，争取4A*。剑桥看重学术深度和面试表现，建议提前准备STEP考试和模拟面试。同时，利用暑期参与AI或机器学习项目，展现你的独特兴趣和潜力。保持专注，每一步都至关重要。", "generatedAt": "2026-06-29T15:05:15.125Z"}, "Harvard University::法律/国际关系/公共政策": {"school": "Harvard University", "major": "法律/国际关系/公共政策", "assessment": "学生当前为G10年级，A-Level体系，目标英国但申请哈佛大学法律/国际关系/公共政策专业，存在显著挑战。优势在于起步较早，有充足时间准备。差距包括：缺乏SAT/TOEFL/GPA数据，A-Level课程需匹配社科方向，课外活动需突出领导力与公共事务兴趣。需从G10开始系统规划，强化学术深度、标化成绩、辩论写作能力及独特背景塑造，以匹配哈佛极低录取率（3.2%）和高标化要求（SAT 1510-1580）。", "phases": [{"title": "学术基础夯实期", "period": "G10上学期—G10暑假", "items": ["确定A-Level选课：History, Politics, English Literature, Economics", "启动TOEFL备考，目标105+", "参加模拟联合国或辩论社团", "阅读国际关系入门书籍（如《大国政治的悲剧》）", "建立学术兴趣档案，记录阅读与活动"]}, {"title": "标化与竞赛突破期", "period": "G11上学期—G11暑假", "items": ["完成SAT首考，目标1520+", "参加John Locke写作竞赛（法律/政治类）", "启动暑期研究项目或实习（如NGO法律助理）", "强化A-Level课程，保持全A*", "参加耶鲁全球青年学者项目（YYGS）"]}, {"title": "申请冲刺与文书打磨期", "period": "G12上学期—G12寒假", "items": ["SAT二刷至1550+，TOEFL达110+", "完成哈佛REA申请（11月1日截止）", "撰写主文书：突出公共事务领导力", "提交A-Level预估成绩（全A*）", "准备面试：模拟哈佛招生官问答"]}, {"title": "录取后衔接期", "period": "G12下学期—暑假", "items": ["确认入学并申请签证", "选修哈佛在线课程（如CS50或法律导论）", "参与公共政策线上研讨会", "准备AP Comparative Government考试（换学分）", "建立新生社交网络，联系未来同学"]}], "milestones": [{"month": 9, "year": 2026, "grade": "G10上", "label": "确定A-Level选课", "detail": "History, Politics, English Lit, Economics", "category": "academic", "status": "upcoming", "tip": "History, Politics, English Lit, Economics"}, {"month": 12, "year": 2026, "grade": "G10上", "label": "TOEFL首考", "detail": "目标100+，摸底水平", "category": "test", "status": "upcoming", "tip": "目标100+，摸底水平"}, {"month": 3, "year": 2027, "grade": "G10下", "label": "参加模联活动", "detail": "区域赛或全国赛，积累辩论经验", "category": "activity", "status": "upcoming", "tip": "区域赛或全国赛，积累辩论经验"}, {"month": 6, "year": 2027, "grade": "G10下", "label": "启动SAT备考", "detail": "每周3小时，使用官方指南", "category": "test", "status": "upcoming", "tip": "每周3小时，使用官方指南"}, {"month": 8, "year": 2027, "grade": "G10暑假", "label": "参加暑期项目", "detail": "如耶鲁YYGS或斯坦福人文营", "category": "activity", "status": "upcoming", "tip": "如耶鲁YYGS或斯坦福人文营"}, {"month": 10, "year": 2027, "grade": "G11上", "label": "SAT首考", "detail": "目标1520+，分析弱项", "category": "test", "status": "upcoming", "tip": "目标1520+，分析弱项"}, {"month": 12, "year": 2027, "grade": "G11上", "label": "John Locke竞赛", "detail": "提交法律/政治类论文", "category": "activity", "status": "upcoming", "tip": "提交法律/政治类论文"}, {"month": 3, "year": 2028, "grade": "G11下", "label": "SAT二刷", "detail": "目标1550+，冲刺高分", "category": "test", "status": "upcoming", "tip": "目标1550+，冲刺高分"}, {"month": 5, "year": 2028, "grade": "G11下", "label": "AP考试", "detail": "选考Comparative Gov或US Gov", "category": "academic", "status": "upcoming", "tip": "选考Comparative Gov或US Gov"}, {"month": 7, "year": 2028, "grade": "G11暑假", "label": "实习/研究项目", "detail": "法律或NGO实习，积累经历", "category": "activity", "status": "upcoming", "tip": "法律或NGO实习，积累经历"}, {"month": 9, "year": 2028, "grade": "G12上", "label": "哈佛REA申请", "detail": "11月1日截止，准备文书", "category": "application", "status": "upcoming", "tip": "11月1日截止，准备文书"}, {"month": 11, "year": 2028, "grade": "G12上", "label": "提交A-Level预估", "detail": "确保4门全A*", "category": "academic", "status": "upcoming", "tip": "确保4门全A*"}, {"month": 12, "year": 2028, "grade": "G12上", "label": "面试准备", "detail": "模拟哈佛招生官问答", "category": "application", "status": "upcoming", "tip": "模拟哈佛招生官问答"}, {"month": 3, "year": 2029, "grade": "G12下", "label": "录取结果", "detail": "哈佛REA或RD放榜", "category": "application", "status": "upcoming", "tip": "哈佛REA或RD放榜"}, {"month": 5, "year": 2029, "grade": "G12下", "label": "确认入学", "detail": "提交押金并申请签证", "category": "application", "status": "upcoming", "tip": "提交押金并申请签证"}], "score_targets": {"sat": 1550, "toefl": 110, "gpa": "3.95+ (A-Level全A*)"}, "course_plan": ["History (A-Level): 培养历史分析与写作能力，匹配哈佛社科要求", "Politics (A-Level): 直接对应国际关系/公共政策，展现学术深度", "English Literature (A-Level): 强化批判性阅读与写作，应对文书与面试", "Economics (A-Level): 提供政策分析的经济学视角，增加跨学科竞争力", "Mathematics (A-Level, 可选): 如学有余力，提升量化分析能力"], "competitions": [{"name": "John Locke Essay Competition (法律/政治类)", "timing": "G11上学期（每年6月截止）"}, {"name": "模拟联合国 (MUN) 全国赛或国际赛", "timing": "G10-G11持续参与，G11争取主席或奖项"}, {"name": "哈佛国际关系模拟会议 (HMUN)", "timing": "G11寒假（每年1月）"}], "summary": "针对哈佛大学法律/国际关系/公共政策专业，建议从G10开始系统规划：选课聚焦History、Politics、English Literature、Economics，保持全A*；标化目标SAT 1550+、TOEFL 110+；课外活动以辩论、模联、John Locke竞赛及暑期研究项目为核心，突出领导力与公共事务兴趣；申请时利用REA优势，主文书强调独特视角与社会影响力。注意平衡英国目标院校（如牛津PPE）的申请要求，确保A-Level选课与面试准备同步进行。", "generatedAt": "2026-06-29T15:06:55.833Z"}}', "Harvard University::\u6cd5\u5f8b/\u56fd\u9645\u5173\u7cfb/\u516c\u5171\u653f\u7b56", '2026-05-14T00:12:17.634Z', '2026-06-29T15:04:32.946Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mp55e33f_qc8keo', 'zhongwei328', 'zhongwei328@hotmail.com', '$2b$10$R48SZBE7dpmMEDFxJWe.5u2KzIXoH5mVVPo1RZkIJ4GfqCP8Za4Mq', 'zhongwei328', null, '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-05-14T07:09:14.667Z', '2026-05-14T07:09:14.667Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mp55wo77_54aemb', 'ShineW', 'laoyaoxin@139.com', '$2b$10$NcMXqw6GGwEDzREoQLxd6OiSIimsOjuOYzEFaiKUvtTbV26xbvSmu', 'ShineW', null, '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-05-14T07:23:41.827Z', '2026-05-14T07:23:41.827Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mp678aav_hm3ovv', 'jasmine_ok', 'jasmine-ok@163.com', '$2b$10$brBimTbsAxS0.dTB.ILGSO3ahJvhQEpGr8ddRzyh2nDjWzrfkiJoO', 'jasmine_ok', null, '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-05-15T00:48:29.479Z', '2026-05-15T00:48:29.479Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mp6ubqwv_04mjix', 'wfdl1144', '13585618262@163.com', '$2b$10$0M.rDauqrFM1GzRQ5V0sD.wEJB6/6wgRMooxdGocpgOn.44aZOMCa', 'wfdl1144', null, '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-05-15T11:35:02.143Z', '2026-05-15T11:35:02.143Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mp95vyjt_t8mvie', 'Andrew_TEST', 'yenchung@wustl.edu', '$2b$10$RsQCVivIdWVMH.SC10CU5.D5kSiCFqLav9.IqElKReHt.TNOI7etq', 'Andrew_TEST', null, '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-05-17T02:34:13.289Z', '2026-05-17T02:34:13.289Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mqmibwpi_6l2uxj', '13900000001', '13900000001@parent.local', '$2b$10$ff5JhJgm.S8Nuas67qxfMOARWXuEUzwAiHRnalXwd8VbK1cbX9nwe', '测试家长', "parent", '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-06-20T15:23:15.414Z', '2026-06-20T15:23:15.415Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mqmik7jj_mt6r9o', '13764088640', '13764088640@parent.local', '$2b$10$iLD2AadV1IjhUrawMxBQpOA2V4rgb3OWUA2iZ.in1bPHzwREkyUHW', 'cxx', "parent", '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-06-20T15:29:42.703Z', '2026-06-20T15:29:42.703Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mqxycw5h_miewld', '13800138000', '13800138000@parent.local', '$2b$10$HtrK74yeY6hVpjYXaPLNpuG1MNfRcOd0BhOwvmm.3hFKDeqKCMEC.', '测试', "parent", '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "curriculum": null, "target_major": null, "target_school": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-06-28T15:37:23.141Z', '2026-06-28T15:37:23.142Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mqz91397_u7a73t', '18217503626', '18217503626@parent.local', '$2b$10$nVFplma7pSjYf9PPDSbEj.ZDkrjFD0s8kmprvwcYo9nNIlBlOk8T2', '小白妈妈', "parent", '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "curriculum": null, "target_major": null, "target_school": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-06-29T13:23:54.427Z', '2026-06-29T13:23:54.435Z');
-INSERT OR IGNORE INTO users (id, username, email, password, display_name, role, profile, plans, active_plan, created_at, updated_at) VALUES ('u_mqzal4cb_avd0w4', 'admin', 'admin@shenxue.com', '$2b$10$LpP470sEBGtMEzsRKk3erOnGuiE9vSeGL0S60bhhzRqOKli98NQ5O', '管理员', "admin", '{"mbti": null, "holland": null, "holland_secondary": null, "sat": null, "act": null, "toefl": null, "a_level": null, "ib_score": null, "ielts": null, "grade": null, "target_country": null, "curriculum": null, "target_major": null, "target_school": null, "majors": [], "courses": [], "gpa": ""}', '{}', null, '2026-06-29T14:07:28.571Z', '2026-06-29T14:07:28.571Z');
-COMMIT;
+-- ============================================================
+-- 升学规划完整数据库 Schema
+-- ============================================================
+
+-- 学生完整档案（扩展 profiles 表）
+CREATE TABLE IF NOT EXISTS student_profiles (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+  
+  -- 基本信息
+  display_name TEXT,
+  grade TEXT CHECK(grade IN ('G9','G10','G11','G12')),
+  curriculum TEXT CHECK(curriculum IN ('AP','IB','ALEVEL','IB')),
+  target_country TEXT,
+  target_major TEXT,
+  dream_schools TEXT DEFAULT '[]',         -- JSON array
+  interests TEXT DEFAULT '[]',             -- JSON array
+  strengths TEXT DEFAULT '[]',             -- JSON array
+  
+  -- 性格测试
+  mbti TEXT,
+  holland_type TEXT,
+  holland_secondary TEXT,
+  
+  -- 学业习惯
+  study_habit TEXT CHECK(study_habit IN ('high','medium','low')),
+  target_tier TEXT CHECK(target_tier IN ('elite','selective','good')),
+  
+  -- 扩展信息
+  extracurriculars TEXT DEFAULT '[]',      -- JSON array
+  awards TEXT DEFAULT '[]',                -- JSON array
+  
+  created_at TEXT DEFAULT (datetime('now')),
+  updated_at TEXT DEFAULT (datetime('now'))
+);
+
+-- 学术成绩历史（每次录入）
+CREATE TABLE IF NOT EXISTS grade_records (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  record_date TEXT DEFAULT (date('now')),
+  
+  -- 标化成绩
+  sat INTEGER,
+  act INTEGER,
+  toefl INTEGER,
+  ielts REAL,
+  gpa REAL,
+  gpa_scale TEXT DEFAULT '4.0',
+  
+  -- 学科成绩（JSON 存储每学期各科成绩）
+  subjects TEXT DEFAULT '[]',  -- [{name, score, weight}]
+  
+  -- 备注
+  note TEXT,
+  
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
+-- 竞赛记录
+CREATE TABLE IF NOT EXISTS competition_records (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  
+  name TEXT NOT NULL,
+  subject TEXT,           -- 数学/物理/化学/生物/计算机/商科
+  level TEXT,             -- 国家级/省级/校级
+  result TEXT,            -- 奖项/排名
+  grade_participated TEXT, -- 参赛时年级
+  date TEXT,
+  certificate_no TEXT,    -- 证书编号
+  note TEXT,
+  
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
+-- 活动记录
+CREATE TABLE IF NOT EXISTS activity_records (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  
+  name TEXT NOT NULL,
+  role TEXT,
+  organization TEXT,
+  start_date TEXT,
+  end_date TEXT,
+  hours_per_week REAL,
+  description TEXT,
+  achievements TEXT,
+  category TEXT,          -- 学术/公益/领导力/艺术
+  
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
+-- 语言成绩历史
+CREATE TABLE IF NOT EXISTS language_records (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  
+  exam_type TEXT CHECK(exam_type IN ('TOEFL','IELTS','SAT','ACT')),
+  score INTEGER,
+  sub_score TEXT,         -- 各科小分 JSON
+  exam_date TEXT,
+  attempt_no INTEGER DEFAULT 1,  -- 第几次考试
+  
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
+-- ============================================================
+-- 升学规划案例存档（每次生成规划都完整记录）
+-- ============================================================
+CREATE TABLE IF NOT EXISTS plan_cases (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  
+  -- 生成时间
+  created_at TEXT DEFAULT (datetime('now')),
+  
+  -- 学生当时的档案快照（完整记录生成时的状态）
+  student_snapshot TEXT NOT NULL,  -- JSON: 生成规划时的完整学生数据
+  
+  -- LLM 返回的原始规划结果
+  plan_raw TEXT NOT NULL,          -- JSON: LLM 完整输出
+  
+  -- 解析后的结构化规划
+  plan_parsed TEXT NOT NULL,       -- JSON: 解析成功的结构化数据
+  
+  -- 规划状态
+  status TEXT DEFAULT 'active' CHECK(status IN ('active','archived','deleted')),
+  
+  -- AI 模型信息
+  model_used TEXT,
+  tokens_used INTEGER,
+  
+  -- 关联目标
+  target_schools TEXT DEFAULT '[]',  -- JSON array
+  target_major TEXT,
+  focus_areas TEXT,
+  
+  -- PDF 文件路径
+  pdf_path TEXT,
+  
+  -- 管理员备注
+  admin_note TEXT,
+  
+  -- 软删除
+  deleted_at TEXT
+);
+
+-- 为已有 users 表创建索引
+CREATE INDEX IF NOT EXISTS idx_plan_cases_user ON plan_cases(user_id);
+CREATE INDEX IF NOT EXISTS idx_plan_cases_status ON plan_cases(status);
+CREATE INDEX IF NOT EXISTS idx_grade_records_user ON grade_records(user_id);
+CREATE INDEX IF NOT EXISTS idx_competition_records_user ON competition_records(user_id);
+CREATE INDEX IF NOT EXISTS idx_activity_records_user ON activity_records(user_id);
