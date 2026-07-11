@@ -222,6 +222,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <!-- Planning -->
     <div class="tab-panel" id="tab-planning">
       <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3>🧠 AI 升学规划</h3>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-primary" id="btn-generate-plan" onclick="generatePlan()">🚀 AI生成规划</button>
+            <button class="btn btn-secondary" id="btn-download-pdf" onclick="downloadPdf()" style="display:none">📄 下载PDF</button>
+          </div>
+        </div>
+        <div id="plan-loading" style="display:none;text-align:center;padding:40px">
+          <div style="font-size:32px;margin-bottom:12px">🧠</div>
+          <div style="color:var(--muted)">AI 正在为你生成个性化升学规划...</div>
+          <div style="color:var(--muted);font-size:12px;margin-top:8px">基于你的成绩、目标院校、竞赛记录等综合分析</div>
+        </div>
+        <div id="plan-error" style="display:none" class="card" style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:14px;color:#dc2626;margin-bottom:12px"></div>
+        <div id="plan-result" style="display:none"></div>
+        <div id="plan-placeholder">
+          <p style="color:var(--muted);text-align:center;padding:20px">点击上方「🚀 AI生成规划」按钮，基于你的档案信息生成个性化升学路径规划</p>
+        </div>
+      </div>
+      <div class="card">
         <h3 style="margin-bottom:12px">🏫 学校推荐</h3>
         <div id="schools-list"><p style="color:var(--muted)">完善档案后可查看推荐</p></div>
       </div>
@@ -626,6 +645,224 @@ function calcMatchPct(school) {
 function logout() {
   localStorage.removeItem(TK);
   window.location.href = '/student.html';
+}
+
+// ═══════ AI Plan Generation ═══════
+async function generatePlan() {
+  const btn = document.getElementById('btn-generate-plan');
+  const loading = document.getElementById('plan-loading');
+  const error = document.getElementById('plan-error');
+  const result = document.getElementById('plan-result');
+  const placeholder = document.getElementById('plan-placeholder');
+
+  if (!profile.grade || !profile.curriculum || !profile.target_country) {
+    error.style.display = 'block';
+    error.textContent = '⚠️ 请先在「我的档案」中完善年级、课程体系和目标国家信息，再生成规划。';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '生成中...';
+  loading.style.display = 'block';
+  error.style.display = 'none';
+  result.style.display = 'none';
+  placeholder.style.display = 'none';
+
+  try {
+    const r = await fetch('/api/plan/generate', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        target_schools: profile.dream_school ? [profile.dream_school] : [],
+        target_major: (profile.majors && profile.majors.join(',')) || '',
+        focus_areas: '综合提升'
+      })
+    });
+    const d = await r.json();
+    loading.style.display = 'none';
+
+    if (!r.ok) {
+      error.style.display = 'block';
+      error.textContent = d.error || '生成失败，请稍后重试';
+      btn.disabled = false; btn.textContent = '🚀 AI生成规划';
+      return;
+    }
+
+    if (d.raw) {
+      // Fallback: show raw content
+      result.innerHTML = `<div class="card" style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:16px;margin-bottom:12px"><h4 style="margin-bottom:8px">📋 AI 建议</h4><p style="line-height:1.7">${d.content.replace(/\n/g, '<br>')}</p></div>`;
+    } else {
+      renderPlanResult(d);
+    }
+
+    result.style.display = 'block';
+    document.getElementById('btn-download-pdf').style.display = 'inline-block';
+    btn.disabled = false; btn.textContent = '🔄 重新生成';
+  } catch(e) {
+    loading.style.display = 'none';
+    error.style.display = 'block';
+    error.textContent = '网络错误，请检查网络连接后重试';
+    btn.disabled = false; btn.textContent = '🚀 AI生成规划';
+  }
+}
+
+function renderPlanResult(d) {
+  const result = document.getElementById('plan-result');
+  let html = '';
+
+  if (d.summary) {
+    html += `<div class="card" style="background:linear-gradient(135deg,#eff6ff,#fef9f0);border:1px solid #bfdbfe;border-radius:12px;padding:16px;margin-bottom:16px">
+      <div style="font-size:13px;color:#1e40af;font-weight:600;margin-bottom:6px">📋 规划概要</div>
+      <div style="font-size:14px;line-height:1.7;color:#1e293b">${d.summary}</div>
+    </div>`;
+  }
+
+  // Student Profile
+  if (d.studentProfile) {
+    const sp = d.studentProfile;
+    html += `<div class="card" style="margin-bottom:12px">
+      <h4 style="margin-bottom:10px">👤 学生画像</h4>
+      ${sp.strengths && sp.strengths.length ? `<div style="margin-bottom:8px"><span style="color:#059669;font-size:12px">✅ 优势</span><br><span style="font-size:13px">${sp.strengths.join('、')}</span></div>` : ''}
+      ${sp.areasForImprovement && sp.areasForImprovement.length ? `<div style="margin-bottom:8px"><span style="color:#dc2626;font-size:12px">⚠️ 需提升</span><br><span style="font-size:13px">${sp.areasForImprovement.join('、')}</span></div>` : ''}
+      ${sp.personalityFit ? `<div><span style="color:#7c3aed;font-size:12px">🧠 性格匹配</span><br><span style="font-size:13px">${sp.personalityFit}</span></div>` : ''}
+    </div>`;
+  }
+
+  // Timeline
+  if (d.timeline) {
+    const phaseLabels = { immediate: '🔴 当前阶段', nearTerm: '🟡 近期阶段', mediumTerm: '🟠 中期阶段', application: '🟢 申请季冲刺' };
+    html += `<div class="card" style="margin-bottom:12px">
+      <h4 style="margin-bottom:12px">📅 规划时间线</h4>`;
+    for (const [key, label] of Object.entries(phaseLabels)) {
+      const phase = d.timeline[key];
+      if (!phase) continue;
+      html += `<div style="margin-bottom:12px;padding:10px;background:#f8fafc;border-radius:8px">
+        <div style="font-weight:600;font-size:13px;color:#1e40af;margin-bottom:4px">${label}</div>
+        ${phase.focus ? `<div style="font-size:12px;color:#d4a853;margin-bottom:4px">📌 ${phase.focus}</div>` : ''}
+        ${phase.actions && phase.actions.length ? `<ul style="margin:0;padding-left:16px;font-size:13px;line-height:1.8">
+          ${phase.actions.map(a => `<li>${a}</li>`).join('')}
+        </ul>` : ''}
+        ${phase.deadline ? `<div style="font-size:11px;color:#94a3b8;margin-top:4px">⏰ ${phase.deadline}</div>` : ''}
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Score Strategy
+  if (d.scoreStrategy) {
+    const ss = d.scoreStrategy;
+    const examNames = { sat: '📝 SAT', toefl_ielts: '🗣️ 托福/雅思', gpa: '📚 GPA' };
+    html += `<div class="card" style="margin-bottom:12px">
+      <h4 style="margin-bottom:10px">📊 成绩提升策略</h4>`;
+    for (const [exam, data] of Object.entries(ss)) {
+      if (!data) continue;
+      html += `<div style="margin-bottom:10px;padding:10px;background:#f8fafc;border-radius:8px">
+        <div style="font-weight:600;font-size:13px">${examNames[exam] || exam} &nbsp;<span style="color:#64748b;font-weight:400">${data.current || '-'} → ${data.target || '-'}</span></div>
+        ${data.actionPlan && data.actionPlan.length ? `<ul style="margin:4px 0 0;padding-left:16px;font-size:13px;line-height:1.8">
+          ${data.actionPlan.map(a => `<li>${a}</li>`).join('')}
+        </ul>` : ''}
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Competition Plan
+  if (d.competitionPlan && d.competitionPlan.length) {
+    html += `<div class="card" style="margin-bottom:12px">
+      <h4 style="margin-bottom:10px">🏆 竞赛规划</h4>`;
+    d.competitionPlan.forEach(c => {
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+        <div><strong style="font-size:13px">${c.name}</strong><br><span style="font-size:11px;color:#64748b">${c.level || '-'} · ${c.bestGrade || '-'} · 备赛${c.prepMonths || '-'}</span></div>
+        <span style="background:${c.weight==='高'?'#dc2626':c.weight==='中'?'#d97706':'#059669'};color:#fff;font-size:11px;padding:2px 8px;border-radius:10px">${c.weight || '-'}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Activity Plan
+  if (d.activityPlan) {
+    const ap = d.activityPlan;
+    html += `<div class="card" style="margin-bottom:12px">
+      <h4 style="margin-bottom:10px">🎯 活动规划</h4>`;
+    if (ap.core && ap.core.length) {
+      html += `<div style="margin-bottom:8px"><span style="color:#059669;font-size:12px">✅ 核心活动</span>`;
+      ap.core.forEach(a => {
+        html += `<div style="font-size:13px;padding:4px 0">• ${a.activity} (${a.hoursPerWeek}/周) — ${a.why || ''}</div>`;
+      });
+      html += `</div>`;
+    }
+    if (ap.supplementary && ap.supplementary.length) {
+      html += `<div><span style="color:#7c3aed;font-size:12px">🔶 辅助活动</span>`;
+      ap.supplementary.forEach(a => {
+        html += `<div style="font-size:13px;padding:4px 0">• ${a.activity} (${a.hoursPerWeek}/周)</div>`;
+      });
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // University Roadmap
+  if (d.universityRoadmap && d.universityRoadmap.length) {
+    const tierColor = { '冲刺': '#dc2626', '匹配': '#d4a853', '保底': '#059669' };
+    html += `<div class="card" style="margin-bottom:12px">
+      <h4 style="margin-bottom:10px">🎓 选校路径</h4>`;
+    d.universityRoadmap.forEach(u => {
+      html += `<div style="padding:10px 0;border-bottom:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span style="background:${tierColor[u.tier]||'#64748b'};color:#fff;font-size:11px;padding:2px 8px;border-radius:10px">${u.tier}</span>
+          <strong style="font-size:14px">${u.name}</strong>
+        </div>
+        <div style="font-size:12px;color:#64748b">要求: ${u.requirement||'-'} | 达标: ${u.myStatus||'-'} | 差距: ${u.gap||'-'}</div>
+        ${u.action ? `<div style="font-size:12px;color:#1e293b;margin-top:2px">行动: ${u.action}</div>` : ''}
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Risk Points
+  if (d.riskPoints && d.riskPoints.length) {
+    html += `<div class="card" style="margin-bottom:12px">
+      <h4 style="margin-bottom:10px">⚠️ 风险提示</h4>`;
+    d.riskPoints.forEach((r, i) => {
+      html += `<div style="font-size:13px;padding:6px 0;border-bottom:1px solid var(--border)">
+        <span style="color:#dc2626">${i+1}.</span> ${r.risk}
+        <span style="color:#64748b;font-size:11px"> (可能性:${r.likelihood||'-'} | 应对:${r.mitigation||'-'})</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Key Advice
+  if (d.topAdvice && d.topAdvice.length) {
+    html += `<div class="card" style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:16px;margin-bottom:12px">
+      <h4 style="margin-bottom:10px">💡 核心建议</h4>`;
+    d.topAdvice.forEach((advice, i) => {
+      html += `<div style="font-size:14px;padding:4px 0;line-height:1.6">${i+1}. ${advice}</div>`;
+    });
+    html += `</div>`;
+  }
+
+  result.innerHTML = html;
+}
+
+async function downloadPdf() {
+  const btn = document.getElementById('btn-download-pdf');
+  btn.disabled = true; btn.textContent = '生成中...';
+  try {
+    const r = await fetch('/api/plan/generate-pdf', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (!r.ok) { const d = await r.json(); alert(d.error || 'PDF生成失败'); return; }
+    const blob = await r.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `升学规划_${profile.grade || 'G10'}_${new Date().toLocaleDateString('zh-CN').replace(/\//g, '-')}.pdf`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch(e) { alert('PDF下载失败: ' + e.message); }
+  finally { btn.disabled = false; btn.textContent = '📄 下载PDF'; }
 }
 
 // ═══════ Helper: Milestones Fallback ═══════
