@@ -671,7 +671,7 @@ async function generatePlan() {
   let d;
   try {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 60000);
+    const timer = setTimeout(() => controller.abort(), 150000);
     const r = await fetch('/api/plan/generate', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },

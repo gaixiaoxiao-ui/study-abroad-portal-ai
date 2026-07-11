@@ -121,79 +121,15 @@ router.post('/generate', requireAuth, requireStudent, async (req, res) => {
     const targetCountryStr = profile.target_country || '未设置';
 
     // ── Build comprehensive LLM prompt ──
-    const prompt = `你是一位经验丰富的国际高中升学顾问。请根据以下学生完整信息，生成一份高度个性化的升学规划路径报告。
+    const prompt = `你是国际高中升学顾问。请根据以下学生信息生成升学规划JSON，直接输出JSON不要其他内容，不要<think>标签：
+学生：${grade}年级/${curriculum}体系，目标${targetCountryStr}，专业${majorStr}，${personalityStr}
+成绩：${scoreStr}
+历史：${academicHistory}
+梦校：${schoolStr}
+竞赛：${competitionStr}
 
-## 学生基本信息
-- 当前年级：${grade}（${curriculum}体系）
-- 目标国家：${targetCountryStr}
-- 目标专业方向：${majorStr}
-- 性格特征：${personalityStr}
-
-## 学术成绩（当前）
-${scoreStr}
-
-## 学术成绩历史记录
-${academicHistory}
-
-## 目标梦校
-${schoolStr}
-
-## 竞赛/活动记录
-${competitionStr}
-
-## 重点关注领域
-${focus_areas || '综合提升，全面发展'}
-
-## 当前阶段任务参考
-${currentTasks}
-
-请生成一份详细的个性化升学规划路径报告，包含以下内容（用JSON格式返回，不要markdown代码块包裹，不要有<think>标签）：
-
-{
-  "summary": "2-3句话概括该生的升学战略定位和核心策略",
-  "studentProfile": {
-    "strengths": ["优势1","优势2","优势3"],
-    "areasForImprovement": ["需提升1","需提升2"],
-    "personalityFit": "性格与目标专业的匹配度分析"
-  },
-  "timeline": {
-    "immediate": { "focus": "当前阶段重点", "actions": ["行动1","行动2","行动3"], "deadline": "1-3个月" },
-    "nearTerm": { "focus": "近期规划", "actions": ["行动1","行动2","行动3"], "deadline": "3-6个月" },
-    "mediumTerm": { "focus": "中期规划", "actions": ["行动1","行动2","行动3"], "deadline": "6-12个月" },
-    "application": { "focus": "申请季冲刺", "actions": ["行动1","行动2","行动3"], "deadline": "申请截止前" }
-  },
-  "scoreStrategy": {
-    "sat": { "current": "当前水平", "target": "目标分数", "actionPlan": ["具体提分步骤1","步骤2"] },
-    "toefl_ielts": { "current": "当前水平", "target": "目标分数", "actionPlan": ["具体提分步骤1","步骤2"] },
-    "gpa": { "current": "当前GPA", "target": "目标GPA", "actionPlan": ["保持/提升策略"] }
-  },
-  "subjectStrategy": {
-    "strengthened": ["应加强学科1","应加强学科2"],
-    "leveraged": ["发挥优势的学科1","发挥优势的学科2"],
-    "courseSelection": "选课建议"
-  },
-  "competitionPlan": [
-    { "name": "竞赛名称", "level": "竞赛级别", "bestGrade": "最佳参赛年级", "prepMonths": "备赛周期", "weight": "申请权重(高/中/低)" }
-  ],
-  "activityPlan": {
-    "core": [{ "activity": "核心活动名称", "role": "角色", "hoursPerWeek": "每周小时数", "why": "为什么重要" }],
-    "supplementary": [{ "activity": "辅助活动", "role": "角色", "hoursPerWeek": "每周小时数" }]
-  },
-  "universityRoadmap": [
-    { "tier": "冲刺", "name": "学校名称", "requirement": "录取要求", "myStatus": "该生当前达标情况", "gap": "差距", "action": "弥补措施" },
-    { "tier": "匹配", "name": "学校名称", "requirement": "录取要求", "myStatus": "该生当前达标情况", "gap": "差距", "action": "弥补措施" },
-    { "tier": "保底", "name": "学校名称", "requirement": "录取要求", "myStatus": "该生当前达标情况", "gap": "差距", "action": "弥补措施" }
-  ],
-  "riskPoints": [
-    { "risk": "风险描述", "likelihood": "高/中/低", "mitigation": "应对策略" }
-  ],
-  "keyMilestones": [
-    { "milestone": "关键里程碑", "targetDate": "目标日期", "successCriteria": "完成标准" }
-  ],
-  "topAdvice": ["最关键的3条建议，每条1句话"]
-}
-
-请用中文回答，建议要具体、可执行，避免空泛的套话。每个字段都要填写完整，不要留空。`;
+JSON格式（所有字段必填）：
+{"summary":"战略定位","studentProfile":{"strengths":["优势1","优势2"],"areasForImprovement":["需提升1"],"personalityFit":"匹配分析"},"timeline":{"immediate":{"focus":"当前重点","actions":["行动1","行动2"],"deadline":"1-3个月"},"nearTerm":{"focus":"近期","actions":["行动1"],"deadline":"3-6个月"},"mediumTerm":{"focus":"中期","actions":["行动1"],"deadline":"6-12个月"},"application":{"focus":"申请季","actions":["行动1"],"deadline":"申请前"}},"scoreStrategy":{"sat":{"current":"","target":"","actionPlan":["步骤1"]},"toefl_ielts":{"current":"","target":"","actionPlan":["步骤1"]}},"competitionPlan":[{"name":"","level":"","bestGrade":"","prepMonths":"","weight":""}],"universityRoadmap":[{"tier":"冲刺","name":"","requirement":"","myStatus":"","gap":"","action":""},{"tier":"匹配","name":"","requirement":"","myStatus":"","gap":"","action":""},{"tier":"保底","name":"","requirement":"","myStatus":"","gap":"","action":""}],"riskPoints":[{"risk":"","likelihood":"","mitigation":""}],"topAdvice":["建议1","建议2","建议3"]}`;
 
     // ── Call LLM with timeout ──
     let content = '';
@@ -202,7 +138,7 @@ ${currentTasks}
     if (process.env.MINIMAX_API_KEY) {
       try {
         const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 45000);
+        const timer = setTimeout(() => controller.abort(), 120000);
         const mmResp = await fetch(MINIMAX_API, {
           method: 'POST',
           headers: {
@@ -237,7 +173,7 @@ ${currentTasks}
     if (!content && process.env.DEEPSEEK_API_KEY) {
       try {
         const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 45000);
+        const timer = setTimeout(() => controller.abort(), 120000);
         const dsResp = await fetch(DEEPSEEK_API, {
           method: 'POST',
           headers: {
