@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>升学规划 · 家长看板</title>
+<style>
+:root {
+  --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #94a3b8;
+  --border: #e2e8f0; --primary: #1a56db; --primary-light: #eff6ff;
+  --primary-dark: #1e40af; --accent: #d4a853; --accent-light: #fef9f0;
+  --warn: #f59e0b; --danger: #ef4444; --radius: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06);
+  --font: -apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Roboto,sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); min-height:100vh; line-height:1.5; }
+
+/* Auth */
+.auth-overlay { display:flex; align-items:center; justify-content:center; min-height:100vh; background:linear-gradient(135deg,#7c3aed,#a855f7); }
+.auth-card { background:#fff; border-radius:20px; padding:48px 40px; width:420px; box-shadow:0 20px 60px rgba(0,0,0,.15); }
+.auth-card h1 { font-size:26px; text-align:center; margin-bottom:4px; font-weight:800; }
+.auth-card .subtitle { text-align:center; color:var(--muted); margin-bottom:32px; font-size:14px; }
+.auth-card label { display:block; font-size:13px; font-weight:600; color:#475569; margin:16px 0 6px; }
+.auth-card input { width:100%; padding:14px 16px; border:2px solid var(--border); border-radius:12px; font-size:15px; outline:none; transition:.2s; }
+.auth-card input:focus { border-color:var(--primary); box-shadow:0 0 0 4px rgba(139,92,246,.1); }
+.auth-card .btn { width:100%; margin-top:28px; padding:14px; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; transition:.2s; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff; }
+.auth-card .btn:hover { transform:translateY(-1px); box-shadow:0 8px 24px rgba(139,92,246,.3); }
+.auth-card .switch { text-align:center; margin-top:16px; font-size:13px; color:var(--muted); }
+.auth-card .switch a { color:var(--primary); cursor:pointer; text-decoration:none; font-weight:600; }
+.auth-card .error { color:var(--danger); font-size:13px; margin-top:6px; min-height:20px; }
+
+/* Layout */
+.app { max-width:1200px; margin:0 auto; padding:20px; }
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:16px 20px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:20px; }
+.topbar .brand { font-size:20px; font-weight:800; color:var(--primary); }
+.topbar .user-info { display:flex; align-items:center; gap:12px; }
+.avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--primary),#a855f7); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:16px; }
+.logout-btn { padding:8px 16px; border:1.5px solid var(--border); border-radius:10px; background:#fff; cursor:pointer; font-size:13px; color:var(--muted); transition:.2s; }
+.logout-btn:hover { border-color:var(--danger); color:var(--danger); }
+
+/* Cards */
+.card { background:var(--card); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:20px; }
+.card h2 { font-size:18px; font-weight:700; margin-bottom:4px; }
+.card .desc { font-size:13px; color:var(--muted); margin-bottom:20px; }
+.grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.stat-card { text-align:center; padding:20px; }
+.stat-card .num { font-size:36px; font-weight:800; color:var(--primary); }
+.stat-card .lbl { font-size:12px; color:var(--muted); margin-top:4px; }
+
+/* Calendar */
+.calendar { overflow-x:auto; }
+.cal-months { display:flex; gap:0; min-width:900px; }
+.cal-month { flex:1; min-width:130px; border-right:1px solid var(--border); padding:0 8px; }
+.cal-month:last-child { border-right:none; }
+.cal-month-header { text-align:center; padding:8px 0; font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; border-bottom:2px solid var(--border); margin-bottom:8px; }
+.cal-month.current .cal-month-header { background:var(--primary-light); color:var(--primary); border-radius:6px 6px 0 0; border-color:var(--primary); }
+.cal-task { font-size:10px; padding:6px 8px; margin-bottom:4px; border-radius:6px; background:var(--bg); border-left:3px solid var(--border); line-height:1.3; }
+.cal-task.critical { border-color:var(--danger); background:#fef2f2; }
+.cal-task.high { border-color:var(--warn); background:#fffbeb; }
+.cal-phase-label { font-size:10px; font-weight:700; padding:4px 8px; margin:8px 0 4px; border-radius:4px; text-align:center; }
+.cal-phase-label.s1 { background:var(--primary-light); color:var(--primary); }
+.cal-phase-label.s2 { background:#fef3c7; color:#92400e; }
+
+/* Scores */
+.score-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--bg); }
+.score-row:last-child { border:none; }
+.score-label { font-size:14px; font-weight:600; }
+.score-val { font-size:15px; font-weight:700; }
+.score-gap { font-size:12px; }
+.ok { color:var(--accent); }
+.warn { color:var(--warn); }
+.unknown { color:var(--muted); }
+
+/* Profile tags */
+.profile-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.profile-tag { padding:6px 14px; border-radius:8px; font-size:12px; font-weight:600; background:var(--bg); color:var(--text); }
+.profile-tag.empty { color:var(--muted); font-style:italic; }
+
+/* Goal display */
+.goal-row { display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid var(--bg); }
+.goal-row:last-child { border:none; }
+.tier-badge { font-size:10px; padding:2px 8px; border-radius:4px; font-weight:700; }
+.tier-reach { background:#fef2f2; color:var(--danger); }
+.tier-target { background:#fffbeb; color:var(--warn); }
+.tier-safety { background:var(--accent-light); color:var(--accent); }
+
+/* Buttons */
+.btn-sm { padding:10px 20px; background:var(--primary); color:#fff; border:none; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap; transition:.2s; }
+.btn-sm:hover { background:var(--primary-dark); }
+.btn-accent { background:var(--accent); }
+.btn-accent:hover { background:#059669; }
+
+.toast { position:fixed; bottom:24px; right:24px; padding:14px 24px; border-radius:12px; color:#fff; font-size:14px; font-weight:600; z-index:100; animation:in .3s ease; }
+.toast.success { background:var(--accent); }
+.toast.error { background:var(--danger); }
+@keyframes in { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+.hidden { display:none !important; }
+.loading-text { text-align:center; padding:40px; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ═══ Auth ═══ -->
+<div id="authScreen" class="auth-overlay">
+  <div class="auth-card">
+    <h1>🎓 升学规划 · 家长看板</h1>
+    <p class="subtitle">实时掌握孩子的留学准备进度</p>
+    <div id="loginForm">
+      <label>手机号</label><input type="text" id="loginPhone" placeholder="注册手机号" autofocus>
+      <label>密码</label><input type="password" id="loginPass" placeholder="登录密码">
+      <div class="error" id="loginError"></div>
+      <button class="btn" onclick="doLogin()">登录看板</button>
+      <p class="switch">还没有账号？<a onclick="showReg()">注册家长账号</a></p>
+    </div>
+    <div id="regForm" class="hidden">
+      <label>您的姓名</label><input type="text" id="regName" placeholder="怎么称呼您">
+      <label>手机号</label><input type="text" id="regPhone" placeholder="11位手机号">
+      <label>密码（至少6位）</label><input type="password" id="regPass" placeholder="设置密码">
+      <div class="error" id="regError"></div>
+      <button class="btn" onclick="doReg()">注册</button>
+      <p class="switch">已有账号？<a onclick="showLogin()">返回登录</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ App ═══ -->
+<div id="appScreen" class="app hidden">
+  <div class="topbar">
+    <div class="brand">🎓 升学规划 · 家长看板</div>
+    <div class="user-info">
+      <span style="font-size:14px;font-weight:600;" id="userName"></span>
+      <div class="avatar" id="userAvatar">P</div>
+      <button class="logout-btn" onclick="doLogout()">退出</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid-3" id="statsRow"></div>
+
+  <!-- Calendar -->
+  <div class="card"><h2>📅 升学全景日历</h2><p class="desc">G10-G12 全周期关键节点，当前阶段高亮显示</p></div>
+  <div class="card"><div class="calendar" id="calendarView"><div class="loading-text">加载中...</div></div></div>
+
+  <!-- Scores + Profile -->
+  <div class="grid-2">
+    <div class="card">
+      <h2>📊 标化进度</h2><p class="desc">成绩 vs 年级基线对比</p>
+      <div id="scoreView"><div class="loading-text">加载中...</div></div>
+    </div>
+    <div class="card">
+      <h2>👤 孩子档案</h2><p class="desc">当前学业画像</p>
+      <div id="profileView"><div class="loading-text">加载中...</div></div>
+    </div>
+  </div>
+
+  <!-- Goals -->
+  <div class="card">
+    <h2>🎯 目标学校</h2><p class="desc">冲刺 · 匹配 · 保底</p>
+    <div id="goalsView"><div class="loading-text">孩子尚未设置目标学校</div></div>
+  </div>
+</div>
+
+<script>
+const API = '';
+let token = localStorage.getItem('ptoken')||'';
+let progress = null;
+
+function showReg() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('regForm').classList.remove('hidden'); }
+function showLogin() { document.getElementById('regForm').classList.add('hidden'); document.getElementById('loginForm').classList.remove('hidden'); }
+
+if (token) tryAutoLogin(); else showLogin();
+
+async function tryAutoLogin() {
+  try {
+    const r = await fetch(API+'/api/timeline/progress',{headers:{'Authorization':'Bearer '+token}});
+    if (!r.ok) throw new Error();
+    progress = await r.json();
+    showApp();
+  } catch { token=''; localStorage.removeItem('ptoken'); showLogin(); }
+}
+
+function showApp() {
+  document.getElementById('authScreen').classList.add('hidden');
+  document.getElementById('appScreen').classList.remove('hidden');
+  document.getElementById('userName').textContent = progress?.profile?.name || '家长';
+  document.getElementById('userAvatar').textContent = (progress?.profile?.name||'P')[0].toUpperCase();
+  loadAll();
+}
+
+async function doLogin() {
+  const phone = document.getElementById('loginPhone').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
+  const err = document.getElementById('loginError');
+  if (!phone||!pass) { err.textContent='请填写手机号和密码'; return; }
+  err.textContent='';
+  try {
+    const r = await fetch(API+'/api/parent/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:phone,password:pass})});
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error||'登录失败');
+    token = d.token; localStorage.setItem('ptoken',token);
+    await loadProgress();
+    showApp();
+  } catch(e) { err.textContent=e.message; }
+}
+
+async function doReg() {
+  const name=document.getElementById('regName').value.trim(), phone=document.getElementById('regPhone').value.trim(), pass=document.getElementById('regPass').value.trim();
+  const err=document.getElementById('regError');
+  if (!name||!phone||!pass) { err.textContent='请填写所有项'; return; }
+  if (pass.length<6) { err.textContent='密码至少6位'; return; }
+  err.textContent='';
+  try {
+    const r = await fetch(API+'/api/parent/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,phone,password:pass})});
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error||'注册失败');
+    token = d.token; localStorage.setItem('ptoken',token);
+    await loadProgress();
+    showApp(); toast('注册成功！','success');
+  } catch(e) { err.textContent=e.message; }
+}
+
+function doLogout() { token=''; localStorage.removeItem('ptoken'); showLogin(); document.getElementById('appScreen').classList.add('hidden'); document.getElementById('authScreen').classList.remove('hidden'); }
+
+async function api(path) {
+  const r = await fetch(API+path,{headers:{'Authorization':'Bearer '+token}});
+  if (r.status===401) { doLogout(); throw new Error('登录过期'); }
+  if (!r.ok) throw new Error('请求失败');
+  return r.json();
+}
+
+async function loadProgress() {
+  try { progress = await api('/api/timeline/progress'); } catch(e) { console.error(e); }
+}
+
+async function loadAll() {
+  try {
+    const [tl, prog] = await Promise.all([api('/api/timeline'), api('/api/timeline/progress')]);
+    progress = prog;
+    renderStats(prog);
+    renderCalendar(tl);
+    renderScores(prog);
+    renderProfile(prog);
+    renderGoals();
+  } catch(e) { toast('加载失败: '+e.message,'error'); }
+}
+
+function renderStats(p) {
+  let critical = 0;
+  if (p.tasksByCategory) for (const c of Object.values(p.tasksByCategory)) critical += (c.critical||0);
+  document.getElementById('statsRow').innerHTML =
+    `<div class="card stat-card"><div class="num">${p.grade||'?'}</div><div class="lbl">当前年级</div></div>
+     <div class="card stat-card"><div class="num">${p.totalTasks||0}</div><div class="lbl">本阶段任务</div></div>
+     <div class="card stat-card"><div class="num" style="color:var(--danger);">${critical}</div><div class="lbl">⚠️ 紧急任务</div></div>`;
+}
+
+function renderCalendar(d) {
+  if (!d.phases) return;
+  const months = [
+    {id:'g10-1',label:'G10 9月'},{id:'g10-2',label:'10月'},{id:'g10-3',label:'11月'},{id:'g10-4',label:'12月'},{id:'g10-5',label:'1月'},
+    {id:'g10-6',label:'2月'},{id:'g10-7',label:'3月'},{id:'g10-8',label:'4月'},{id:'g10-9',label:'5月'},{id:'g10-10',label:'6月'},
+    {id:'g11-1',label:'G11 9月'},{id:'g11-2',label:'10月'},{id:'g11-3',label:'11月'},{id:'g11-4',label:'12月'},{id:'g11-5',label:'1月'},
+    {id:'g11-6',label:'2月'},{id:'g11-7',label:'3月'},{id:'g11-8',label:'4月'},{id:'g11-9',label:'5月'},{id:'g11-10',label:'6月'},
+    {id:'g12-1',label:'G12 9月'},{id:'g12-2',label:'10月'},{id:'g12-3',label:'11月'},{id:'g12-4',label:'12月'},{id:'g12-5',label:'1月'},
+    {id:'g12-6',label:'2月'},{id:'g12-7',label:'3月'},{id:'g12-8',label:'4月'},{id:'g12-9',label:'5月'},{id:'g12-10',label:'6月'},
+  ];
+  const taskMap = {};
+  for (const [g, phase] of Object.entries(d.phases)) {
+    phase.tasks.forEach(t => {
+      const dl = t.deadline;
+      let mi = -1;
+      if (g==='G10') mi = (dl.includes('上')||dl.includes('秋季')||dl.includes('9月')||dl.includes('10月')||dl.includes('11月')||dl.includes('12月'))?0:5;
+      else if (g==='G11') mi = (dl.includes('上')||dl.includes('秋季')||dl.includes('9月')||dl.includes('10月')||dl.includes('11月')||dl.includes('12月'))?10:15;
+      else mi = (dl.includes('上')||dl.includes('秋季')||dl.includes('9月')||dl.includes('10月')||dl.includes('11月')||dl.includes('12月'))?20:25;
+      const key = months[mi]?.id||'g10-1';
+      if (!taskMap[key]) taskMap[key]=[];
+      taskMap[key].push(t);
+    });
+  }
+
+  const cg = progress?.grade||'G10';
+  const cBase = cg==='G10'?0:cg==='G11'?10:20;
+
+  let html = '<div class="cal-months">';
+  for (let i=0;i<months.length;i++) {
+    const m=months[i];
+    const isCur = i>=cBase&&i<cBase+10;
+    html+=`<div class="cal-month${isCur?' current':''}"><div class="cal-month-header">${m.label}</div>`;
+    for (const t of (taskMap[m.id]||[]).slice(0,4))
+      html+=`<div class="cal-task ${t.priority}" title="${t.desc}">${t.title}</div>`;
+    html+='</div>';
+  }
+  html+='</div>';
+  html+='<div style="display:flex;margin-top:8px;gap:4px;font-size:10px;"><span class="cal-phase-label s1">上学期</span><span class="cal-phase-label s2">下学期</span></div>';
+  document.getElementById('calendarView').innerHTML=html;
+}
+
+function renderScores(p) {
+  const s = p.scores||{};
+  const labels = {sat:'SAT',act:'ACT',toefl:'托福',ielts:'雅思'};
+  let html='';
+  for (const [k,v] of Object.entries(s)) {
+    if (!labels[k]) continue;
+    const cls = v.status==='ok'?'ok':v.status==='below'?'warn':'unknown';
+    html+=`<div class="score-row"><span class="score-label">${labels[k]}</span><span><span class="score-val ${cls}">${v.current||'--'}</span>${v.target?'<span class="score-gap"> / 目标'+v.target+'</span>':''} ${cls==='ok'?'✅':cls==='warn'?'⚠️':'❓'}</span></div>`;
+  }
+  document.getElementById('scoreView').innerHTML = html||'<div class="loading-text">暂无成绩数据</div>';
+}
+
+function renderProfile(p) {
+  const pr = p.profile||{};
+  const tags = [
+    {k:'课程',v:(p.curriculum||'')+' · '+(p.phaseLabel||'')},
+    {k:'MBTI',v:pr.mbti},{k:'Holland',v:pr.holland},
+    {k:'目标国家',v:pr.target_country},{k:'意向专业',v:pr.target_major},{k:'目标学校',v:pr.target_school},
+  ];
+  let html='<div class="profile-tags">';
+  for (const t of tags) html+=`<span class="profile-tag${t.v?'':' empty'}">${t.k}: ${t.v||'未设置'}</span>`;
+  html+='</div>';
+  document.getElementById('profileView').innerHTML=html;
+}
+
+function renderGoals() {
+  const gs = progress?.profile?.target_school;
+  document.getElementById('goalsView').innerHTML = gs
+    ? `<div class="goal-row"><span class="tier-badge tier-target">目标</span> ${gs}</div>`
+    : '<div class="loading-text">孩子尚未在系统中设置目标学校</div>';
+}
+
+function toast(m,t) {
+  const e=document.createElement('div'); e.className='toast '+t; e.textContent=m;
+  document.body.appendChild(e); setTimeout(()=>e.remove(),3000);
+}
+</script>
+</body>
+</html>

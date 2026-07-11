@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Login Test</title></head>
+<body>
+<h2>极简登录测试</h2>
+<input id="e" placeholder="邮箱"><br>
+<input id="p" type="password" placeholder="密码"><br>
+<button onclick="doLogin()">登录</button>
+<div id="msg"></div>
+<script>
+async function doLogin(){
+  var e=document.getElementById('e').value;
+  var p=document.getElementById('p').value;
+  var m=document.getElementById('msg');
+  m.textContent='请求中...';
+  try{
+    var r=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p})});
+    var d=await r.json();
+    if(d.token){m.textContent='✅ 登录成功！用户名='+d.user.username+', grade='+(d.user.profile&&d.user.profile.grade||'无')+', token='+d.token.substring(0,20)+'...';}
+    else{m.textContent='❌ '+JSON.stringify(d);}
+  }catch(x){m.textContent='网络错误: '+x.message;}
+}
+</script>
+</body></html>

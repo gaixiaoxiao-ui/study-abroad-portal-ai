@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · 升学规划后台</title>
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--blue:#1a56db;--blue-light:#eff6ff;--green:#10b981;--red:#ef4444;--amber:#f59e0b;--radius:12px;--shadow:0 1px 3px rgba(0,0,0,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.topbar h1{font-size:20px;font-weight:800;color:var(--blue)}
+.topbar .user-info{display:flex;align-items:center;gap:10px;font-size:14px}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);text-align:center}
+.stat-card .val{font-size:28px;font-weight:800;color:var(--blue)}
+.stat-card .lbl{font-size:12px;color:var(--muted);margin-top:4px}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+.card h2{font-size:16px;font-weight:700;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+th{font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase}
+tr:hover{background:var(--blue-light)}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-student{background:var(--blue-light);color:var(--blue)}
+.badge-parent{background:#fef9f0;color:#d4a853}
+.badge-admin{background:#fef2f2;color:var(--red)}
+.btn{padding:8px 16px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#1e40af}
+.btn-danger{background:var(--red);color:#fff}
+.btn-danger:hover{background:#dc2626}
+.btn-sm{padding:4px 10px;font-size:11px}
+.auth-card{max-width:400px;margin:80px auto;background:var(--card);border-radius:16px;padding:32px;box-shadow:0 10px 40px rgba(0,0,0,.1)}
+.auth-card h2{text-align:center;margin-bottom:24px;color:var(--blue)}
+.auth-card input{width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:15px;margin-bottom:12px;outline:none}
+.auth-card input:focus{border-color:var(--blue)}
+.auth-card .btn{width:100%;padding:14px;font-size:16px;margin-top:8px}
+.error{color:var(--red);font-size:13px;text-align:center;min-height:20px}
+.loading{text-align:center;padding:40px;color:var(--muted)}
+.full-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.full-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="login-screen">
+  <div class="auth-card">
+    <h2>🔐 管理员登录</h2>
+    <input type="email" id="login-email" placeholder="管理员邮箱" autocomplete="email">
+    <input type="password" id="login-password" placeholder="密码" autocomplete="current-password">
+    <div class="error" id="login-error"></div>
+    <button class="btn btn-primary" onclick="doLogin()">登 录</button>
+  </div>
+</div>
+<div id="app-screen" style="display:none">
+  <div class="topbar">
+    <h1>🎓 升学规划 · 管理后台</h1>
+    <div class="user-info"><span id="admin-name"></span><button class="btn btn-sm btn-danger" onclick="logout()">退出</button></div>
+  </div>
+  <div class="container">
+    <div class="stats-grid" id="stats"></div>
+    <div class="card">
+      <h2>👥 用户列表</h2>
+      <div style="overflow-x:auto"><table id="user-table"><thead><tr><th>用户名</th><th>邮箱</th><th>角色</th><th>年级</th><th>体系</th><th>MBTI</th><th>SAT</th><th>规划数</th><th>注册时间</th><th>操作</th></tr></thead><tbody id="user-tbody"></tbody></table></div>
+    </div>
+  </div>
+</div>
+<script>
+const API = '';
+let token = localStorage.getItem('admin_token') || '';
+
+async function doLogin(){
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const err = document.getElementById('login-error');
+  try{
+    const r = await fetch(API+'/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+    const d = await r.json();
+    if(!r.ok){err.textContent=d.error||'登录失败';return}
+    token = d.token;
+    localStorage.setItem('admin_token',token);
+    await loadDashboard();
+  }catch(e){err.textContent='网络错误'}
+}
+
+function logout(){localStorage.removeItem('admin_token');location.reload()}
+
+async function loadDashboard(){
+  try{
+    const [statsR,usersR] = await Promise.all([
+      fetch(API+'/api/admin/stats',{headers:{'Authorization':'Bearer '+token}}),
+      fetch(API+'/api/admin/users',{headers:{'Authorization':'Bearer '+token}})
+    ]);
+    if(statsR.status===403){alert('需要管理员权限');logout();return}
+    if(!statsR.ok||!usersR.ok){throw new Error('auth')}
+    const stats = await statsR.json();
+    const users = await usersR.json();
+    
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app-screen').style.display='block';
+    document.getElementById('admin-name').textContent = '管理员';
+    
+    document.getElementById('stats').innerHTML = `
+      <div class="stat-card"><div class="val">${stats.total}</div><div class="lbl">总用户</div></div>
+      <div class="stat-card"><div class="val">${stats.students}</div><div class="lbl">学生</div></div>
+      <div class="stat-card"><div class="val">${stats.parents}</div><div class="lbl">家长</div></div>
+      <div class="stat-card"><div class="val">${stats.withPlans}</div><div class="lbl">已有规划</div></div>
+      <div class="stat-card"><div class="val">${stats.withProfile}</div><div class="lbl">已填档案</div></div>
+      <div class="stat-card"><div class="val">${stats.withGrades}</div><div class="lbl">已录成绩</div></div>
+      <div class="stat-card"><div class="val">G9:${stats.gradeDist.G9} G10:${stats.gradeDist.G10} G11:${stats.gradeDist.G11} G12:${stats.gradeDist.G12}</div><div class="lbl">年级分布</div></div>
+      <div class="stat-card"><div class="val" style="font-size:20px">${stats.students+stats.parents}</div><div class="lbl">非管理员</div></div>
+    `;
+    
+    document.getElementById('user-tbody').innerHTML = users.map(u => `
+      <tr>
+        <td><b>${u.username}</b></td>
+        <td style="font-size:12px">${u.email}</td>
+        <td><span class="badge badge-${u.role==='admin'?'admin':u.role==='parent'?'parent':'student'}">${u.role==='parent'?'家长':u.role==='admin'?'管理员':'学生'}</span></td>
+        <td>${u.grade}</td>
+        <td>${u.curriculum}</td>
+        <td>${u.mbti}</td>
+        <td>${u.sat||'—'}</td>
+        <td>${u.plansCount}</td>
+        <td style="font-size:11px">${new Date(u.createdAt).toLocaleDateString('zh-CN')}</td>
+        <td><button class="btn btn-sm btn-danger" onclick="deleteUser('${u.id}','${u.email}')">删除</button></td>
+      </tr>
+    `).join('');
+  }catch(e){
+    document.getElementById('login-error').textContent = '权限不足或登录过期';
+    logout();
+  }
+}
+
+async function deleteUser(id,email){
+  if(!confirm(`确认删除用户 ${email}？`)) return;
+  try{
+    const r = await fetch(API+'/api/admin/user/'+id,{method:'DELETE',headers:{'Authorization':'Bearer '+token}});
+    if(r.ok){alert('已删除');loadDashboard()}else{const d=await r.json();alert(d.error||'删除失败')}
+  }catch(e){alert('网络错误')}
+}
+
+if(token) loadDashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+  {"mbti":"ISTJ","nickname":"物流师","traits":"冷静、逻辑、有序","majors":["计算机科学","会计","工商管理"],"careers":["软件工程师","CPA","数据分析师"],"fit_school_tiers":["T15","T20","T25","T30"]},
+  {"mbti":"ISFJ","nickname":"守卫者","traits":"可靠、细致、助人","majors":["会计","护理","教育","建筑设计"],"careers":["护士","教师","摄影师","建筑师"],"fit_school_tiers":["T20","T25","T30"]},
+  {"mbti":"INFJ","nickname":"提倡者","traits":"理想主义、共情力","majors":["教育","社工","心理学","国际关系"],"careers":["心理咨询师","社工","家庭医生"],"fit_school_tiers":["T5","T10","T15"]},
+  {"mbti":"INTJ","nickname":"建筑师","traits":"战略思维、高标准","majors":["计算机科学","金融","物理","哲学"],"careers":["投资分析师","产品经理","研究员"],"fit_school_tiers":["T5","T10","T15"]},
+  {"mbti":"ISTP","nickname":"鉴赏家","traits":"动手实践、逻辑","majors":["工程","计算机科学","法医学"],"careers":["机械工程师","法医","情报分析"],"fit_school_tiers":["T15","T20","T25"]},
+  {"mbti":"ISFP","nickname":"探险家","traits":"安静、敏感、审美","majors":["英语文学","建筑","视觉设计","烹饪"],"careers":["室内设计","厨师","花艺师"],"fit_school_tiers":["T20","T25","T30"]},
+  {"mbti":"INFP","nickname":"调停者","traits":"理想主义、好奇心","majors":["图书馆学","历史","视觉艺术","环境科学"],"careers":["艺术家","策展人","环境科学家"],"fit_school_tiers":["T15","T20","T25"]},
+  {"mbti":"INTP","nickname":"逻辑学家","traits":"分析思考、创新","majors":["工程","商科","政治学","建筑"],"careers":["工程师","管理咨询","律师"],"fit_school_tiers":["T5","T10","T15"]},
+  {"mbti":"ESTP","nickname":"企业家","traits":"行动力、应变力","majors":["工商管理","工程","建筑管理"],"careers":["销售经理","企业主","创业者"],"fit_school_tiers":["T15","T20","T25"]},
+  {"mbti":"ESFP","nickname":"表演者","traits":"外向、创意、热情","majors":["教育","社工","护理","健康科学"],"careers":["教师","社工","演艺人员"],"fit_school_tiers":["T20","T25","T30"]},
+  {"mbti":"ENFP","nickname":"活动家","traits":"创意、自由、热情","majors":["新闻","心理学","广告","艺术"],"careers":["记者","心理咨询师","创意总监"],"fit_school_tiers":["T10","T15","T20"]},
+  {"mbti":"ENTP","nickname":"辩论家","traits":"创新、辩论、灵活","majors":["法律","创业","产品设计","哲学"],"careers":["律师","创业者","产品经理"],"fit_school_tiers":["T10","T15","T20"]},
+  {"mbti":"ESTJ","nickname":"总经理","traits":"高效、规则、领导力","majors":["会计","金融","管理","供应链"],"careers":["CFO","项目经理","运营总监"],"fit_school_tiers":["T15","T20","T25"]},
+  {"mbti":"ESFJ","nickname":"执政官","traits":"热情、关怀、合作","majors":["教育","社工","护理","公共关系"],"careers":["教师","HR","护士"],"fit_school_tiers":["T20","T25","T30"]},
+  {"mbti":"ENFJ","nickname":"主人公","traits":"感染力、组织力","majors":["教育","心理学","传媒","国际关系"],"careers":["培训师","咨询师","外交官"],"fit_school_tiers":["T10","T15","T20"]},
+  {"mbti":"ENTJ","nickname":"指挥官","traits":"果断、战略、领导","majors":["金融","管理","法律","公共政策"],"careers":["CEO","管理咨询","律师"],"fit_school_tiers":["T5","T10","T15"]}
+]

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>升学规划 · G10-G12国际高中留学全周期管理</title>
+<style>
+:root {
+  --blue: #1a56db; --blue-light: #eff6ff; --blue-dark: #1e40af;
+  --gold: #d4a853; --gold-light: #fef9f0;
+  --text: #1e293b; --muted: #64748b; --bg: #f8fafc;
+  --card: #fff; --border: #e2e8f0; --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Roboto,sans-serif; color:var(--text); background:var(--bg); line-height:1.6; }
+
+/* ─── Header ─── */
+.header { background:#fff; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+.header-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:8px 20px; }
+.logo { font-size:22px; font-weight:800; color:var(--blue); display:flex; align-items:center; gap:8px; text-decoration:none; }
+.logo span { color:var(--gold); }
+.nav { display:flex; gap:24px; list-style:none; }
+.nav a { text-decoration:none; color:var(--text); font-size:14px; font-weight:500; transition:.2s; }
+.nav a:hover { color:var(--blue); }
+.header-phone { display:flex; align-items:center; gap:8px; color:var(--blue); font-weight:700; font-size:15px; }
+.header-btn { padding:8px 20px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; text-decoration:none; }
+
+/* ─── Hero ─── */
+.hero { background:linear-gradient(135deg,#1e40af 0%,#1a56db 50%,#2563eb 100%); color:#fff; padding:80px 20px; text-align:center; position:relative; overflow:hidden; }
+.hero::after { content:''; position:absolute; top:-50%; right:-10%; width:500px; height:500px; background:rgba(255,255,255,.03); border-radius:50%; }
+.hero h1 { font-size:42px; font-weight:800; margin-bottom:16px; position:relative; z-index:1; }
+.hero p { font-size:18px; opacity:.9; max-width:600px; margin:0 auto 32px; position:relative; z-index:1; }
+.hero-stats { display:flex; justify-content:center; gap:48px; margin-top:32px; position:relative; z-index:1; }
+.hero-stat { text-align:center; }
+.hero-stat .num { font-size:32px; font-weight:800; }
+.hero-stat .lbl { font-size:13px; opacity:.8; }
+.hero-btn { display:inline-block; padding:14px 36px; background:var(--gold); color:#fff; border-radius:10px; font-size:16px; font-weight:700; text-decoration:none; transition:.2s; position:relative; z-index:1; }
+.hero-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(212,168,83,.4); }
+
+/* ─── Section ─── */
+.section { padding:72px 20px; max-width:1200px; margin:0 auto; }
+.section-title { text-align:center; margin-bottom:48px; }
+.section-title h2 { font-size:30px; font-weight:800; }
+.section-title p { color:var(--muted); font-size:15px; margin-top:8px; }
+.section-title .divider { width:48px; height:4px; background:var(--gold); margin:16px auto 0; border-radius:2px; }
+
+/* ─── Courses ─── */
+.course-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media(max-width:768px) { .course-grid { grid-template-columns:1fr; } }
+.course-card { background:var(--card); border-radius:16px; padding:32px; box-shadow:var(--shadow); transition:.3s; border:1px solid var(--border); position:relative; overflow:hidden; }
+.course-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.course-card .badge { position:absolute; top:16px; right:16px; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; }
+.badge-us { background:#eff6ff; color:var(--blue); }
+.badge-uk { background:var(--gold-light); color:#92400e; }
+.badge-ib { background:#f0fdf4; color:#166534; }
+.course-card .icon { font-size:36px; margin-bottom:16px; }
+.course-card h3 { font-size:20px; margin-bottom:8px; }
+.course-card .desc { font-size:14px; color:var(--muted); margin-bottom:16px; line-height:1.7; }
+.course-card .features { list-style:none; }
+.course-card .features li { font-size:13px; padding:6px 0; border-bottom:1px solid var(--bg); display:flex; align-items:center; gap:6px; }
+.course-card .features li:last-child { border:none; }
+
+/* ─── Target ─── */
+.target-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
+.target-card { background:var(--card); border-radius:12px; padding:24px; border-left:4px solid var(--blue); box-shadow:var(--shadow); }
+.target-card h4 { font-size:15px; margin-bottom:8px; color:var(--blue); }
+.target-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* ─── Timeline ─── */
+.timeline-steps { display:flex; justify-content:space-between; position:relative; padding:20px 0; }
+.timeline-steps::before { content:''; position:absolute; top:28px; left:10%; right:10%; height:3px; background:var(--border); z-index:0; }
+.timeline-step { text-align:center; position:relative; z-index:1; flex:1; }
+.timeline-step .dot { width:56px; height:56px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; margin:0 auto 12px; }
+.timeline-step .label { font-size:14px; font-weight:700; }
+.timeline-step .desc { font-size:12px; color:var(--muted); margin-top:4px; }
+
+/* ─── Value ─── */
+.benefits-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+@media(max-width:768px) { .benefits-grid { grid-template-columns:repeat(2,1fr); } }
+.benefit-card { text-align:center; padding:24px; }
+.benefit-card .icon { font-size:40px; margin-bottom:12px; }
+.benefit-card h4 { font-size:15px; margin-bottom:6px; }
+.benefit-card p { font-size:12px; color:var(--muted); }
+
+/* ─── CTA ─── */
+.cta { background:linear-gradient(135deg,var(--blue-dark),var(--blue)); color:#fff; text-align:center; padding:60px 20px; }
+.cta h2 { font-size:28px; margin-bottom:8px; }
+.cta p { opacity:.8; margin-bottom:24px; }
+.cta .btn { display:inline-block; padding:14px 36px; background:var(--gold); color:#fff; border-radius:10px; font-size:16px; font-weight:700; text-decoration:none; margin:0 8px; transition:.2s; }
+.cta .btn:hover { transform:translateY(-2px); }
+
+/* ─── Footer ─── */
+.footer { background:var(--blue-dark); color:#fff; padding:48px 20px 24px; }
+.footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; }
+@media(max-width:768px) { .footer-inner { grid-template-columns:1fr; } }
+.footer h4 { font-size:14px; margin-bottom:12px; color:var(--gold); }
+.footer p, .footer a { font-size:13px; color:#93c5fd; text-decoration:none; line-height:2; }
+.footer a:hover { color:#fff; }
+.footer-bottom { text-align:center; padding-top:24px; border-top:1px solid rgba(255,255,255,.1); margin-top:32px; font-size:12px; color:#60a5fa; }
+
+/* ─── Sidebar ─── */
+.sidebar { position:fixed; right:20px; bottom:120px; display:flex; flex-direction:column; gap:8px; z-index:99; }
+.sidebar-btn { width:48px; height:48px; border-radius:50%; background:var(--card); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:20px; transition:.2s; border:1px solid var(--border); text-decoration:none; }
+.sidebar-btn:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.sidebar-btn.wx { background:#07c160; color:#fff; border:none; font-size:13px; font-weight:600; width:auto; padding:0 16px; border-radius:24px; gap:4px; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo"><img src="/img/logo.png" alt="Academic Navigator 学业导航仪" height="132" style="border-radius:6px"></a>
+    <ul class="nav">
+      <li><a href="#courses">课程体系</a></li>
+      <li><a href="#target">适合学员</a></li>
+      <li><a href="#timeline">时间规划</a></li>
+      <li><a href="#value">服务优势</a></li>
+      <li><a href="/student.html?v=2">学生端</a></li>
+      <li><a href="/parent">家长端</a></li>
+    </ul>
+    <div class="header-phone">📞 升学咨询</div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>G10-G12 国际高中留学全周期管理</h1>
+  <p>覆盖 AP · IB · A-Level 三大课程体系，从标化冲刺到选校决策，一站式升学导航</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">50+</div><div class="lbl">全球名校数据库</div></div>
+    <div class="hero-stat"><div class="num">3</div><div class="lbl">课程体系覆盖</div></div>
+    <div class="hero-stat"><div class="num">30+</div><div class="lbl">关键时间节点</div></div>
+    <div class="hero-stat"><div class="num">AI</div><div class="lbl">智能规划引擎</div></div>
+  </div>
+  <a href="/student.html?v=2" class="hero-btn" style="margin-top:36px;">🚀 开始规划</a>
+</section>
+
+<!-- Course Introduction -->
+<section id="courses" class="section">
+  <div class="section-title"><h2>三大课程体系 · 精准匹配</h2><p>不同课程体系的升学路径和关键节点各有不同，我们为每种体系定制专属时间线</p><div class="divider"></div></div>
+  <div class="course-grid">
+    <div class="course-card">
+      <span class="badge badge-us">美高体系</span>
+      <div class="icon">🇺🇸</div>
+      <h3>AP 美国大学先修</h3>
+      <p class="desc">适合目标美国 Top 50 的学生。G10 打基础，G11 AP 冲刺 3-5 门，G12 申请决战。核心在于 GPA + AP 5分 + SAT 1500+ 三位一体。</p>
+      <ul class="features">
+        <li>📝 SAT/ACT 备考节奏</li>
+        <li>📚 AP 选课策略（文理平衡）</li>
+        <li>🏫 Common App + UC 双系统</li>
+        <li>📅 ED/EA/RD 三阶段申请</li>
+        <li>🎯 课外活动 10 项清单</li>
+      </ul>
+    </div>
+    <div class="course-card">
+      <span class="badge badge-ib">国际文凭</span>
+      <div class="icon">🌍</div>
+      <h3>IB 国际文凭课程</h3>
+      <p class="desc">适合综合能力强、目标全球 Top 30 的学生。6 大学科组 + TOK + EE + CAS，IB 38+ 是顶尖大学的敲门砖。英美双申利器。</p>
+      <ul class="features">
+        <li>📋 6大学科组 HL/SL 搭配</li>
+        <li>📝 EE/IA/TOK 三大核心</li>
+        <li>🎨 CAS 活动 150 小时规划</li>
+        <li>🇬🇧 UCAS + 🇺🇸 Common App 双轨</li>
+        <li>📊 IB Predicted Grade 管理</li>
+      </ul>
+    </div>
+    <div class="course-card">
+      <span class="badge badge-uk">英高体系</span>
+      <div class="icon">🇬🇧</div>
+      <h3>A-Level 英国高中课程</h3>
+      <p class="desc">适合目标英国 G5 + 香港前三的学生。3-4 门深度学科，AS + A2 两年制。AAA 是 G5 基准线，牛剑需要额外笔试面试。</p>
+      <ul class="features">
+        <li>🎯 3-4门选课策略（按专业反推）</li>
+        <li>📝 Personal Statement 学术写作</li>
+        <li>🏛️ 牛剑笔试（STEP/MAT/PAT）</li>
+        <li>🗣️ 牛剑面试模拟训练</li>
+        <li>📋 UCAS 5 所选校策略</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Target Audience -->
+<section id="target" class="section" style="background:#fff;">
+  <div class="section-title"><h2>适合什么样的学生和家长</h2><p>无论处于哪个阶段，都能找到适合的规划路径</p><div class="divider"></div></div>
+  <div class="target-grid">
+    <div class="target-card"><h4>🎯 G10 探索期</h4><p>刚进入国际高中，需要明确课程体系选择、建立学习节奏、探索学术兴趣方向，为后续标化和活动打好基础。</p></div>
+    <div class="target-card"><h4>📈 G11 冲刺期</h4><p>标化考试密集出分、AP/IB/A-Level 大考在即、课外活动需要深度而非广度、选校清单需要从 30 所缩到 12 所。</p></div>
+    <div class="target-card"><h4>🚀 G12 决战期</h4><p>ED/EA/RD 申请三线并行、主文书 + 补充文书高频迭代、面试准备、最终 offer 对比决策，每一步都容不得闪失。</p></div>
+    <div class="target-card"><h4>👨‍👩‍👧 家长视角</h4><p>实时查看孩子进度、标化成绩达标情况、目标学校匹配度、关键节点提醒，让焦虑变成掌控感。</p></div>
+    <div class="target-card"><h4>🔄 中途转轨</h4><p>从体制内转国际赛道、从一所国际学校转另一所、从美高转英高——我们提供转轨评估和衔接方案。</p></div>
+    <div class="target-card"><h4>🌏 多国混申</h4><p>英美双申、加澳港新多国布局，不同国家的申请时间线和材料要求差异大，需要统一管理。</p></div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section id="timeline" class="section">
+  <div class="section-title"><h2>G10→G12 全周期时间线</h2><p>每个学期该做什么，一目了然</p><div class="divider"></div></div>
+  <div class="timeline-steps">
+    <div class="timeline-step"><div class="dot">1</div><div class="label">G10 基础建设</div><div class="desc">语言基线<br>GPA 稳定<br>兴趣探索</div></div>
+    <div class="timeline-step"><div class="dot">2</div><div class="label">G10 暑假</div><div class="desc">夏校/科研<br>竞赛准备<br>活动起步</div></div>
+    <div class="timeline-step"><div class="dot">3</div><div class="label">G11 标化冲刺</div><div class="desc">SAT/ACT<br>AP 备考<br>选校初筛</div></div>
+    <div class="timeline-step"><div class="dot">4</div><div class="label">G11 暑假</div><div class="desc">文书初稿<br>深度活动<br>访校</div></div>
+    <div class="timeline-step"><div class="dot">5</div><div class="label">G12 申请季</div><div class="desc">ED/EA<br>UCAS<br>文书定稿</div></div>
+    <div class="timeline-step"><div class="dot">6</div><div class="label">G12 收官</div><div class="desc">RD 提交<br>offer 对比<br>最终决策</div></div>
+  </div>
+</section>
+
+<!-- Value -->
+<section id="value" class="section" style="background:#fff;">
+  <div class="section-title"><h2>为什么选择我们</h2><p>不只是工具，是陪伴整个高中阶段的升学伙伴</p><div class="divider"></div></div>
+  <div class="benefits-grid">
+    <div class="benefit-card"><div class="icon">🤖</div><h4>AI 智能规划</h4><p>DeepSeek 根据你的成绩和目标生成个性化冲刺方案</p></div>
+    <div class="benefit-card"><div class="icon">📊</div><h4>成绩追踪</h4><p>SAT/托福/AP/IB/A-Level 逐一追踪，自动检测达标与否</p></div>
+    <div class="benefit-card"><div class="icon">🎯</div><h4>智能选校</h4><p>冲刺·匹配·保底三档推荐，多维评分匹配</p></div>
+    <div class="benefit-card"><div class="icon">👨‍👩‍👧</div><h4>亲子协作</h4><p>家长实时看进度，孩子自主管任务，目标对齐</p></div>
+    <div class="benefit-card"><div class="icon">📅</div><h4>日历时间线</h4><p>G10-G12 全部关键节点可视化，不错过任何截止日</p></div>
+    <div class="benefit-card"><div class="icon">🔬</div><h4>专业探索</h4><p>MBTI + Holland 性格匹配，找到真正适合的方向</p></div>
+    <div class="benefit-card"><div class="icon">🏆</div><h4>活动推荐</h4><p>按年级和专业方向推荐竞赛、夏校、科研项目</p></div>
+    <div class="benefit-card"><div class="icon">📱</div><h4>移动友好</h4><p>手机端完整适配，随时随地查看进度</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>准备好开启孩子的升学规划了吗？</h2>
+  <p>免费注册，立即获得个性化时间线和 AI 智能建议</p>
+  <a href="/student.html?v=2" class="btn">🎓 学生端 · 开始规划</a>
+  <a href="/parent" class="btn" style="background:rgba(255,255,255,.2);">👨‍👩‍👧 家长端 · 查看进度</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div><a href="/" class="logo" style="margin-bottom:12px;"><img src="/img/logo.png" alt="Academic Navigator 学业导航仪" height="40" style="border-radius:6px"></a><p>G10-G12 国际高中留学全周期管理平台<br>覆盖 AP · IB · A-Level 三大课程体系</p></div>
+    <div><h4>快速入口</h4><a href="/student.html?v=2">学生看板</a><br><a href="/parent">家长看板</a><br><a href="#courses">课程体系</a><br><a href="#timeline">时间规划</a></div>
+    <div><h4>课程体系</h4><a href="#courses">AP 美高体系</a><br><a href="#courses">IB 国际文凭</a><br><a href="#courses">A-Level 英高体系</a></div>
+    <div><h4>关于</h4><a href="/student.html?v=2">开始使用</a><br><a href="http://150.109.254.155:3099">旧版沙盒 →</a></div>
+  </div>
+  <div class="footer-bottom">© 2026 升学规划 · G10-G12 College Planning Platform</div>
+</footer>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <a href="/student.html?v=2" class="sidebar-btn" title="学生端">🎓</a>
+  <a href="/parent" class="sidebar-btn" title="家长端">👨‍👩‍👧</a>
+  <a href="#top" class="sidebar-btn" title="回到顶部">↑</a>
+</div>
+
+</body>
+</html>

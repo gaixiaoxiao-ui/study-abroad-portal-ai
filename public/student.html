@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学业导航仪 · 登录</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(135deg,#eff6ff,#fef9f0);min-height:100vh;display:flex;align-items:center;justify-content:center}
+.card{background:#fff;border-radius:16px;padding:40px;width:380px;max-width:90vw;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.logo{text-align:center;font-size:28px;margin-bottom:4px}
+.sub{text-align:center;color:#64748b;font-size:13px;margin-bottom:28px}
+label{display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px}
+input{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:8px;font-size:15px;margin-bottom:16px;outline:none}
+input:focus{border-color:#4F46E5;box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+.btn{width:100%;padding:13px;background:linear-gradient(135deg,#4F46E5,#6366f1);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;margin-top:4px}
+.btn:hover{opacity:.9}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.link{display:block;text-align:center;margin-top:16px;color:#6366f1;font-size:13px;cursor:pointer;background:none;border:none;width:100%}
+.error{color:#ef4444;font-size:13px;text-align:center;min-height:20px;margin-bottom:4px}
+.loading{text-align:center;color:#64748b;padding:20px;display:none}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="logo">🎓 学业导航仪</div>
+  <div class="sub">Academic Navigator · 学生端</div>
+
+  <div id="login-form">
+    <label>邮箱</label>
+    <input type="email" id="login-email" placeholder="your@email.com" autocomplete="email">
+    <label>密码</label>
+    <input type="password" id="login-password" placeholder="••••••" autocomplete="current-password">
+    <div class="error" id="login-error"></div>
+    <button class="btn" id="login-btn" type="submit">登 录</button>
+  </div>
+
+  <div id="loading-msg" class="loading">正在登录...</div>
+
+  <button class="link" id="show-register">还没有账号？注册 →</button>
+
+  <div id="register-form" style="display:none">
+    <label>邮箱</label>
+    <input type="email" id="reg-email" placeholder="your@email.com">
+    <label>用户名</label>
+    <input type="text" id="reg-username" placeholder="2-20位字母数字">
+    <label>密码 (6位以上)</label>
+    <input type="password" id="reg-password" placeholder="••••••">
+    <div class="error" id="reg-error"></div>
+    <button class="btn" id="reg-btn" type="submit">注册并开始</button>
+    <button class="link" id="show-login">← 返回登录</button>
+  </div>
+
+</div>
+
+<script>
+const TK = 'student_token';
+
+// Check if already logged in
+const savedToken = localStorage.getItem(TK);
+if (savedToken) {
+  document.getElementById('login-form').style.display = 'none';
+  document.getElementById('loading-msg').style.display = 'block';
+  // Verify token is valid
+  fetch('/api/auth/me', { headers: { 'Authorization': 'Bearer ' + savedToken } })
+    .then(r => r.json().then(d => ({ok:r.ok, d:d})))
+    .then(({ok, d}) => {
+      if (ok && d.user) {
+        window.location.href = '/app.html';
+      } else {
+        localStorage.removeItem(TK);
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('loading-msg').style.display = 'none';
+      }
+    })
+    .catch(() => {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('loading-msg').style.display = 'none';
+    });
+}
+
+// Login
+document.getElementById('login-btn').addEventListener('click', async () => {
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const err = document.getElementById('login-error');
+  const btn = document.getElementById('login-btn');
+  
+  if (!email || !password) { err.textContent = '请输入邮箱和密码'; return; }
+  
+  btn.disabled = true; btn.textContent = '登录中...'; err.textContent = '';
+  
+  try {
+    const r = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const d = await r.json();
+    if (!r.ok) { err.textContent = d.error || '登录失败'; btn.disabled = false; btn.textContent = '登 录'; return; }
+    
+    localStorage.setItem(TK, d.token);
+    window.location.href = '/app.html';
+  } catch(e) {
+    err.textContent = '网络错误，请重试';
+    btn.disabled = false;
+    btn.textContent = '登 录';
+  }
+});
+
+// Toggle register
+document.getElementById('show-register').addEventListener('click', () => {
+  document.getElementById('login-form').style.display = 'none';
+  document.getElementById('register-form').style.display = 'block';
+  document.getElementById('show-register').style.display = 'none';
+});
+document.getElementById('show-login').addEventListener('click', () => {
+  document.getElementById('login-form').style.display = 'block';
+  document.getElementById('register-form').style.display = 'none';
+  document.getElementById('show-register').style.display = 'block';
+});
+
+// Register
+document.getElementById('reg-btn').addEventListener('click', async () => {
+  const email = document.getElementById('reg-email').value;
+  const username = document.getElementById('reg-username').value;
+  const password = document.getElementById('reg-password').value;
+  const err = document.getElementById('reg-error');
+  const btn = document.getElementById('reg-btn');
+  
+  if (password.length < 6) { err.textContent = '密码至少6位'; return; }
+  
+  btn.disabled = true; btn.textContent = '注册中...'; err.textContent = '';
+  
+  try {
+    const r = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, username, password })
+    });
+    const d = await r.json();
+    if (!r.ok) { err.textContent = d.error || '注册失败'; btn.disabled = false; btn.textContent = '注册并开始'; return; }
+    
+    localStorage.setItem(TK, d.token);
+    window.location.href = '/app.html';
+  } catch(e) {
+    err.textContent = '网络错误';
+    btn.disabled = false;
+    btn.textContent = '注册并开始';
+  }
+});
+</script>
+</body>
+</html>

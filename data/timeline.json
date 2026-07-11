@@ -1,0 +1,147 @@
+{
+  "curricula": {
+    "AP": {
+      "name": "AP 美高体系",
+      "phases": {
+        "G10": {
+          "label": "G10 高一·基础建设",
+          "tasks": [
+            {"id":"g10_1","category":"标化","title":"托福/雅思首考或模考","desc":"建立语言基线,目标托福80+/雅思6.0","deadline":"G10上学期末","priority":"high"},
+            {"id":"g10_2","category":"标化","title":"PSAT 10 模考","desc":"了解SAT考试形式,不做正式要求","deadline":"G10秋季","priority":"low"},
+            {"id":"g10_3","category":"课程","title":"保持GPA 3.5+","desc":"G10是建立学术记录的关键年,平均分不低于A-/B+","deadline":"全年","priority":"high"},
+            {"id":"g10_4","category":"活动","title":"加入2-3个社团或运动队","desc":"开始建立活动档案,找到1-2个真正感兴趣的领域","deadline":"G10上","priority":"high"},
+            {"id":"g10_5","category":"活动","title":"暑假计划:夏校/志愿者/实习","desc":"探索学术兴趣,积累有意义的经历","deadline":"G10下(3月前申请)","priority":"medium"},
+            {"id":"g10_6","category":"探索","title":"初步了解大学和专业","desc":"浏览学校官网,参加线上info session","deadline":"G10下","priority":"medium"},
+            {"id":"g10_7","category":"课程","title":"AP选课规划","desc":"与Counselor讨论G11-G12选课策略","deadline":"G10下(4-5月)","priority":"medium"}
+          ]
+        },
+        "G11": {
+          "label": "G11 高二·冲刺核心",
+          "tasks": [
+            {"id":"g11_1","category":"标化","title":"SAT/ACT首考","desc":"目标SAT 1450+ / ACT 32+,春季可再刷一次","deadline":"G11秋季(10-12月)","priority":"critical"},
+            {"id":"g11_2","category":"标化","title":"托福/雅思冲刺","desc":"目标托福100+ / 雅思7.0+,语言成绩尽量G11解决","deadline":"G11上","priority":"high"},
+            {"id":"g11_3","category":"课程","title":"AP考试准备","desc":"G11选3-4门AP,5月考试,目标4-5分","deadline":"G11上选课,5月考","priority":"critical"},
+            {"id":"g11_4","category":"课程","title":"保持或提升GPA","desc":"Junior year最关键,GPA下滑影响巨大","deadline":"全年","priority":"critical"},
+            {"id":"g11_5","category":"活动","title":"活动深度:领导力/竞赛/科研","desc":"从参与者升级为组织者,争取州级/国家级奖项","deadline":"全年","priority":"high"},
+            {"id":"g11_6","category":"选校","title":"初步选校20-30所","desc":"建立选校清单:Reach/Target/Safety各7-10所","deadline":"G11春季","priority":"high"},
+            {"id":"g11_7","category":"选校","title":"暑期访校或Virtual Tour","desc":"实地感受校园文化,缩小选校范围","deadline":"G11暑假","priority":"medium"},
+            {"id":"g11_8","category":"文书","title":"开始Common App主文书构思","desc":"暑假完成初稿,利用独特经历讲好故事","deadline":"G11暑假","priority":"high"},
+            {"id":"g11_9","category":"推荐信","title":"邀请2位老师写推荐信","desc":"G11春季确认,给老师足够时间和素材","deadline":"G11下(4-5月)","priority":"high"}
+          ]
+        },
+        "G12": {
+          "label": "G12 高三·申请决战",
+          "tasks": [
+            {"id":"g12_1","category":"选校","title":"最终确定申请学校(8-12所)","desc":"ED 1所 + EA 3-4所 + RD 4-6所","deadline":"G12上(8-9月)","priority":"critical"},
+            {"id":"g12_2","category":"标化","title":"SAT/ACT最后刷分","desc":"如G11成绩不理想,8-10月最后冲刺","deadline":"G12上(8-10月)","priority":"medium"},
+            {"id":"g12_3","category":"文书","title":"完成主文书+补充文书","desc":"主文书定稿后,逐校完成Why Essay/Supplement","deadline":"10月前主文书,11月前补充文书","priority":"critical"},
+            {"id":"g12_4","category":"申请","title":"ED/EA提交","desc":"11月1日截止!提前一周完成提交","deadline":"11月1日","priority":"critical"},
+            {"id":"g12_5","category":"推荐信","title":"确认推荐信已提交","desc":"跟进老师,确保在截止前完成","deadline":"G12上(10月)","priority":"high"},
+            {"id":"g12_6","category":"申请","title":"RD申请提交","desc":"12月底-1月中截止,分批提交避免压线","deadline":"12月-1月","priority":"critical"},
+            {"id":"g12_7","category":"财务","title":"提交FAFSA/CSS Profile","desc":"财务资助申请,与RD同步提交","deadline":"与RD同步","priority":"high"},
+            {"id":"g12_8","category":"等待","title":"等待录取结果","desc":"ED 12月中出,EA 1-2月,RD 3-4月","deadline":"12月-4月","priority":"medium"},
+            {"id":"g12_9","category":"决策","title":"比较Offer,5月1日前确认","desc":"综合考虑学术/财务/地理位置,做最终决定","deadline":"5月1日","priority":"critical"}
+          ]
+        }
+      }
+    },
+    "IB": {
+      "name": "IB 国际文凭体系",
+      "phases": {
+        "G10": {
+          "label": "G10 Pre-IB·准备期",
+          "tasks": [
+            {"id":"ib_g10_1","category":"标化","title":"托福/雅思首考","desc":"目标托福80+/雅思6.0","deadline":"G10上","priority":"high"},
+            {"id":"ib_g10_2","category":"课程","title":"IB选课确定(Pre-IB)","desc":"6大学科组+TOK+EE+CAS,与Coordinator讨论HL/SL分配","deadline":"G10上","priority":"critical"},
+            {"id":"ib_g10_3","category":"课程","title":"适应IB学习方法","desc":"独立研究、批判性思维、时间管理","deadline":"全年","priority":"high"},
+            {"id":"ib_g10_4","category":"活动","title":"CAS活动开始积累","desc":"Creativity+Activity+Service,找到长期项目","deadline":"G10上","priority":"medium"},
+            {"id":"ib_g10_5","category":"探索","title":"了解IB评分与大学认可","desc":"IB 38+ = Top 30竞争力,IB 42+ = Top 10","deadline":"G10上","priority":"medium"},
+            {"id":"ib_g10_6","category":"活动","title":"暑假计划:夏校/科研","desc":"利用Pre-IB暑假探索学术方向","deadline":"G10下","priority":"medium"}
+          ]
+        },
+        "G11": {
+          "label": "G11 DP1·深度投入",
+          "tasks": [
+            {"id":"ib_g11_1","category":"标化","title":"SAT/ACT首考","desc":"目标SAT 1450+ / ACT 32+","deadline":"G11秋季","priority":"high"},
+            {"id":"ib_g11_2","category":"标化","title":"托福/雅思冲刺","desc":"目标托福105+ / 雅思7.5+","deadline":"G11上","priority":"high"},
+            {"id":"ib_g11_3","category":"课程","title":"IA/EE初步选题","desc":"Internal Assessment和Extended Essay选题,开始研究","deadline":"G11上","priority":"critical"},
+            {"id":"ib_g11_4","category":"课程","title":"保持IB Predicted Grade","desc":"PG 38+是Top学校的基准线,每分都重要","deadline":"全年","priority":"critical"},
+            {"id":"ib_g11_5","category":"活动","title":"CAS领导力项目","desc":"从参与者到组织者,打造有影响力的CAS Portfolio","deadline":"全年","priority":"high"},
+            {"id":"ib_g11_6","category":"选校","title":"初步选校15-25所","desc":"结合IB PG和意向国家/专业筛选","deadline":"G11春季","priority":"high"},
+            {"id":"ib_g11_7","category":"文书","title":"文书构思+素材积累","desc":"Common App/UCAS文书初稿利用暑假完成","deadline":"G11暑假","priority":"high"},
+            {"id":"ib_g11_8","category":"推荐信","title":"邀请老师+Coordinator写推荐信","desc":"IB Coordinator的推荐信对UK申请尤其重要","deadline":"G11下","priority":"high"}
+          ]
+        },
+        "G12": {
+          "label": "G12 DP2·收官申请",
+          "tasks": [
+            {"id":"ib_g12_1","category":"选校","title":"最终确定申请清单","desc":"UK 5所(UCAS) + US 8-12所","deadline":"G12上(8-9月)","priority":"critical"},
+            {"id":"ib_g12_2","category":"课程","title":"EE/IA/TOK Essay完成","desc":"IB三大核心,直接影响最终分数","deadline":"G12上(11-12月)","priority":"critical"},
+            {"id":"ib_g12_3","category":"申请","title":"UCAS提交(UK)","desc":"10月15日牛津剑桥/医学截止,1月其他截止","deadline":"G12上(10月)","priority":"critical"},
+            {"id":"ib_g12_4","category":"申请","title":"US ED/EA提交","desc":"11月1日截止","deadline":"11月1日","priority":"critical"},
+            {"id":"ib_g12_5","category":"文书","title":"补充文书完成","desc":"US各校Why Essay/Supplement","deadline":"G12上(10-12月)","priority":"critical"},
+            {"id":"ib_g12_6","category":"申请","title":"RD提交","desc":"12月底-1月分批提交","deadline":"12月-1月","priority":"critical"},
+            {"id":"ib_g12_7","category":"考试","title":"IB大考准备","desc":"5月全球统考,最终成绩影响Conditional Offer","deadline":"G12下(5月)","priority":"critical"},
+            {"id":"ib_g12_8","category":"决策","title":"对比Offer,做最终决定","desc":"5月1日前确认US,UK按UCAS节奏","deadline":"5月1日","priority":"critical"}
+          ]
+        }
+      }
+    },
+    "ALevel": {
+      "name": "A-Level 英高体系",
+      "phases": {
+        "G10": {
+          "label": "G10 IGCSE·打基础",
+          "tasks": [
+            {"id":"al_g10_1","category":"标化","title":"雅思首考","desc":"目标6.0+,了解听说读写弱项","deadline":"G10上","priority":"high"},
+            {"id":"al_g10_2","category":"课程","title":"IGCSE选课(8-10门)","desc":"广泛接触学科,为A-Level选课做准备","deadline":"G10上","priority":"high"},
+            {"id":"al_g10_3","category":"课程","title":"保持IGCSE成绩A/A*","desc":"IG成绩是A-Level预测的基础参考","deadline":"全年","priority":"high"},
+            {"id":"al_g10_4","category":"探索","title":"确定A-Level选课方向(3-4门)","desc":"根据大学目标专业反推:工程→数理化,医学→生化数","deadline":"G10下","priority":"critical"},
+            {"id":"al_g10_5","category":"活动","title":"课外活动+竞赛","desc":"UK申请重学术,相关学科竞赛含金量高(UKMT/BPHO等)","deadline":"全年","priority":"medium"},
+            {"id":"al_g10_6","category":"选校","title":"了解UK大学体系","desc":"UCAS申请规则、Personal Statement要求、牛剑额外考试","deadline":"G10下","priority":"medium"}
+          ]
+        },
+        "G11": {
+          "label": "G11 AS·关键年",
+          "tasks": [
+            {"id":"al_g11_1","category":"标化","title":"雅思冲刺","desc":"目标7.0+,UK大学对雅思要求严格","deadline":"G11上","priority":"high"},
+            {"id":"al_g11_2","category":"课程","title":"A-Level AS考试","desc":"争取3-4门全A,这是预测成绩的基础","deadline":"G11春夏","priority":"critical"},
+            {"id":"al_g11_3","category":"课程","title":"EPQ项目启动","desc":"Extended Project Qualification,展示独立研究能力","deadline":"G11上","priority":"medium"},
+            {"id":"al_g11_4","category":"选校","title":"确定UCAS 5所选校","desc":"1冲+2稳+2保,考虑牛剑额外考试(STEP/MAT/BMAT等)","deadline":"G11暑假前","priority":"critical"},
+            {"id":"al_g11_5","category":"文书","title":"Personal Statement初稿","desc":"UK文书重学术,展示对学科的深度理解和热情","deadline":"G11暑假","priority":"critical"},
+            {"id":"al_g11_6","category":"标化","title":"牛剑笔试准备","desc":"STEP/MAT/BMAT/PAT等,如目标牛剑需提前半年准备","deadline":"G11暑假开始","priority":"medium"},
+            {"id":"al_g11_7","category":"活动","title":"学科深度活动","desc":"科研/实习/竞赛,为PS积累素材","deadline":"全年","priority":"high"},
+            {"id":"al_g11_8","category":"推荐信","title":"确认推荐人","desc":"学科老师+UCAS Reference","deadline":"G11下","priority":"high"}
+          ]
+        },
+        "G12": {
+          "label": "G12 A2·申请+考试",
+          "tasks": [
+            {"id":"al_g12_1","category":"申请","title":"UCAS提交","desc":"牛剑/医学10月15日,其他1月截止","deadline":"G12上(10月)","priority":"critical"},
+            {"id":"al_g12_2","category":"标化","title":"牛剑面试准备","desc":"如进入面试,模拟训练","deadline":"G12上(11-12月)","priority":"critical"},
+            {"id":"al_g12_3","category":"文书","title":"PS最终打磨","desc":"在提交前反复修改,确保学术深度","deadline":"G12上(9-10月)","priority":"critical"},
+            {"id":"al_g12_4","category":"课程","title":"A2课程深度推进","desc":"A2难度显著提升,保持成绩","deadline":"全年","priority":"critical"},
+            {"id":"al_g12_5","category":"申请","title":"US/加/港/澳同步申请(如需)","desc":"Common App/其他系统,与UCAS不冲突","deadline":"G12上","priority":"medium"},
+            {"id":"al_g12_6","category":"等待","title":"等待Conditional Offer","desc":"UK大学发Conditional Offer(依赖A2最终成绩)","deadline":"G12上-春夏","priority":"medium"},
+            {"id":"al_g12_7","category":"考试","title":"A-Level大考","desc":"5-6月A2统考,最终成绩决定是否能换Unconditional Offer","deadline":"G12下(5-6月)","priority":"critical"},
+            {"id":"al_g12_8","category":"决策","title":"确认Firm+Insurance选择","desc":"UCAS系统内确认第一志愿+保底","deadline":"6月","priority":"critical"}
+          ]
+        }
+      }
+    }
+  },
+  "activities": [
+    {"id":"act_1","name":"AMC 美国数学竞赛","category":"竞赛","grades":["G10","G11","G12"],"level":"国家级","effort":"中","field":["STEM","数学","工程"],"desc":"AMC 10/12 → AIME → USAMO,数学能力硬通货"},
+    {"id":"act_2","name":"USACO 美国计算机奥赛","category":"竞赛","grades":["G10","G11","G12"],"level":"国家级","effort":"高","field":["计算机","STEM"],"desc":"青铜→白银→黄金→铂金,逐级进阶"},
+    {"id":"act_3","name":"iGEM 国际基因工程大赛","category":"竞赛","grades":["G11"],"level":"国际级","effort":"高","field":["生物","化学","STEM"],"desc":"高中生组,合成生物学领域顶级赛事"},
+    {"id":"act_4","name":"KWHS 沃顿投资竞赛","category":"竞赛","grades":["G10","G11"],"level":"国际级","effort":"中","field":["商科","经济","金融"],"desc":"沃顿商学院主办,股票投资模拟+策略报告"},
+    {"id":"act_5","name":"DECA/FBLA 商赛","category":"竞赛","grades":["G10","G11","G12"],"level":"国际级","effort":"中","field":["商科","管理","市场营销"],"desc":"商业案例分析,演讲与presentation"},
+    {"id":"act_6","name":"John Locke Essay Competition","category":"竞赛","grades":["G11","G12"],"level":"国际级","effort":"高","field":["人文","社科","哲学","经济"],"desc":"牛津/普林斯顿教授评审的学术写作竞赛"},
+    {"id":"act_7","name":"RSI/MITES/SSP 顶级夏校","category":"夏校","grades":["G11"],"level":"国际级","effort":"高","field":["STEM","科研"],"desc":"Research Science Institute等,录取率5-10%"},
+    {"id":"act_8","name":"YYGS 耶鲁全球青年学者","category":"夏校","grades":["G11"],"level":"国际级","effort":"中","field":["综合","社科","人文"],"desc":"Yale Young Global Scholars,跨学科研讨"},
+    {"id":"act_9","name":"学校社团领导力","category":"校内","grades":["G10","G11","G12"],"level":"校内","effort":"低","field":["综合"],"desc":"创办/领导1-2个社团,体现持续性和影响力"},
+    {"id":"act_10","name":"社区服务/志愿者","category":"志愿者","grades":["G10","G11","G12"],"level":"地区级","effort":"低","field":["综合"],"desc":"长期(非一次性)社区服务,展现社会责任感"},
+    {"id":"act_11","name":"科研/教授RA","category":"科研","grades":["G11","G12"],"level":"国家级","effort":"高","field":["STEM","社科"],"desc":"联系大学教授做Research Assistant,争取发表"},
+    {"id":"act_12","name":"模联MUN","category":"活动","grades":["G10","G11","G12"],"level":"国际级","effort":"中","field":["国际关系","政治","法学"],"desc":"Model United Nations,锻炼公共演讲和辩论"}
+  ]
+}

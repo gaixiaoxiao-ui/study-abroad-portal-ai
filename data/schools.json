@@ -1,0 +1,1649 @@
+[
+  {
+    "name_en": "Harvard University",
+    "name_cn": "哈佛大学",
+    "sat_range": "1510-1580",
+    "act_range": "34-36",
+    "acceptance_rate": 3.2,
+    "sat_low": 1510,
+    "sat_high": 1580,
+    "act_low": 34,
+    "act_high": 36,
+    "tier": "T5",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFP"
+    ],
+    "tier_index": 0,
+    "strengths": [
+      "计算机科学",
+      "经济学",
+      "政治学/政府",
+      "生物学"
+    ]
+  },
+  {
+    "name_en": "Yale University",
+    "name_cn": "耶鲁大学",
+    "sat_range": "1510-1580",
+    "act_range": "34-35",
+    "acceptance_rate": 3.7,
+    "sat_low": 1510,
+    "sat_high": 1580,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T5",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFP"
+    ],
+    "tier_index": 0,
+    "strengths": [
+      "历史",
+      "法学",
+      "艺术人文",
+      "心理学"
+    ]
+  },
+  {
+    "name_en": "Princeton University",
+    "name_cn": "普林斯顿大学",
+    "sat_range": "1500-1580",
+    "act_range": "34-35",
+    "acceptance_rate": 4.5,
+    "sat_low": 1500,
+    "sat_high": 1580,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T5",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFP"
+    ],
+    "tier_index": 0,
+    "strengths": [
+      "数学",
+      "计算机科学",
+      "工程",
+      "公共政策"
+    ]
+  },
+  {
+    "name_en": "Columbia University",
+    "name_cn": "哥伦比亚大学",
+    "sat_range": "1500-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 3.9,
+    "sat_low": 1500,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T10",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFJ",
+      "ISTJ"
+    ],
+    "tier_index": 1,
+    "strengths": [
+      "新闻学",
+      "经济学",
+      "心理学",
+      "工程"
+    ]
+  },
+  {
+    "name_en": "University of Pennsylvania",
+    "name_cn": "宾夕法尼亚大学",
+    "sat_range": "1500-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 5.4,
+    "sat_low": 1500,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T10",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFJ",
+      "ISTJ"
+    ],
+    "tier_index": 1,
+    "strengths": [
+      "沃顿商学院",
+      "经济学",
+      "护理学",
+      "工程"
+    ]
+  },
+  {
+    "name_en": "Dartmouth College",
+    "name_cn": "达特茅斯学院",
+    "sat_range": "1480-1570",
+    "act_range": "33-35",
+    "acceptance_rate": 6.2,
+    "sat_low": 1480,
+    "sat_high": 1570,
+    "act_low": 33,
+    "act_high": 35,
+    "tier": "T15",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP"
+    ],
+    "tier_index": 2,
+    "strengths": [
+      "经济学",
+      "政府学",
+      "历史",
+      "工程"
+    ]
+  },
+  {
+    "name_en": "Brown University",
+    "name_cn": "布朗大学",
+    "sat_range": "1500-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 5.2,
+    "sat_low": 1500,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T15",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP"
+    ],
+    "tier_index": 2,
+    "strengths": [
+      "计算机科学",
+      "生物学",
+      "工程",
+      "艺术"
+    ]
+  },
+  {
+    "name_en": "Cornell University",
+    "name_cn": "康奈尔大学",
+    "sat_range": "1470-1560",
+    "act_range": "33-35",
+    "acceptance_rate": 7.3,
+    "sat_low": 1470,
+    "sat_high": 1560,
+    "act_low": 33,
+    "act_high": 35,
+    "tier": "T15",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP"
+    ],
+    "tier_index": 2,
+    "strengths": [
+      "工程",
+      "酒店管理",
+      "农业科学",
+      "计算机科学"
+    ]
+  },
+  {
+    "name_en": "Massachusetts Institute of Technology",
+    "name_cn": "MIT",
+    "sat_range": null,
+    "act_range": "35-36",
+    "acceptance_rate": 4.5,
+    "act_low": 35,
+    "act_high": 36,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "计算机科学",
+      "工程",
+      "物理学",
+      "人工智能"
+    ]
+  },
+  {
+    "name_en": "Stanford University",
+    "name_cn": "斯坦福大学",
+    "sat_range": "1510-1580",
+    "act_range": "34-35",
+    "acceptance_rate": 3.7,
+    "sat_low": 1510,
+    "sat_high": 1580,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T5",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFP"
+    ],
+    "tier_index": 0,
+    "strengths": [
+      "计算机科学",
+      "工程",
+      "创业学",
+      "医学预科"
+    ]
+  },
+  {
+    "name_en": "California Institute of Technology",
+    "name_cn": "加州理工",
+    "sat_range": null,
+    "act_range": null,
+    "acceptance_rate": 3.1,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "物理学",
+      "工程",
+      "天文学",
+      "化学"
+    ]
+  },
+  {
+    "name_en": "University of Chicago",
+    "name_cn": "芝加哥大学",
+    "sat_range": "1510-1580",
+    "act_range": "34-35",
+    "acceptance_rate": 5,
+    "sat_low": 1510,
+    "sat_high": 1580,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T10",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFJ",
+      "ISTJ"
+    ],
+    "tier_index": 1,
+    "strengths": [
+      "经济学",
+      "法学",
+      "社会学",
+      "计算机科学"
+    ]
+  },
+  {
+    "name_en": "Northwestern University",
+    "name_cn": "西北大学",
+    "sat_range": "1490-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 7,
+    "sat_low": 1490,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T10",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFJ",
+      "ISTJ"
+    ],
+    "tier_index": 1,
+    "strengths": [
+      "传播学",
+      "新闻学",
+      "工程",
+      "表演艺术"
+    ]
+  },
+  {
+    "name_en": "Duke University",
+    "name_cn": "杜克大学",
+    "sat_range": "1500-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 5.8,
+    "sat_low": 1500,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T10",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFJ",
+      "ISTJ"
+    ],
+    "tier_index": 1,
+    "strengths": [
+      "医学预科",
+      "公共政策",
+      "经济学",
+      "生物学"
+    ]
+  },
+  {
+    "name_en": "Johns Hopkins University",
+    "name_cn": "约翰霍普金斯大学",
+    "sat_range": "1520-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 7.2,
+    "sat_low": 1520,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T10",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP",
+      "ENFJ",
+      "ISTJ"
+    ],
+    "tier_index": 1,
+    "strengths": [
+      "医学预科",
+      "公共卫生",
+      "工程",
+      "国际关系"
+    ]
+  },
+  {
+    "name_en": "Vanderbilt University",
+    "name_cn": "范德堡大学",
+    "sat_range": "1490-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 6.3,
+    "sat_low": 1490,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "医学预科",
+      "教育学",
+      "工程",
+      "音乐"
+    ]
+  },
+  {
+    "name_en": "University of California, Berkeley",
+    "name_cn": "加州大学伯克利",
+    "sat_range": null,
+    "act_range": null,
+    "acceptance_rate": 11,
+    "tier": "T15",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP"
+    ],
+    "tier_index": 2,
+    "strengths": [
+      "工程",
+      "计算机科学",
+      "经济学",
+      "环境科学"
+    ]
+  },
+  {
+    "name_en": "University of California, Los Angeles",
+    "name_cn": "加州大学洛杉矶",
+    "sat_range": null,
+    "act_range": null,
+    "acceptance_rate": 8.5,
+    "tier": "T15",
+    "mbti_fit": [
+      "INTJ",
+      "ENTJ",
+      "INTP"
+    ],
+    "tier_index": 2,
+    "strengths": [
+      "心理学",
+      "电影艺术",
+      "医学预科",
+      "社会学"
+    ]
+  },
+  {
+    "name_en": "University of Michigan, Ann Arbor",
+    "name_cn": "密歇根大学",
+    "sat_range": "1470-1560",
+    "act_range": "33-35",
+    "acceptance_rate": 17,
+    "sat_low": 1470,
+    "sat_high": 1560,
+    "act_low": 33,
+    "act_high": 35,
+    "tier": "T20",
+    "mbti_fit": [
+      "ISTJ",
+      "ENTP",
+      "INTJ"
+    ],
+    "tier_index": 3,
+    "strengths": [
+      "工程",
+      "商科",
+      "医学预科",
+      "计算机科学"
+    ]
+  },
+  {
+    "name_en": "Carnegie Mellon University",
+    "name_cn": "卡内基梅隆大学",
+    "sat_range": "1500-1570",
+    "act_range": "34-35",
+    "acceptance_rate": 11,
+    "sat_low": 1500,
+    "sat_high": 1570,
+    "act_low": 34,
+    "act_high": 35,
+    "tier": "T20",
+    "mbti_fit": [
+      "ISTJ",
+      "ENTP",
+      "INTJ"
+    ],
+    "tier_index": 3,
+    "strengths": [
+      "计算机科学",
+      "工程",
+      "艺术",
+      "商科"
+    ]
+  },
+  {
+    "name_en": "New York University",
+    "name_cn": "纽约大学",
+    "sat_range": "1470-1560",
+    "act_range": "33-35",
+    "acceptance_rate": 12,
+    "sat_low": 1470,
+    "sat_high": 1560,
+    "act_low": 33,
+    "act_high": 35,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "艺术",
+      "电影",
+      "商科",
+      "心理学"
+    ]
+  },
+  {
+    "name_en": "University of Southern California",
+    "name_cn": "南加州大学",
+    "sat_range": "1460-1560",
+    "act_range": "33-35",
+    "acceptance_rate": 9.5,
+    "sat_low": 1460,
+    "sat_high": 1560,
+    "act_low": 33,
+    "act_high": 35,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "电影艺术",
+      "工程",
+      "商科",
+      "传播学"
+    ]
+  },
+  {
+    "name_en": "University of California, San Diego",
+    "name_cn": "加州大学圣地亚哥",
+    "sat_range": null,
+    "act_range": null,
+    "acceptance_rate": null,
+    "tier": "T25",
+    "mbti_fit": [
+      "ESTJ",
+      "ENFP",
+      "ESFJ"
+    ],
+    "tier_index": 4,
+    "strengths": [
+      "计算机科学",
+      "工程",
+      "生物学",
+      "医学预科"
+    ]
+  },
+  {
+    "name_en": "Emory University",
+    "name_cn": "埃默里大学",
+    "sat_range": "1460-1560",
+    "act_range": null,
+    "acceptance_rate": 11,
+    "sat_low": 1460,
+    "sat_high": 1560,
+    "tier": "T25",
+    "mbti_fit": [
+      "ESTJ",
+      "ENFP",
+      "ESFJ"
+    ],
+    "tier_index": 4,
+    "strengths": [
+      "医学预科",
+      "商科",
+      "心理学",
+      "生物学"
+    ]
+  },
+  {
+    "name_en": "University of Texas, Austin",
+    "name_cn": "得克萨斯大学奥斯汀",
+    "sat_range": "1370-1540",
+    "act_range": null,
+    "acceptance_rate": 29,
+    "sat_low": 1370,
+    "sat_high": 1540,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "工程",
+      "商科",
+      "计算机科学",
+      "石油工程"
+    ]
+  },
+  {
+    "name_en": "University of Florida",
+    "name_cn": "佛罗里达大学",
+    "sat_range": null,
+    "act_range": null,
+    "acceptance_rate": null,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "工程",
+      "商科",
+      "生物学",
+      "农业科学"
+    ]
+  },
+  {
+    "name_en": "University of Illinois Urbana-Champaign",
+    "name_cn": "伊利诺伊大学香槟",
+    "sat_range": "1400-1540",
+    "act_range": null,
+    "acceptance_rate": 45,
+    "sat_low": 1400,
+    "sat_high": 1540,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "工程",
+      "计算机科学",
+      "农学",
+      "商科"
+    ]
+  },
+  {
+    "name_en": "Georgia Institute of Technology",
+    "name_cn": "佐治亚理工",
+    "sat_range": "1460-1560",
+    "act_range": null,
+    "acceptance_rate": 18,
+    "sat_low": 1460,
+    "sat_high": 1560,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "工程",
+      "计算机科学",
+      "工业设计",
+      "人工智能"
+    ]
+  },
+  {
+    "name_en": "University of California, Davis",
+    "name_cn": "加州大学戴维斯",
+    "sat_range": null,
+    "act_range": null,
+    "acceptance_rate": null,
+    "tier": "T30",
+    "mbti_fit": [
+      "ESFJ",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "tier_index": 5,
+    "strengths": [
+      "农业科学",
+      "兽医学",
+      "环境科学",
+      "生物学"
+    ]
+  },
+  {
+    "name_en": "University of Oxford",
+    "name_cn": "牛津大学",
+    "tier": "T_UK1",
+    "tier_label": "牛津剑桥",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*A*A - A*AA",
+    "ib_range": "40-43",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 13.7,
+    "ielts_range": "7.5-8.0",
+    "toefl_range": "110-120",
+    "requires_admissions_test": true,
+    "admissions_tests": [
+      "MAT",
+      "PAT",
+      "TSA",
+      "BMAT",
+      "LNAT"
+    ],
+    "requires_interview": true,
+    "interview_rate": "~45%",
+    "established": 1096,
+    "location": "Oxford, England",
+    "student_population": 26000,
+    "international_ratio": "~42%",
+    "notable_alumni": [
+      "56位诺贝尔奖得主",
+      "27位英国首相",
+      "斯蒂芬·霍金",
+      "J.R.R.托尔金"
+    ],
+    "mbti_fit": [
+      "INTJ",
+      "INTP",
+      "ENTJ",
+      "INFJ",
+      "ENFJ"
+    ],
+    "strengths": [
+      "PPE",
+      "法学",
+      "英语文学",
+      "数学",
+      "物理",
+      "化学",
+      "生物医学",
+      "历史"
+    ],
+    "tier_index": 0,
+    "ranking_qs_2025": 1,
+    "ranking_times_2025": 1,
+    "type": "公立",
+    "college_system": true
+  },
+  {
+    "name_en": "University of Cambridge",
+    "name_cn": "剑桥大学",
+    "tier": "T_UK1",
+    "tier_label": "牛津剑桥",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*A*A - A*AA",
+    "ib_range": "41-43",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 14.6,
+    "ielts_range": "7.5-8.0",
+    "toefl_range": "110-120",
+    "requires_admissions_test": true,
+    "admissions_tests": [
+      "STEP",
+      "NSAA",
+      "ENGAA",
+      "TMUA",
+      "BMAT",
+      "LNAT"
+    ],
+    "requires_interview": true,
+    "interview_rate": "~50%",
+    "established": 1209,
+    "location": "Cambridge, England",
+    "student_population": 24000,
+    "international_ratio": "~38%",
+    "notable_alumni": [
+      "121位诺贝尔奖得主",
+      "牛顿",
+      "达尔文",
+      "图灵",
+      "霍金",
+      "15位英国首相"
+    ],
+    "mbti_fit": [
+      "INTJ",
+      "INTP",
+      "ENTJ",
+      "ISTJ",
+      "ENTP"
+    ],
+    "strengths": [
+      "自然科学",
+      "数学",
+      "工程",
+      "计算机",
+      "经济学",
+      "医学",
+      "建筑"
+    ],
+    "tier_index": 0,
+    "ranking_qs_2025": 2,
+    "ranking_times_2025": 3,
+    "type": "公立",
+    "college_system": true
+  },
+  {
+    "name_en": "Imperial College London",
+    "name_cn": "帝国理工学院",
+    "tier": "T_UK2",
+    "tier_label": "G5顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*A*A - AAA",
+    "ib_range": "38-42",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 18,
+    "ielts_range": "7.0-7.5",
+    "toefl_range": "100-110",
+    "requires_admissions_test": false,
+    "requires_interview": true,
+    "established": 1907,
+    "location": "London, England",
+    "student_population": 22000,
+    "international_ratio": "~59%",
+    "notable_alumni": [
+      "14位诺贝尔奖得主",
+      "H.G.威尔斯",
+      "亚历山大·弗莱明"
+    ],
+    "mbti_fit": [
+      "INTJ",
+      "ISTJ",
+      "INTP",
+      "ENTP",
+      "ESTJ"
+    ],
+    "strengths": [
+      "工程",
+      "计算机",
+      "医学",
+      "物理",
+      "化学",
+      "生物技术",
+      "商科(商学院)"
+    ],
+    "tier_index": 1,
+    "ranking_qs_2025": 6,
+    "ranking_times_2025": 8,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "London School of Economics and Political Science",
+    "name_cn": "伦敦政治经济学院",
+    "tier": "T_UK2",
+    "tier_label": "G5顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*AA - AAB",
+    "ib_range": "37-39",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 12,
+    "ielts_range": "7.0-7.5",
+    "toefl_range": "100-108",
+    "requires_admissions_test": true,
+    "admissions_tests": [
+      "LNAT",
+      "UGAA"
+    ],
+    "requires_interview": false,
+    "established": 1895,
+    "location": "London, England",
+    "student_population": 12000,
+    "international_ratio": "~70%",
+    "notable_alumni": [
+      "18位诺贝尔奖得主",
+      "35位国家元首",
+      "米克·贾格尔"
+    ],
+    "mbti_fit": [
+      "ENTJ",
+      "ENFJ",
+      "ESTJ",
+      "INTJ",
+      "ENFP"
+    ],
+    "strengths": [
+      "经济学",
+      "法学",
+      "政治学",
+      "国际关系",
+      "社会学",
+      "金融",
+      "会计"
+    ],
+    "tier_index": 1,
+    "ranking_qs_2025": 45,
+    "ranking_times_2025": 27,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University College London",
+    "name_cn": "伦敦大学学院",
+    "tier": "T_UK3",
+    "tier_label": "G5 + 顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*AA - ABB",
+    "ib_range": "36-40",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 26,
+    "ielts_range": "6.5-7.5",
+    "toefl_range": "92-110",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1826,
+    "location": "London, England",
+    "student_population": 48000,
+    "international_ratio": "~48%",
+    "notable_alumni": [
+      "30位诺贝尔奖得主",
+      "甘地",
+      "贝尔",
+      "莫奈"
+    ],
+    "mbti_fit": [
+      "INFJ",
+      "ENFJ",
+      "INTJ",
+      "ENFP",
+      "INFP"
+    ],
+    "strengths": [
+      "医学",
+      "法学",
+      "教育学",
+      "建筑",
+      "考古",
+      "人文",
+      "神经科学"
+    ],
+    "tier_index": 2,
+    "ranking_qs_2025": 9,
+    "ranking_times_2025": 18,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of St Andrews",
+    "name_cn": "圣安德鲁斯大学",
+    "tier": "T_UK3",
+    "tier_label": "G5 + 顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAA - AAB",
+    "ib_range": "36-38",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 31,
+    "ielts_range": "7.0-7.5",
+    "toefl_range": "100-110",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1413,
+    "location": "St Andrews, Scotland",
+    "student_population": 12000,
+    "international_ratio": "~42%",
+    "notable_alumni": [
+      "威廉王子",
+      "凯特王妃",
+      "多位英国贵族"
+    ],
+    "mbti_fit": [
+      "ENFJ",
+      "ENFP",
+      "ESFJ",
+      "INFJ",
+      "ISTJ"
+    ],
+    "strengths": [
+      "国际关系",
+      "经济学",
+      "心理学",
+      "历史",
+      "英语文学",
+      "哲学"
+    ],
+    "tier_index": 2,
+    "ranking_qs_2025": 91,
+    "ranking_times_2025": 95,
+    "type": "公立",
+    "college_system": true
+  },
+  {
+    "name_en": "University of Warwick",
+    "name_cn": "华威大学",
+    "tier": "T_UK3",
+    "tier_label": "G5 + 顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*AA - ABB",
+    "ib_range": "36-38",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 28,
+    "ielts_range": "7.0-7.5",
+    "toefl_range": "100-108",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1965,
+    "location": "Coventry, England",
+    "student_population": 29000,
+    "international_ratio": "~40%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "ENTJ",
+      "ENTP",
+      "ESTJ",
+      "INTJ",
+      "ISTJ"
+    ],
+    "strengths": [
+      "经济学",
+      "数学",
+      "统计",
+      "商科",
+      "工程",
+      "政治",
+      "计算机"
+    ],
+    "tier_index": 2,
+    "ranking_qs_2025": 64,
+    "ranking_times_2025": 78,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Edinburgh",
+    "name_cn": "爱丁堡大学",
+    "tier": "T_UK4",
+    "tier_label": "罗素集团顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAA - ABB",
+    "ib_range": "34-37",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 35,
+    "ielts_range": "6.5-7.5",
+    "toefl_range": "92-110",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1583,
+    "location": "Edinburgh, Scotland",
+    "student_population": 41000,
+    "international_ratio": "~42%",
+    "notable_alumni": [
+      "达尔文",
+      "大卫·休谟",
+      "柯南·道尔",
+      "戈登·布朗"
+    ],
+    "mbti_fit": [
+      "INFJ",
+      "INFP",
+      "INTJ",
+      "ENFP",
+      "ISTJ"
+    ],
+    "strengths": [
+      "人工智能",
+      "医学",
+      "法学",
+      "文学",
+      "语言",
+      "生物学",
+      "地质",
+      "商学院"
+    ],
+    "tier_index": 3,
+    "ranking_qs_2025": 22,
+    "ranking_times_2025": 30,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "King's College London",
+    "name_cn": "伦敦国王学院",
+    "tier": "T_UK4",
+    "tier_label": "罗素集团顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*AA - BBB",
+    "ib_range": "32-37",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 38,
+    "ielts_range": "6.5-7.5",
+    "toefl_range": "92-110",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1829,
+    "location": "London, England",
+    "student_population": 33000,
+    "international_ratio": "~44%",
+    "notable_alumni": [
+      "14位诺贝尔奖得主",
+      "弗莱明",
+      "毛姆",
+      "哈代"
+    ],
+    "mbti_fit": [
+      "ENFJ",
+      "INFJ",
+      "ESFJ",
+      "ISFJ",
+      "ENTJ"
+    ],
+    "strengths": [
+      "法学",
+      "医学",
+      "国际关系",
+      "护理",
+      "牙科",
+      "战争研究",
+      "心理学"
+    ],
+    "tier_index": 3,
+    "ranking_qs_2025": 40,
+    "ranking_times_2025": 37,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Manchester",
+    "name_cn": "曼彻斯特大学",
+    "tier": "T_UK4",
+    "tier_label": "罗素集团顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAA - ABB",
+    "ib_range": "32-37",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 38,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "90-100",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1824,
+    "location": "Manchester, England",
+    "student_population": 44000,
+    "international_ratio": "~39%",
+    "notable_alumni": [
+      "25位诺贝尔奖得主",
+      "Rutherford",
+      "汤姆逊",
+      "Benedict Cumberbatch"
+    ],
+    "mbti_fit": [
+      "INTJ",
+      "ISTJ",
+      "ESTJ",
+      "ENTP",
+      "INFJ"
+    ],
+    "strengths": [
+      "化学工程",
+      "材料",
+      "物理",
+      "商科",
+      "计算机",
+      "建筑",
+      "社会学"
+    ],
+    "tier_index": 3,
+    "ranking_qs_2025": 28,
+    "ranking_times_2025": 55,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Bristol",
+    "name_cn": "布里斯托大学",
+    "tier": "T_UK4",
+    "tier_label": "罗素集团顶尖",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAA - ABB",
+    "ib_range": "32-37",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 40,
+    "ielts_range": "6.5-7.5",
+    "toefl_range": "90-108",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1909,
+    "location": "Bristol, England",
+    "student_population": 30000,
+    "international_ratio": "~28%",
+    "notable_alumni": [
+      "10位诺贝尔奖得主",
+      "保罗·狄拉克",
+      "西蒙·佩吉"
+    ],
+    "mbti_fit": [
+      "INTJ",
+      "INTP",
+      "ISTJ",
+      "ENTP",
+      "ENFP"
+    ],
+    "strengths": [
+      "航空航天工程",
+      "法律",
+      "地理",
+      "兽医学",
+      "戏剧",
+      "教育"
+    ],
+    "tier_index": 3,
+    "ranking_qs_2025": 55,
+    "ranking_times_2025": 88,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Glasgow",
+    "name_cn": "格拉斯哥大学",
+    "tier": "T_UK5",
+    "tier_label": "罗素集团",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BBB",
+    "ib_range": "32-36",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 43,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "90-100",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1451,
+    "location": "Glasgow, Scotland",
+    "student_population": 34000,
+    "international_ratio": "~38%",
+    "notable_alumni": [
+      "亚当·斯密",
+      "瓦特",
+      "开尔文",
+      "8位诺贝尔奖得主"
+    ],
+    "mbti_fit": [
+      "ISTJ",
+      "ESTJ",
+      "ISFJ",
+      "ENFJ",
+      "INFJ"
+    ],
+    "strengths": [
+      "经济学",
+      "法学",
+      "医学",
+      "工程",
+      "兽医学",
+      "神学"
+    ],
+    "tier_index": 4,
+    "ranking_qs_2025": 78,
+    "ranking_times_2025": 95,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Birmingham",
+    "name_cn": "伯明翰大学",
+    "tier": "T_UK5",
+    "tier_label": "罗素集团",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BBB",
+    "ib_range": "32-36",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 50,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "88-95",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1900,
+    "location": "Birmingham, England",
+    "student_population": 38000,
+    "international_ratio": "~25%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "ESTJ",
+      "ESFJ",
+      "ISFJ",
+      "ISTJ",
+      "ENFJ"
+    ],
+    "strengths": [
+      "医学",
+      "牙科",
+      "法律",
+      "商科",
+      "心理学",
+      "工程",
+      "音乐"
+    ],
+    "tier_index": 4,
+    "ranking_qs_2025": 91,
+    "ranking_times_2025": 110,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Leeds",
+    "name_cn": "利兹大学",
+    "tier": "T_UK5",
+    "tier_label": "罗素集团",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BBB",
+    "ib_range": "32-36",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 52,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "88-95",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1904,
+    "location": "Leeds, England",
+    "student_population": 39000,
+    "international_ratio": "~27%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "ENFJ",
+      "ESFJ",
+      "ENFP",
+      "ISFJ",
+      "ESTJ"
+    ],
+    "strengths": [
+      "商科",
+      "传媒",
+      "翻译",
+      "食品科学",
+      "工程",
+      "体育科学"
+    ],
+    "tier_index": 4,
+    "ranking_qs_2025": 92,
+    "ranking_times_2025": 115,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Sheffield",
+    "name_cn": "谢菲尔德大学",
+    "tier": "T_UK5",
+    "tier_label": "罗素集团",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BBB",
+    "ib_range": "32-36",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 55,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "88-95",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1905,
+    "location": "Sheffield, England",
+    "student_population": 30000,
+    "international_ratio": "~35%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "ISTJ",
+      "ISFJ",
+      "INTJ",
+      "ESTJ",
+      "ENFJ"
+    ],
+    "strengths": [
+      "工程",
+      "材料",
+      "建筑",
+      "新闻",
+      "地理",
+      "生物"
+    ],
+    "tier_index": 4,
+    "ranking_qs_2025": 98,
+    "ranking_times_2025": 120,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Southampton",
+    "name_cn": "南安普顿大学",
+    "tier": "T_UK5",
+    "tier_label": "罗素集团",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BBB",
+    "ib_range": "32-36",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 55,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "88-95",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1862,
+    "location": "Southampton, England",
+    "student_population": 25000,
+    "international_ratio": "~30%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "INTJ",
+      "ISTJ",
+      "INTP",
+      "ESTJ",
+      "ENTP"
+    ],
+    "strengths": [
+      "海洋学",
+      "工程",
+      "计算机",
+      "音乐",
+      "电子电气工程"
+    ],
+    "tier_index": 4,
+    "ranking_qs_2025": 88,
+    "ranking_times_2025": 97,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Nottingham",
+    "name_cn": "诺丁汉大学",
+    "tier": "T_UK6",
+    "tier_label": "罗素集团其他",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BBB",
+    "ib_range": "30-35",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 58,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "88-95",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1881,
+    "location": "Nottingham, England",
+    "student_population": 36000,
+    "international_ratio": "~30%",
+    "notable_alumni": [
+      "D.H.劳伦斯",
+      "多位诺奖得主"
+    ],
+    "mbti_fit": [
+      "ESFJ",
+      "ENFJ",
+      "ISFJ",
+      "ESTJ",
+      "ENFP"
+    ],
+    "strengths": [
+      "药理学",
+      "农业",
+      "食品",
+      "工程",
+      "社会学",
+      "法律"
+    ],
+    "tier_index": 5,
+    "ranking_qs_2025": 101,
+    "ranking_times_2025": 125,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of York",
+    "name_cn": "约克大学",
+    "tier": "T_UK6",
+    "tier_label": "罗素集团其他",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - ABB",
+    "ib_range": "31-35",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 60,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "87-95",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1963,
+    "location": "York, England",
+    "student_population": 22000,
+    "international_ratio": "~23%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "INFP",
+      "ENFP",
+      "INFJ",
+      "INTJ",
+      "ISFJ"
+    ],
+    "strengths": [
+      "英语文学",
+      "历史",
+      "考古",
+      "社会学",
+      "心理学",
+      "计算机"
+    ],
+    "tier_index": 5,
+    "ranking_qs_2025": 148,
+    "ranking_times_2025": 139,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "University of Durham",
+    "name_cn": "杜伦大学",
+    "tier": "T_UK6",
+    "tier_label": "罗素集团其他",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "A*AA - ABB",
+    "ib_range": "34-38",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 40,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "92-100",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1832,
+    "location": "Durham, England",
+    "student_population": 20000,
+    "international_ratio": "~25%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "ENFJ",
+      "ENTJ",
+      "ENFP",
+      "ISTJ",
+      "ESFJ"
+    ],
+    "strengths": [
+      "法学",
+      "英语",
+      "历史",
+      "神学",
+      "地理",
+      "哲学"
+    ],
+    "tier_index": 5,
+    "ranking_qs_2025": 92,
+    "ranking_times_2025": 83,
+    "type": "公立",
+    "college_system": true
+  },
+  {
+    "name_en": "Newcastle University",
+    "name_cn": "纽卡斯尔大学",
+    "tier": "T_UK6",
+    "tier_label": "罗素集团其他",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BB",
+    "ib_range": "30-35",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 62,
+    "ielts_range": "6.5-7.0",
+    "toefl_range": "90-100",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1834,
+    "location": "Newcastle upon Tyne, England",
+    "student_population": 28000,
+    "international_ratio": "~25%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "ESFJ",
+      "ENFJ",
+      "ISFP",
+      "ENFP",
+      "ESTJ"
+    ],
+    "strengths": [
+      "医科",
+      "牙科",
+      "海洋",
+      "建筑",
+      "商科",
+      "语言学"
+    ],
+    "tier_index": 5,
+    "ranking_qs_2025": 129,
+    "ranking_times_2025": 139,
+    "type": "公立",
+    "college_system": false
+  },
+  {
+    "name_en": "Queen Mary University of London",
+    "name_cn": "伦敦玛丽女王大学",
+    "tier": "T_UK6",
+    "tier_label": "罗素集团其他",
+    "country": "UK",
+    "sat_range": null,
+    "act_range": null,
+    "a_level_range": "AAB - BBB",
+    "ib_range": "30-35",
+    "gpa_requirement": "N/A (A-Level/IB为主)",
+    "acceptance_rate": 55,
+    "ielts_range": "6.5-7.5",
+    "toefl_range": "92-108",
+    "requires_admissions_test": false,
+    "requires_interview": false,
+    "established": 1785,
+    "location": "London, England",
+    "student_population": 29000,
+    "international_ratio": "~40%",
+    "notable_alumni": [],
+    "mbti_fit": [
+      "ENTJ",
+      "ENFJ",
+      "ESTJ",
+      "INTJ",
+      "ISTJ"
+    ],
+    "strengths": [
+      "医学",
+      "牙科",
+      "法律",
+      "计算机",
+      "商业管理"
+    ],
+    "tier_index": 5,
+    "ranking_qs_2025": 123,
+    "ranking_times_2025": 135,
+    "type": "公立",
+    "college_system": false
+  }
+]

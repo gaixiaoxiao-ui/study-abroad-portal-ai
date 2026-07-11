@@ -1,0 +1,418 @@
+[
+  {
+    "id": "cs-ai",
+    "name": "计算机科学与人工智能",
+    "category": "STEM",
+    "content": "AI/ML方向爆发增长，中美市场需求旺盛。计算机核心课程：数据结构、算法、操作系统、机器学习。适合数学基础好、逻辑强的学生（INTJ/INTP/ISTJ）。",
+    "ap_suggested": [
+      "Calculus BC",
+      "CS A",
+      "Statistics",
+      "Physics C"
+    ],
+    "ib_suggested": [
+      "Mathematics AA HL",
+      "CS HL",
+      "Physics HL"
+    ],
+    "alevel_suggested": [
+      "Mathematics",
+      "Further Mathematics",
+      "CS",
+      "Physics"
+    ],
+    "top_schools": [
+      "MIT",
+      "Stanford",
+      "CMU",
+      "UCB"
+    ],
+    "salary_range": "$90K-$160K起",
+    "demand": "📈📈 爆发增长",
+    "top_schools_uk": [
+      "Cambridge",
+      "Imperial",
+      "Edinburgh",
+      "Oxford",
+      "UCL"
+    ]
+  },
+  {
+    "id": "data-science",
+    "name": "数据科学",
+    "category": "STEM",
+    "content": "数学+统计+计算机的交叉学科，大数据时代核心专业。适合好奇心强、喜欢从数据中发现规律的学生（INTJ/INTP/ISTJ）。",
+    "ap_suggested": [
+      "Calculus BC",
+      "Statistics",
+      "CS A"
+    ],
+    "ib_suggested": [
+      "Mathematics AA HL",
+      "CS HL",
+      "Economics HL"
+    ],
+    "alevel_suggested": [
+      "Mathematics",
+      "Further Mathematics",
+      "Economics"
+    ],
+    "top_schools": [
+      "Stanford",
+      "MIT",
+      "UCB",
+      "CMU"
+    ],
+    "salary_range": "$95K-$140K起",
+    "demand": "📈 高增长",
+    "top_schools_uk": [
+      "Imperial",
+      "UCL",
+      "Edinburgh",
+      "Warwick",
+      "Manchester"
+    ]
+  },
+  {
+    "id": "engineering",
+    "name": "工程类",
+    "category": "STEM",
+    "content": "含机械、电子、土木、航天等。动手能力强、喜欢解决实际问题的学生适合（ISTP/ESTP/INTJ）。顶尖工科院校就业率极高。",
+    "ap_suggested": [
+      "Calculus BC",
+      "Physics C",
+      "CS A"
+    ],
+    "ib_suggested": [
+      "Mathematics AA HL",
+      "Physics HL",
+      "Chemistry HL"
+    ],
+    "alevel_suggested": [
+      "Mathematics",
+      "Further Mathematics",
+      "Physics",
+      "Chemistry"
+    ],
+    "top_schools": [
+      "MIT",
+      "Stanford",
+      "Caltech",
+      "Georgia Tech"
+    ],
+    "salary_range": "$80K-$130K起",
+    "demand": "📈 稳定增长",
+    "top_schools_uk": [
+      "Cambridge",
+      "Imperial",
+      "Oxford",
+      "Southampton",
+      "Bristol"
+    ]
+  },
+  {
+    "id": "finance",
+    "name": "经济/商科/金融",
+    "category": "商科",
+    "content": "含经济学、金融、会计、市场营销等。商学院注重领导力和沟通能力。适合外向、决断力强的学生（ESTJ/ENTJ/ENTP）。",
+    "ap_suggested": [
+      "Microeconomics",
+      "Macroeconomics",
+      "Statistics",
+      "Calculus AB"
+    ],
+    "ib_suggested": [
+      "Economics HL",
+      "Mathematics AA HL",
+      "English HL"
+    ],
+    "alevel_suggested": [
+      "Economics",
+      "Mathematics",
+      "Further Mathematics",
+      "Business"
+    ],
+    "top_schools": [
+      "UPenn Wharton",
+      "Harvard",
+      "MIT Sloan",
+      "NYU Stern"
+    ],
+    "salary_range": "$85K-$150K起",
+    "demand": "📈 稳定增长",
+    "top_schools_uk": [
+      "LSE",
+      "Warwick",
+      "Oxford",
+      "UCL",
+      "Imperial Business"
+    ]
+  },
+  {
+    "id": "quant-fin",
+    "name": "量化金融/金融工程",
+    "category": "STEM商科",
+    "content": "数学+CS+金融的三交叉，投行/对冲基金的核心招聘方向。竞争极激烈，适合数学竞赛背景学生（INTJ/ENTJ/INTP）。",
+    "ap_suggested": [
+      "Calculus BC",
+      "Statistics",
+      "CS A",
+      "Physics C"
+    ],
+    "ib_suggested": [
+      "Mathematics AA HL",
+      "CS HL",
+      "Economics HL"
+    ],
+    "alevel_suggested": [
+      "Mathematics",
+      "Further Mathematics",
+      "CS",
+      "Economics"
+    ],
+    "top_schools": [
+      "Princeton",
+      "Baruch",
+      "CMU",
+      "Columbia"
+    ],
+    "salary_range": "$120K-$200K+起",
+    "demand": "📈 竞争极激烈",
+    "top_schools_uk": [
+      "Oxford",
+      "Imperial",
+      "LSE",
+      "Warwick",
+      "UCL"
+    ]
+  },
+  {
+    "id": "bio-med",
+    "name": "生物/医学/健康科学",
+    "category": "STEM",
+    "content": "Pre-Med + 生物医学研究的黄金组合。需要长期坚持和极高的GPA。适合有恒心、同理心强的学生（ISFJ/ENFJ/INFJ）。",
+    "ap_suggested": [
+      "Biology",
+      "Chemistry",
+      "Calculus AB/BC",
+      "Physics 1"
+    ],
+    "ib_suggested": [
+      "Biology HL",
+      "Chemistry HL",
+      "Mathematics AA HL"
+    ],
+    "alevel_suggested": [
+      "Biology",
+      "Chemistry",
+      "Mathematics",
+      "Physics"
+    ],
+    "top_schools": [
+      "Harvard",
+      "JHU",
+      "Stanford",
+      "Duke"
+    ],
+    "salary_range": "$70K-$200K+",
+    "demand": "📈 稳定增长",
+    "top_schools_uk": [
+      "Oxford",
+      "Cambridge",
+      "UCL",
+      "Imperial",
+      "KCL"
+    ]
+  },
+  {
+    "id": "psychology",
+    "name": "心理学",
+    "category": "社科",
+    "content": "研究人类行为与思维的科学。近年认知心理学和神经科学交叉方向大热。适合共情力强、喜欢思考的学生（INFJ/ENFJ/INFP）。",
+    "ap_suggested": [
+      "Psychology",
+      "Biology",
+      "Statistics",
+      "English Language"
+    ],
+    "ib_suggested": [
+      "Psychology HL",
+      "Biology HL",
+      "Mathematics AA HL"
+    ],
+    "alevel_suggested": [
+      "Psychology",
+      "Biology",
+      "Mathematics",
+      "Sociology"
+    ],
+    "top_schools": [
+      "Stanford",
+      "Harvard",
+      "Yale",
+      "Columbia"
+    ],
+    "salary_range": "$60K-$120K",
+    "demand": "📈 增长",
+    "top_schools_uk": [
+      "UCL",
+      "Oxford",
+      "Cambridge",
+      "KCL",
+      "Edinburgh"
+    ]
+  },
+  {
+    "id": "art-design",
+    "name": "建筑/设计/艺术",
+    "category": "艺术",
+    "content": "含建筑学、交互设计、纯艺等。需要较强的作品集。适合创意型学生（ENFP/ESFP/ISFP）。RISD等顶级艺术院校注重创意天赋。",
+    "ap_suggested": [
+      "Studio Art",
+      "Art History",
+      "Calculus AB",
+      "Physics 1"
+    ],
+    "ib_suggested": [
+      "Visual Arts HL",
+      "Design Technology HL",
+      "Mathematics AA HL"
+    ],
+    "alevel_suggested": [
+      "Art & Design",
+      "Mathematics",
+      "Physics",
+      "Design & Technology"
+    ],
+    "top_schools": [
+      "RISD",
+      "Parsons",
+      "MIT Media Lab",
+      "Cornell AAP"
+    ],
+    "salary_range": "$50K-$120K",
+    "demand": "📈 受AI影响较大",
+    "top_schools_uk": [
+      "UCL Bartlett",
+      "Royal College of Art",
+      "UAL",
+      "Edinburgh",
+      "Glasgow"
+    ]
+  },
+  {
+    "id": "media-comms",
+    "name": "传媒/新闻/公关",
+    "category": "社科",
+    "content": "含新闻学、广告、公共关系、数字媒体。适合沟通能力强、对信息敏感的学生（ENFP/ENFJ/ESFJ）。",
+    "ap_suggested": [
+      "English Language",
+      "US Government",
+      "Psychology",
+      "Statistics"
+    ],
+    "ib_suggested": [
+      "English HL",
+      "Global Politics HL",
+      "Psychology HL"
+    ],
+    "alevel_suggested": [
+      "English Literature",
+      "Sociology",
+      "Media Studies",
+      "Politics"
+    ],
+    "top_schools": [
+      "Columbia J-School",
+      "USC Annenberg",
+      "Northwestern Medill",
+      "NYU"
+    ],
+    "salary_range": "$55K-$110K",
+    "demand": "📈 数字媒体方向增长",
+    "top_schools_uk": [
+      "LSE",
+      "Westminster",
+      "Leeds",
+      "King's College London",
+      "Goldsmiths"
+    ]
+  },
+  {
+    "id": "environmental",
+    "name": "环境科学/可持续发展",
+    "category": "STEM",
+    "content": "应对气候变化、ESG投资等前沿领域。跨学科特征明显，需要科学+政策+商业的复合能力。适合有理想主义情怀的学生（INFJ/INFP/ENFJ）。",
+    "ap_suggested": [
+      "Environmental Science",
+      "Biology",
+      "Chemistry",
+      "Statistics"
+    ],
+    "ib_suggested": [
+      "Environmental Systems HL",
+      "Biology HL",
+      "Geography HL"
+    ],
+    "alevel_suggested": [
+      "Environmental Science",
+      "Biology",
+      "Chemistry",
+      "Geography"
+    ],
+    "top_schools": [
+      "Stanford",
+      "UC Berkeley",
+      "Harvard",
+      "Yale"
+    ],
+    "salary_range": "$60K-$120K",
+    "demand": "📈📈 ESG方向爆发",
+    "top_schools_uk": [
+      "Imperial",
+      "East Anglia",
+      "Edinburgh",
+      "Oxford",
+      "Cambridge"
+    ]
+  },
+  {
+    "id": "law-politics",
+    "name": "法律/国际关系/公共政策",
+    "category": "社科",
+    "content": "含法学、国际关系、PPE等。需要极强的辩论和写作能力。适合有领导力、关心公共事务的学生（ENTJ/ENFJ/ESTJ）。",
+    "ap_suggested": [
+      "US Government",
+      "English Language",
+      "Comparative Government",
+      "History"
+    ],
+    "ib_suggested": [
+      "History HL",
+      "Global Politics HL",
+      "English HL",
+      "Economics HL"
+    ],
+    "alevel_suggested": [
+      "Politics",
+      "History",
+      "English Literature",
+      "Economics"
+    ],
+    "top_schools": [
+      "Harvard",
+      "Yale",
+      "Georgetown",
+      "Oxford"
+    ],
+    "salary_range": "$70K-$190K",
+    "demand": "📈 稳步增长",
+    "top_schools_uk": [
+      "Oxford",
+      "Cambridge",
+      "LSE",
+      "UCL",
+      "KCL"
+    ]
+  }
+]

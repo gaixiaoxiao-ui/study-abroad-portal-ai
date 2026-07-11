@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学业导航仪 · 仪表盘</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#4F46E5;--primary-light:#818CF8;--accent:#D4A853;--bg:#f0f4ff;--bg-gradient:linear-gradient(135deg,#eef2ff 0%,#faf5ee 50%,#fff7ed 100%);--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--red:#ef4444;--green:#10b981;--blue:#3b82f6}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg-gradient);color:var(--text);min-height:100vh}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:linear-gradient(135deg,#4F46E5,#7c3aed);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(79,70,229,.15)}
+.topbar .brand{color:#fff}
+.topbar .user-area span{color:rgba(255,255,255,.85)}
+.topbar .btn-ghost{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:8px 16px;font-size:14px;cursor:pointer;transition:all .2s}
+.topbar .btn-ghost:hover{background:rgba(255,255,255,.25)}
+.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:var(--primary)}
+.user-area{display:flex;align-items:center;gap:10px}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
+.btn{background:var(--primary);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:14px;cursor:pointer;transition:all .2s ease}
+.btn:hover{background:#4338ca;transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,70,229,.3)}
+.btn:active{transform:translateY(0)}
+.btn-ghost{background:transparent;color:var(--muted)}
+.tab-nav{display:flex;gap:0;background:var(--card);border-bottom:1px solid var(--border);padding:0 24px}
+.tab-nav button{padding:12px 20px;background:none;border:none;border-bottom:2px solid transparent;font-size:14px;cursor:pointer;color:var(--muted)}
+.tab-nav button.active{border-bottom-color:var(--primary);color:var(--primary);font-weight:600}
+.app-container{padding:24px;max-width:1000px;margin:0 auto}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.card{border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;background:var(--card);transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.card:hover{box-shadow:0 6px 24px rgba(79,70,229,.1);transform:translateY(-2px);border-color:var(--primary-light)}
+.greeting{font-size:24px;font-weight:700;margin-bottom:4px}
+.greeting-sub{font-size:14px;color:var(--muted);margin-bottom:20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.stat{text-align:center;padding:16px;border-radius:8px;background:var(--bg)}
+.stat-value{font-size:28px;font-weight:700;color:var(--primary)}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px}
+.milestone{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.milestone:last-child{border:none}
+.milestone-dot{width:12px;height:12px;border-radius:50%}
+.milestone-dot.done{background:var(--green)}
+.milestone-dot.behind{background:var(--red)}
+.milestone-dot.pending{background:var(--border)}
+.milestone-name{flex:1;font-size:14px}
+.milestone-date{font-size:12px;color:var(--muted)}
+.action-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.action-check{width:20px;height:20px;border-radius:4px;border:2px solid var(--border);cursor:pointer}
+.action-check.done{background:var(--green);border-color:var(--green)}
+.action-text{flex:1;font-size:14px}
+.action-deadline{font-size:12px;color:var(--muted)}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:10px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--card)}
+.error-text{color:var(--red);font-size:13px;margin-top:4px}
+.loading{text-align:center;padding:60px;color:var(--muted);font-size:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@media(max-width:768px){.grid2,.grid3{grid-template-columns:1fr}.topbar{padding:12px 16px}.app-container{padding:16px}.form-grid{display:grid;grid-template-columns:1fr!important}.profile-form .grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loading-screen" class="loading">
+  <div class="spinner"></div>
+  正在加载你的学业导航...
+</div>
+
+<div id="app-screen" style="display:none">
+  <div class="topbar">
+    <div class="brand">🎓 学业导航仪</div>
+    <div class="user-area">
+      <span style="font-size:14px;color:var(--muted)" id="header-user"></span>
+      <div class="avatar" id="header-avatar"></div>
+      <button class="btn btn-ghost" onclick="logout()">退出</button>
+    </div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="active" onclick="switchTab('dashboard',this)">🏠 仪表盘</button>
+    <button onclick="switchTab('profile',this)">📋 我的档案</button>
+    <button onclick="switchTab('planning',this)">🗺️ 升学规划</button>
+    <button onclick="switchTab('activities',this)">📋 活动</button>
+  </div>
+
+  <div class="app-container">
+    <!-- Dashboard -->
+    <div class="tab-panel active" id="tab-dashboard">
+      <div id="dashboard-content">
+        <div id="guide-card" style="display:none;background:linear-gradient(135deg,#4F46E5,#7c3aed);border-radius:12px;padding:18px 22px;margin-bottom:18px;color:#fff;box-shadow:0 4px 16px rgba(79,70,229,.25)">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-weight:700;font-size:16px">🎯 欢迎使用学业导航仪</div>
+          <div id="guide-card-text" style="font-size:14px;opacity:.9;line-height:1.6"></div>
+          <button class="btn" style="margin-top:12px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);padding:7px 14px;font-size:13px" onclick="switchTab('profile',document.querySelectorAll('.tab-nav button')[1])">去完善档案 →</button>
+        </div>
+        <div class="greeting" id="greeting-text">Hi, 同学 👋</div>
+        <div class="greeting-sub" id="summary-text">正在加载你的数据...</div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">📅 升学里程碑</h3>
+        <div id="milestones-list"></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">🎯 本周优先行动</h3>
+        <div id="actions-list"></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">🤖 AI 建议</h3>
+        <p id="ai-tip" style="color:var(--muted)">正在生成建议...</p>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div class="tab-panel" id="tab-profile">
+      <div class="card">
+        <h3 style="margin-bottom:16px">📋 个人档案</h3>
+        <form id="profile-form" class="profile-form">
+          <div class="grid2 form-grid">
+            <div class="form-group">
+              <label>年级</label>
+              <select id="pf-grade">
+                <option value="">请选择</option>
+                <option value="G9">G9 / 初三</option>
+                <option value="G10">G10 / 高一</option>
+                <option value="G11">G11 / 高二</option>
+                <option value="G12">G12 / 高三</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>课程体系</label>
+              <select id="pf-curriculum">
+                <option value="">请选择</option>
+                <option value="AP">AP 美高</option>
+                <option value="IB">IB 国际文凭</option>
+                <option value="A-Level">A-Level 英高</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>目标国家</label>
+              <select id="pf-target">
+                <option value="">请选择</option>
+                <option value="US">🇺🇸 美国</option>
+                <option value="UK">🇬🇧 英国</option>
+                <option value="MIX">🌏 多国混申</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>梦校</label>
+              <input type="text" id="pf-dream" placeholder="Stanford, 牛津, NYU...">
+            </div>
+            <div class="form-group">
+              <label>SAT 成绩</label>
+              <input type="number" id="pf-sat" placeholder="例如：1400" min="400" max="1600">
+            </div>
+            <div class="form-group">
+              <label>托福成绩</label>
+              <input type="number" id="pf-toefl" placeholder="例如：100" min="0" max="120">
+            </div>
+          </div>
+          <div class="form-group form-grid">
+            <label>GPA</label>
+            <input type="text" id="pf-gpa" placeholder="例如：3.8">
+              <select id="pf-gpa-scale" style="margin-top:4px;padding:8px;border:1px solid #d1d5db;border-radius:6px;width:100%;font-size:14px">
+                <option value="4.0">4.0 制 (Unweighted)</option>
+                <option value="5.0">5.0 制 (AP/IB加权)</option>
+                <option value="100">百分制</option>
+                <option value="percentile">年级排名 (前X%)</option>
+              </select>
+          </div>
+          <button type="submit" class="btn" style="width:100%;padding:12px;margin-top:8px">💾 保存档案</button>
+          <div class="error-text" id="profile-error"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Activities -->
+    <div class="tab-panel" id="tab-activities">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3>📋 课外活动记录</h3>
+          <button class="btn" onclick="showActivityForm()" id="add-activity-btn">+ 添加活动</button>
+        </div>
+        <div id="activity-form" style="display:none;background:var(--bg);border-radius:8px;padding:16px;margin-bottom:16px">
+          <h4 style="margin-bottom:12px" id="activity-form-title">添加新活动</h4>
+          <div class="form-group">
+            <label>活动名称 <span style="color:var(--red)">*</span></label>
+            <input type="text" id="act-name" placeholder="例如：模拟联合国社团">
+          </div>
+          <div class="form-group">
+            <label>你的角色</label>
+            <input type="text" id="act-role" placeholder="例如：社长、活动策划">
+          </div>
+          <div class="grid2 form-grid">
+            <div class="form-group">
+              <label>开始时间</label>
+              <input type="month" id="act-start">
+            </div>
+            <div class="form-group">
+              <label>结束时间</label>
+              <input type="month" id="act-end">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>描述</label>
+            <textarea id="act-desc" rows="4" placeholder="描述一下你做了什么，有什么收获…" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:6px;font-size:14px;resize:vertical" maxlength="250"></textarea>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">
+              💡 引导问题：你具体做了什么？有没有一个印象深刻的瞬间？这件事改变了你什么？
+            </div>
+          </div>
+          <div class="form-group">
+            <label>成就 / 获奖（选填）</label>
+            <input type="text" id="act-achievements" placeholder="例如：校级最佳组织奖、带领团队获得冠军">
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button class="btn" onclick="saveActivity()">💾 保存</button>
+            <button class="btn btn-ghost" onclick="hideActivityForm()">取消</button>
+          </div>
+          <div class="error-text" id="act-error"></div>
+        </div>
+        <div id="activities-list"><p style="color:var(--muted);text-align:center;padding:20px">加载中…</p></div>
+      </div>
+    </div>
+
+    <!-- Planning -->
+    <div class="tab-panel" id="tab-planning">
+      <div class="card">
+        <h3 style="margin-bottom:12px">🏫 学校推荐</h3>
+        <div id="schools-list"><p style="color:var(--muted)">完善档案后可查看推荐</p></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">📖 专业推荐</h3>
+        <div id="majors-list"><p style="color:var(--muted)">完善档案后可查看推荐</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════ State ═══════
+const TK = 'student_token';
+let token = localStorage.getItem(TK) || '';
+let user = null;
+let profile = { grade:'', curriculum:'', target_country:'', dream_school:'', mbti:'', sat:0, toefl:0, gpa:'', gpa_scale:'4.0' };
+let activePlanData = null;
+let pipelineData = null;
+
+// ═══════ Init ═══════
+async function init() {
+  if (!token) { window.location.href = '/student.html'; return; }
+  
+  try {
+    const r = await fetch('/api/auth/me', { headers: { 'Authorization': 'Bearer ' + token } });
+    console.log('[init] /me status:', r.status);
+    if (!r.ok) { throw new Error('Auth failed'); }
+    const d = await r.json();
+    const u = d.user || d;
+    if (!u) { throw new Error('No user'); }
+    
+    user = u;
+    if (u.profile) profile = { ...profile, ...u.profile };
+    
+    showApp();
+  } catch(e) {
+    console.error('[init]', e.message);
+    localStorage.removeItem(TK);
+    window.location.href = '/student.html';
+  }
+}
+
+// ═══════ Show App ═══════
+async function showApp() {
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'block';
+  
+  document.getElementById('header-user').textContent = user?.username || '同学';
+  document.getElementById('header-avatar').textContent = (user?.username || '同')[0].toUpperCase();
+  
+  renderDashboard();
+  fillProfileForm();
+  await loadPlanning();
+}
+
+// ═══════ Tabs ═══════
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-nav button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  if (tab === 'activities') loadActivities();
+}
+
+// ═══════ Dashboard ═══════
+function renderDashboard() {
+  const g = profile.grade || 'G10';
+  const monthsMap = { G9:36, G10:24, G11:12, G12:6 };
+  const monthsLeft = monthsMap[g] || 12;
+  const targetLabel = profile.target_country === 'UK' ? '英国' : profile.target_country === 'MIX' ? '多国' : '美国';
+  
+  document.getElementById('greeting-text').textContent = 'Hi, ' + (user?.username || '同学') + ' 👋';
+  document.getElementById('summary-text').textContent = '🎯 ' + g + ' · ' + (profile.curriculum || '待设置') + ' · 目标' + targetLabel + ' · 距申请约 ' + monthsLeft + ' 个月';
+
+  // P0-3: Guide card for incomplete profiles
+  const isIncomplete = !profile.grade || !profile.curriculum || !profile.target_country;
+  const guideCard = document.getElementById('guide-card');
+  if (isIncomplete) {
+    guideCard.style.display = 'block';
+    document.getElementById('guide-card-text').textContent = '👋 嗨！看起来你的档案还没填完。完善档案后，我们可以为你推荐最合适的学校和专业哦～快来设置你的年级、课程体系和目标国家吧！';
+  } else {
+    guideCard.style.display = 'none';
+  }
+  
+  // Stats
+  const statSection = document.getElementById('dashboard-content');
+  if (!document.getElementById('dashboard-stats')) {
+    const stats = document.createElement('div');
+    stats.id = 'dashboard-stats';
+    stats.className = 'grid3';
+    stats.style.cssText = 'margin-top:16px';
+    stats.innerHTML = `
+      <div class="stat"><div class="stat-value">${monthsLeft}</div><div class="stat-label">距申请(月)</div></div>
+      <div class="stat"><div class="stat-value">${profile.sat || '--'}</div><div class="stat-label">SAT</div></div>
+      <div class="stat"><div class="stat-value">${profile.toefl || '--'}</div><div class="stat-label">托福</div></div>
+    `;
+    statSection.appendChild(stats);
+  }
+  
+  // Milestones
+  const milestones = getMilestonesFallback(g);
+  let mlHtml = '';
+  for (const m of milestones) {
+    const urgentClass = m.urgent ? ' style="color:var(--red);font-weight:600"' : '';
+    mlHtml += `<div class="milestone">
+      <div class="milestone-dot ${m.status || 'pending'}"></div>
+      <div class="milestone-name"${urgentClass}>${m.name}</div>
+      <div class="milestone-date"${urgentClass}>${m.deadline || ''}</div>
+    </div>`;
+  }
+  document.getElementById('milestones-list').innerHTML = mlHtml;
+  
+  // Actions
+  const actions = getAITip(g);
+  let actHtml = '';
+  for (const a of (actions.actions || []).slice(0, 5)) {
+    actHtml += `<div class="action-item">
+      <div class="action-check"></div>
+      <div class="action-text">${a}</div>
+    </div>`;
+  }
+  document.getElementById('actions-list').innerHTML = actHtml;
+  document.getElementById('ai-tip').textContent = actions.tip || '继续完善你的档案以获取个性化建议';
+}
+
+// ═══════ Profile Form ═══════
+function fillProfileForm() {
+  document.getElementById('pf-grade').value = profile.grade || '';
+  document.getElementById('pf-curriculum').value = profile.curriculum || '';
+  document.getElementById('pf-target').value = profile.target_country || '';
+  document.getElementById('pf-dream').value = profile.dream_school || '';
+  document.getElementById('pf-sat').value = profile.sat || '';
+  document.getElementById('pf-gpa-scale').value = profile.gpa_scale || '4.0';
+  document.getElementById('pf-toefl').value = profile.toefl || '';
+  document.getElementById('pf-gpa').value = profile.gpa || '';
+}
+
+document.getElementById('profile-form').onsubmit = async function(e) {
+  e.preventDefault();
+  const err = document.getElementById('profile-error');
+  err.textContent = '';
+  
+  const fields = {
+    grade: document.getElementById('pf-grade').value,
+    curriculum: document.getElementById('pf-curriculum').value,
+    target_country: document.getElementById('pf-target').value,
+    dream_school: document.getElementById('pf-dream').value,
+    sat: parseInt(document.getElementById('pf-sat').value) || 0,
+    toefl: parseInt(document.getElementById('pf-toefl').value) || 0,
+    gpa: document.getElementById('pf-gpa').value,
+    gpa_scale: document.getElementById('pf-gpa-scale').value,
+  };
+  
+  try {
+    const r = await fetch('/api/auth/me', {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profile: fields })
+    });
+    const d = await r.json();
+    if (!r.ok) { err.textContent = d.error || '保存失败'; return; }
+    
+    profile = { ...profile, ...fields };
+    err.textContent = '✅ 保存成功！';
+    setTimeout(() => { err.textContent = ''; }, 2000);
+    renderDashboard();
+  } catch(e) {
+    err.textContent = '网络错误';
+  }
+};
+
+// ═══════ Activities ═══════
+let editingActivityId = null;
+
+function showActivityForm(activity) {
+  editingActivityId = activity ? activity.id : null;
+  document.getElementById('activity-form-title').textContent = activity ? '编辑活动' : '添加新活动';
+  document.getElementById('act-name').value = activity ? activity.name : '';
+  document.getElementById('act-role').value = activity ? activity.role : '';
+  document.getElementById('act-start').value = activity ? activity.start_date : '';
+  document.getElementById('act-end').value = activity ? activity.end_date : '';
+  document.getElementById('act-desc').value = activity ? activity.description : '';
+  document.getElementById('act-achievements').value = activity ? activity.achievements : '';
+  document.getElementById('act-error').textContent = '';
+  document.getElementById('activity-form').style.display = 'block';
+  document.getElementById('activity-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideActivityForm() {
+  document.getElementById('activity-form').style.display = 'none';
+  editingActivityId = null;
+}
+
+async function loadActivities() {
+  try {
+    const r = await fetch('/api/activities', { headers: { 'Authorization': 'Bearer ' + token } });
+    const d = await r.json();
+    const activities = d.activities || [];
+    if (!activities.length) {
+      document.getElementById('activities-list').innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px">还没有活动记录，添加你的第一个活动吧！</p>';
+      return;
+    }
+    let html = '';
+    for (const a of activities) {
+      const dateRange = [a.start_date, a.end_date].filter(Boolean).join(' – ');
+      html += `<div class="activity-card" style="border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px;cursor:pointer" onclick="toggleActivityDetail(this)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <strong style="font-size:15px">${a.name}</strong>
+            ${a.role ? `<span style="color:var(--muted);font-size:13px;margin-left:8px">· ${a.role}</span>` : ''}
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            ${a.achievements ? '<span style="background:var(--accent);color:#fff;font-size:11px;padding:2px 7px;border-radius:10px">🏆</span>' : ''}
+            <button class="btn btn-ghost" style="padding:4px 8px;font-size:12px" onclick="event.stopPropagation();editActivity('${a.id}')">编辑</button>
+            <button class="btn btn-ghost" style="padding:4px 8px;font-size:12px;color:var(--red)" onclick="event.stopPropagation();deleteActivity('${a.id}')">删除</button>
+          </div>
+        </div>
+        ${dateRange ? `<div style="font-size:12px;color:var(--muted);margin-top:4px">📅 ${dateRange}</div>` : ''}
+        <div class="activity-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+          ${a.description ? `<p style="font-size:14px;color:var(--text);line-height:1.6">${a.description}</p>` : ''}
+          ${a.achievements ? `<p style="font-size:13px;color:var(--green);margin-top:8px">🏆 ${a.achievements}</p>` : ''}
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px" class="expand-hint">▼ 详情</div>
+      </div>`;
+    }
+    document.getElementById('activities-list').innerHTML = html;
+  } catch(e) {
+    document.getElementById('activities-list').innerHTML = '<p style="color:var(--red);text-align:center">加载失败</p>';
+  }
+}
+
+function toggleActivityDetail(card) {
+  const detail = card.querySelector('.activity-detail');
+  const hint = card.querySelector('.expand-hint');
+  const isOpen = detail.style.display !== 'none';
+  detail.style.display = isOpen ? 'none' : 'block';
+  hint.textContent = isOpen ? '▼ 详情' : '▲ 收起';
+}
+
+function editActivity(id) {
+  loadActivities().then(() => {
+    // find in DOM
+    const cards = document.querySelectorAll('.activity-card');
+    // We need the data — fetch fresh
+    fetch('/api/activities', { headers: { 'Authorization': 'Bearer ' + token } })
+      .then(r => r.json())
+      .then(d => {
+        const a = (d.activities || []).find(x => x.id === id);
+        if (a) showActivityForm(a);
+      });
+  });
+}
+
+async function deleteActivity(id) {
+  if (!confirm('确定删除这个活动？')) return;
+  try {
+    const r = await fetch('/api/activities/' + id, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (!r.ok) { const d = await r.json(); alert(d.error || '删除失败'); return; }
+    loadActivities();
+  } catch(e) { alert('网络错误'); }
+}
+
+async function saveActivity() {
+  const err = document.getElementById('act-error');
+  err.textContent = '';
+  const name = document.getElementById('act-name').value.trim();
+  if (!name) { err.textContent = '请填写活动名称'; return; }
+  const body = {
+    name,
+    description: document.getElementById('act-desc').value.trim(),
+    role: document.getElementById('act-role').value.trim(),
+    start_date: document.getElementById('act-start').value,
+    end_date: document.getElementById('act-end').value,
+    achievements: document.getElementById('act-achievements').value.trim(),
+  };
+  try {
+    const r = await fetch('/api/activities', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const d = await r.json();
+    if (!r.ok) { err.textContent = d.error || '保存失败'; return; }
+    hideActivityForm();
+    loadActivities();
+    // Refresh dashboard to update action list
+    renderDashboard();
+  } catch(e) { err.textContent = '网络错误'; }
+}
+
+// ═══════ Planning ═══════
+async function loadPlanning() {
+  try {
+    const country = profile.target_country || 'US';
+    const grade = profile.grade || 'G10';
+    const [sRes, mRes] = await Promise.all([
+      fetch('/api/schools?country=' + (country === 'MIX' ? '' : country)),
+      fetch('/api/majors')
+    ]);
+    let schools = await sRes.json();
+    const majors = await mRes.json();
+    
+    // P0-2: filter by grade-based tier
+    schools = filterSchoolsByGrade(schools, grade);
+    
+    if (schools.length) {
+      document.getElementById('schools-list').innerHTML = schools.slice(0, 6).map(s => {
+        const pct = calcMatchPct(s);
+        const pctColor = pct >= 80 ? 'var(--green)' : pct >= 60 ? 'var(--accent)' : 'var(--red)';
+        return `<div style="padding:10px 0;border-bottom:1px solid var(--border)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>${s.name_cn || s.name_en}</strong><br><span style="color:var(--muted);font-size:12px">${s.country === 'UK' ? '🇬🇧' : '🇺🇸'} ${s.tier_label || s.tier || ''}</span></div>
+            <div style="text-align:right"><span style="color:${pctColor};font-weight:700;font-size:16px">${pct}%</span><br><span style="color:var(--muted);font-size:11px">匹配度</span></div>
+          </div>
+          ${s.sat_range ? `<div style="margin-top:4px;font-size:12px;color:var(--muted)">SAT: ${s.sat_range}</div>` : ''}
+        </div>`;
+      }).join('');
+    } else {
+      document.getElementById('schools-list').innerHTML = '<p style="color:var(--muted)">完善档案后可查看推荐</p>';
+    }
+    
+    if (majors.length) {
+      document.getElementById('majors-list').innerHTML = majors.slice(0, 5).map(m =>
+        `<div style="padding:8px 0;border-bottom:1px solid var(--border)">📖 ${m.name || m}</div>`
+      ).join('');
+    }
+  } catch(e) {
+    console.error('Planning load failed:', e);
+  }
+}
+
+function filterSchoolsByGrade(schools, grade) {
+  const isUK = (profile.target_country || '') === 'UK';
+  if (isUK) return schools; // UK schools don't have grade tier filter
+  const gradeTiers = { G9: 3, G10: 2, G11: 1, G12: 0 }; // index into US_TIER_ORDER
+  const US_TIER_ORDER = ['T5','T10','T15','T20','T25','T30'];
+  const maxIdx = gradeTiers[grade] !== undefined ? gradeTiers[grade] : 2;
+  const allowedTiers = US_TIER_ORDER.slice(0, maxIdx + 1);
+  const satToTier = (s) => {
+    if (!s.sat_low) return 'T30';
+    if (s.sat_low >= 1530) return 'T5';
+    if (s.sat_low >= 1490) return 'T10';
+    if (s.sat_low >= 1450) return 'T15';
+    if (s.sat_low >= 1400) return 'T20';
+    if (s.sat_low >= 1350) return 'T25';
+    return 'T30';
+  };
+  return schools.filter(s => allowedTiers.includes(s.tier || satToTier(s)));
+}
+
+// --- Sigmoid SAT/GPA Match ---------------------------------
+function sigmoidSAT(studentSAT, low, high) {
+  if (!studentSAT || !low || !high) return null;
+  const range = high - low;
+  if (range <= 0) return null;
+  if (studentSAT >= low && studentSAT <= high) {
+    const k = 6, norm = (studentSAT - low) / range;
+    return Math.round(70 + (1 / (1 + Math.exp(-k * (norm - 0.5)))) * 25);
+  }
+  if (studentSAT > high) {
+    const ovf = (studentSAT - high) / (1600 - high);
+    return Math.min(98, Math.round(95 + ovf * 3));
+  }
+  const gap = low - studentSAT;
+  if (gap <= 100) {
+    const k=5, norm=1-(gap/100);
+    return Math.round(40+(1/(1+Math.exp(-k*(norm-0.5))))*30);
+  }
+  return Math.max(15, Math.round(40*Math.exp(-(gap-100)/80)));
+}
+
+function calcMatchPct(school) {
+  const sat = profile.sat || 0;
+  const gpaVal = parseFloat(profile.gpa) || 0;
+  const gpaScale = profile.gpa_scale || "4.0";
+  const satS = sigmoidSAT(sat, school.sat_low, school.sat_high);
+  let gpaPct = null;
+  if (gpaVal > 0) {
+    if (gpaScale === "percentile") { gpaPct = gpaVal; }
+    else if (gpaVal > 10 && gpaVal <= 100) { gpaPct = gpaVal>=95?3: gpaVal>=90?10: gpaVal>=85?20: gpaVal>=80?35: gpaVal>=75?50: 65; }
+    else if (gpaVal > 4.0 && gpaVal <= 5.0) { gpaPct = gpaVal>=5.0?2: gpaVal>=4.5?10: gpaVal>=4.0?25: gpaVal>=3.5?50: 65; }
+    else if (gpaVal <= 4.0 && gpaVal > 0) { gpaPct = gpaVal>=3.9?5: gpaVal>=3.7?15: gpaVal>=3.5?25: gpaVal>=3.3?40: gpaVal>=3.0?55: 70; }
+  }
+  const tg = {"T5":5,"T10":10,"T15":15,"T20":20,"T25":25,"T30":35,"T_UK1":8,"T_UK2":18,"T_UK3":30,"T_UK4":45,"T_UK5":60,"T_UK6":75};
+  const expGPA = tg[school.tier] || 40;
+  let gpaS = null;
+  if (gpaPct !== null) { gpaS = gpaPct <= expGPA ? Math.round(70+(1-gpaPct/expGPA)*28) : Math.max(25,Math.round(70*Math.exp(-(gpaPct-expGPA)/20))); }
+  let total=0, weight=0;
+  if (satS!==null) { total+=satS*0.55; weight+=0.55; }
+  if (gpaS!==null) { total+=gpaS*0.35; weight+=0.35; }
+  if (satS!==null && gpaS!==null) { total+=10*0.1; weight+=0.1; }
+  else if (satS!==null || gpaS!==null) { total+=5*0.05; weight+=0.05; }
+  const raw = weight>0 ? total/weight : 50;
+  if ((satS!==null && satS<30) || (gpaS!==null && gpaS<30)) return Math.min(50, Math.round(raw));
+  return Math.round(raw);
+}
+// ═══════ Logout ═══════
+function logout() {
+  localStorage.removeItem(TK);
+  window.location.href = '/student.html';
+}
+
+// ═══════ Helper: Milestones Fallback ═══════
+function getMilestonesFallback(grade) {
+  const all = {
+    G9: [
+      { name: '注册账号', deadline: '已完成', status: 'done' },
+      { name: '探索学术兴趣方向', deadline: '本学期', status: 'pending' },
+      { name: '开始课外活动规划', deadline: '本学期', status: 'pending' },
+      { name: '英语能力基础建设', deadline: '持续', status: 'pending' },
+    ],
+    G10: [
+      { name: '注册账号', deadline: '已完成', status: 'done' },
+      { name: '确定目标专业方向', deadline: '本学期', status: 'pending' },
+      { name: 'SAT/ACT 首考准备', deadline: '暑假', status: 'pending' },
+      { name: '课外活动深入', deadline: '持续', status: 'pending' },
+      { name: '夏校申请', deadline: '寒假', status: 'pending' },
+    ],
+    G11: [
+      { name: '注册账号', deadline: '已完成', status: 'done' },
+      { name: '标化考试冲刺', deadline: '上学期', status: 'pending' },
+      { name: '选校清单确认', deadline: '暑假前', status: 'pending', urgent: true },
+      { name: '文书初稿', deadline: '暑假', status: 'pending', urgent: true },
+      { name: '推荐信邀请', deadline: '9月', status: 'pending', urgent: true },
+    ],
+    G12: [
+      { name: '注册账号', deadline: '已完成', status: 'done' },
+      { name: '早申材料提交', deadline: '11月', status: 'pending', urgent: true },
+      { name: '常规申请提交', deadline: '1月', status: 'pending', urgent: true },
+      { name: '面试准备', deadline: '12-2月', status: 'pending' },
+    ]
+  };
+  return all[grade] || all['G10'];
+}
+
+function getAITip(grade) {
+  const tips = {
+    G9: { tip: 'G9是探索的黄金期，多尝试不同学科，找到真正热爱的方向。', actions: ['参加2-3个不同领域的社团', '阅读英文原著提升语言能力', '和家长/顾问讨论长期规划'] },
+    G10: { tip: 'G10需要开始聚焦，选定2-3个核心方向深入发展。', actions: ['制定SAT/ACT备考计划', '寻找暑期学术项目', '开始记录课外活动经历'] },
+    G11: { tip: 'G11是最关键的一年，标化和课外活动需要同步推进。', actions: ['完成标化考试目标分数', '确定8-12所申请学校', '开始文书头脑风暴'] },
+    G12: { tip: '申请季，保持节奏，相信自己的准备。', actions: ['完成所有申请材料', '准备面试', '保持GPA不放松'] }
+  };
+  return tips[grade] || tips['G10'];
+}
+
+// ═══════ Start ═══════
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+{
+  "tiers": {
+    "T5": {
+      "label": "冲刺顶尖(T5)",
+      "sat_range": "1530-1600",
+      "act_range": "34-36",
+      "description": "哈佛、MIT、斯坦福、耶鲁、普林斯顿"
+    },
+    "T10": {
+      "label": "冲刺(T10)",
+      "sat_range": "1500-1580",
+      "act_range": "33-35",
+      "description": "哥大、杜克、JHU、西北、芝大"
+    },
+    "T15": {
+      "label": "匹配(T15)",
+      "sat_range": "1470-1550",
+      "act_range": "32-34",
+      "description": "UCB、UCLA、康奈尔、宾大"
+    },
+    "T20": {
+      "label": "匹配(T20)",
+      "sat_range": "1450-1530",
+      "act_range": "31-34",
+      "description": "CMU、NYU、密歇根"
+    },
+    "T25": {
+      "label": "保底(T25)",
+      "sat_range": "1400-1500",
+      "act_range": "30-33",
+      "description": "USC、埃默里、UCSD"
+    },
+    "T30": {
+      "label": "保底(T30)",
+      "sat_range": "1350-1480",
+      "act_range": "29-32",
+      "description": "UIUC、佐治亚理工、UCD"
+    },
+    "T_UK1": {
+      "label": "牛津剑桥",
+      "a_level_range": "A*A*A-A*AA",
+      "ib_range": "40-43",
+      "description": "Oxford, Cambridge"
+    },
+    "T_UK2": {
+      "label": "G5顶尖",
+      "a_level_range": "A*A*A-AAA",
+      "ib_range": "37-42",
+      "description": "Imperial, LSE"
+    },
+    "T_UK3": {
+      "label": "G5+顶尖",
+      "a_level_range": "A*AA-ABB",
+      "ib_range": "36-40",
+      "description": "UCL, Warwick, St Andrews"
+    },
+    "T_UK4": {
+      "label": "罗素集团顶尖",
+      "a_level_range": "AAA-BBB",
+      "ib_range": "32-37",
+      "description": "Edinburgh, KCL, Manchester, Bristol"
+    },
+    "T_UK5": {
+      "label": "罗素集团",
+      "a_level_range": "AAB-BBB",
+      "ib_range": "32-36",
+      "description": "Glasgow, Birmingham, Leeds, Sheffield, Southampton"
+    },
+    "T_UK6": {
+      "label": "罗素集团其他",
+      "a_level_range": "AAB-BB",
+      "ib_range": "30-35",
+      "description": "Durham, Nottingham, York, Newcastle, QMUL"
+    }
+  },
+  "score_predictions": {
+    "sat": {
+      "current_grade_to_months": {
+        "G9": {
+          "months_left": 24,
+          "avg_monthly_gain": 25,
+          "notes": "G9-G11: 稳定提分期"
+        },
+        "G10": {
+          "months_left": 18,
+          "avg_monthly_gain": 20,
+          "notes": "G10-G11: 系统备考期"
+        },
+        "G11": {
+          "months_left": 12,
+          "avg_monthly_gain": 15,
+          "notes": "G11-G12: 冲刺提分期"
+        },
+        "G12": {
+          "months_left": 3,
+          "avg_monthly_gain": 10,
+          "notes": "G12: 最后冲刺期"
+        }
+      },
+      "target_benchmarks": {
+        "T5": {
+          "sat_target": 1550,
+          "act_target": 35
+        },
+        "T10": {
+          "sat_target": 1520,
+          "act_target": 34
+        },
+        "T15": {
+          "sat_target": 1500,
+          "act_target": 33
+        },
+        "T20": {
+          "sat_target": 1480,
+          "act_target": 32
+        },
+        "T25": {
+          "sat_target": 1450,
+          "act_target": 31
+        },
+        "T30": {
+          "sat_target": 1420,
+          "act_target": 30
+        }
+      },
+      "toefl_correlation": {
+        "110+": {
+          "sat_equivalent": "1550+",
+          "notes": "极强英语基础"
+        },
+        "105-109": {
+          "sat_equivalent": "1500-1540",
+          "notes": "强英语基础"
+        },
+        "100-104": {
+          "sat_equivalent": "1450-1490",
+          "notes": "良好英语基础"
+        },
+        "95-99": {
+          "sat_equivalent": "1400-1440",
+          "notes": "中等英语基础"
+        },
+        "90-94": {
+          "sat_equivalent": "1350-1390",
+          "notes": "需加强"
+        }
+      }
+    },
+    "uk_correlation": {
+      "a_level_to_us": [
+        {
+          "a_level": "A*A*A*",
+          "sat_equivalent": "1550+",
+          "tier": "T_UK1",
+          "description": "最强A-Level组合, 冲Oxbridge"
+        },
+        {
+          "a_level": "A*A*A",
+          "sat_equivalent": "1500-1550",
+          "tier": "T_UK2",
+          "description": "顶级成绩, 冲G5"
+        },
+        {
+          "a_level": "A*AA",
+          "sat_equivalent": "1480-1530",
+          "tier": "T_UK3",
+          "description": "优秀成绩, UCL/Warwick"
+        },
+        {
+          "a_level": "AAA",
+          "sat_equivalent": "1450-1500",
+          "tier": "T_UK4",
+          "description": "良好成绩, 罗素集团"
+        },
+        {
+          "a_level": "AAB",
+          "sat_equivalent": "1400-1470",
+          "tier": "T_UK5",
+          "description": "中等成绩"
+        },
+        {
+          "a_level": "ABB",
+          "sat_equivalent": "1350-1420",
+          "tier": "T_UK6",
+          "description": "基础成绩"
+        }
+      ],
+      "ib_to_us": [
+        {
+          "ib_score": "43-45",
+          "sat_equivalent": "1550+",
+          "tier": "T_UK1"
+        },
+        {
+          "ib_score": "40-42",
+          "sat_equivalent": "1500-1550",
+          "tier": "T_UK2"
+        },
+        {
+          "ib_score": "38-39",
+          "sat_equivalent": "1480-1530",
+          "tier": "T_UK3"
+        },
+        {
+          "ib_score": "36-37",
+          "sat_equivalent": "1450-1500",
+          "tier": "T_UK4"
+        },
+        {
+          "ib_score": "34-35",
+          "sat_equivalent": "1400-1470",
+          "tier": "T_UK5"
+        },
+        {
+          "ib_score": "30-33",
+          "sat_equivalent": "1350-1420",
+          "tier": "T_UK6"
+        }
+      ]
+    }
+  },
+  "country_sat_equivalents": {
+    "US": {
+      "label": "美国",
+      "score_type": "SAT",
+      "default_tier": "T25"
+    },
+    "UK": {
+      "label": "英国",
+      "score_type": "A-Level/IB",
+      "default_tier": "T_UK4",
+      "notes": "英国更看重A-Level/IB成绩和笔试面试（MAT/STEP/TSA/LNAT等）",
+      "recommended_exams": [
+        "A-Level",
+        "IB",
+        "AP (需3-5门)"
+      ],
+      "key_dates": {
+        "ucas_deadline": "1月15日（牛剑9月初截止）",
+        "offer_types": [
+          "Conditional",
+          "Unconditional",
+          "Open"
+        ],
+        "visa_type": "Student Visa (Tier 4)"
+      },
+      "cost_info": "本科国际生学费£20K-£55K/年，伦敦更高"
+    },
+    "CA": {
+      "label": "加拿大",
+      "score_type": "SAT/高考",
+      "default_tier": "T25",
+      "notes": "SAT可选但推荐提交"
+    },
+    "HK": {
+      "label": "香港",
+      "score_type": "高考/SAT",
+      "default_tier": "T25",
+      "notes": "港大/港科大SAT中位1450-1550"
+    },
+    "SG": {
+      "label": "新加坡",
+      "score_type": "A-Level/SAT",
+      "default_tier": "T20",
+      "notes": "NUS/NTU竞争对手很强"
+    }
+  }
+}
