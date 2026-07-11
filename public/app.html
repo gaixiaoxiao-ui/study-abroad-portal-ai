@@ -668,7 +668,10 @@ async function generatePlan() {
   result.style.display = 'none';
   placeholder.style.display = 'none';
 
+  let d;
   try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 60000);
     const r = await fetch('/api/plan/generate', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
@@ -676,17 +679,21 @@ async function generatePlan() {
         target_schools: profile.dream_school ? [profile.dream_school] : [],
         target_major: (profile.majors && profile.majors.join(',')) || '',
         focus_areas: '综合提升'
-      })
+      }),
+      signal: controller.signal
     });
-    const d = await r.json();
-    loading.style.display = 'none';
+    clearTimeout(timer);
 
+    loading.style.display = 'none';
     if (!r.ok) {
+      let errMsg = '生成失败，请稍后重试';
+      try { const errD = await r.json(); errMsg = errD.error || errMsg; } catch(e) {}
       error.style.display = 'block';
-      error.textContent = d.error || '生成失败，请稍后重试';
+      error.textContent = errMsg;
       btn.disabled = false; btn.textContent = '🚀 AI生成规划';
       return;
     }
+    d = await r.json();
 
     if (d.raw) {
       // Fallback: show raw content
@@ -701,7 +708,11 @@ async function generatePlan() {
   } catch(e) {
     loading.style.display = 'none';
     error.style.display = 'block';
-    error.textContent = '网络错误，请检查网络连接后重试';
+    if (e.name === 'AbortError') {
+      error.textContent = '请求超时（60秒），服务器可能较忙，请稍后重试';
+    } else {
+      error.textContent = '网络错误: ' + (e.message || '请检查网络连接后重试');
+    }
     btn.disabled = false; btn.textContent = '🚀 AI生成规划';
   }
 }

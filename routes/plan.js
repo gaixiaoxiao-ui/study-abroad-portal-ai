@@ -195,12 +195,14 @@ ${currentTasks}
 
 请用中文回答，建议要具体、可执行，避免空泛的套话。每个字段都要填写完整，不要留空。`;
 
-    // ── Call LLM ──
+    // ── Call LLM with timeout ──
     let content = '';
     let lastError = null;
 
     if (process.env.MINIMAX_API_KEY) {
       try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 45000);
         const mmResp = await fetch(MINIMAX_API, {
           method: 'POST',
           headers: {
@@ -215,20 +217,27 @@ ${currentTasks}
             ],
             temperature: 0.7,
             max_tokens: 3500
-          })
+          }),
+          signal: controller.signal
         });
+        clearTimeout(timer);
         if (mmResp.ok) {
           const mmData = await mmResp.json();
           content = mmData.choices?.[0]?.message?.content || '';
+          // Strip think tags and trim
           content = content.replace(/<think>[\s\S]*?<\/think>\s*/g, '').trim();
         } else {
           lastError = `MiniMax ${mmResp.status}`;
         }
-      } catch (e) { lastError = e.message; }
+      } catch (e) {
+        lastError = e.name === 'AbortError' ? 'LLM响应超时（45秒），请稍后重试' : e.message;
+      }
     }
 
     if (!content && process.env.DEEPSEEK_API_KEY) {
       try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 45000);
         const dsResp = await fetch(DEEPSEEK_API, {
           method: 'POST',
           headers: {
@@ -243,34 +252,43 @@ ${currentTasks}
             ],
             temperature: 0.7,
             max_tokens: 3000
-          })
+          }),
+          signal: controller.signal
         });
+        clearTimeout(timer);
         if (dsResp.ok) {
           const dsData = await dsResp.json();
           content = dsData.choices?.[0]?.message?.content || '';
         } else {
           lastError = `DeepSeek ${dsResp.status}`;
         }
-      } catch (e) { lastError = e.message; }
+      } catch (e) {
+        lastError = e.name === 'AbortError' ? 'LLM响应超时（45秒），请稍后重试' : e.message;
+      }
     }
 
     if (!content) {
-      console.error('All LLM providers failed. Last error:', lastError);
-      return res.status(502).json({ error: 'AI服务暂时不可用，请稍后重试' });
+      console.error('[plan/generate] All LLM providers failed. Last error:', lastError);
+      return res.status(502).json({ error: 'AI服务暂时不可用：' + lastError });
     }
 
     // ── Parse JSON ──
-    let plan;
+    let plan = null;
     try {
       const jsonMatch = content.match(/\{[\s\S]*\}/);
-      plan = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+      if (jsonMatch) {
+        plan = JSON.parse(jsonMatch[0]);
+      }
     } catch (e) {
-      console.error('Failed to parse AI response:', e.message);
+      console.error('[plan/generate] JSON parse error:', e.message, 'Raw:', content.substring(0, 200));
     }
 
     if (!plan) {
       return res.json({
-        raw: true, content, summary: 'AI已生成建议，请查看详情', priority_actions: []
+        raw: true,
+        content: content,
+        summary: 'AI已生成建议，请查看详情',
+        priority_actions: []
       });
     }
 
@@ -282,11 +300,11 @@ ${currentTasks}
       plans[planId] = { ...plan, createdAt: new Date().toISOString(), target_schools, target_major };
       userStore.updatePlans(user.id, plans);
       userStore.setActivePlan(user.id, planId);
-    } catch (e) { console.error('Failed to save plan:', e.message); }
+    } catch (e) { console.error('[plan/generate] Failed to save plan:', e.message); }
 
     res.json(plan);
   } catch (err) {
-    console.error('Plan generation error:', err);
+    console.error('[plan/generate] Error:', err);
     res.status(500).json({ error: '生成失败: ' + err.message });
   }
 });
@@ -404,10 +422,10 @@ router.post('/generate-pdf', requireAuth, requireStudent, async (req, res) => {
       doc.fontSize(14).fillColor('#1e40af').text('📊 成绩提升策略', { underline: true });
       doc.moveDown(0.3);
       const ss = plan.scoreStrategy;
+      const examNames = { sat: '📝 SAT', toefl_ielts: '🗣️ 托福/雅思', gpa: '📚 GPA' };
       for (const [exam, data] of Object.entries(ss)) {
         if (!data || !data.actionPlan) continue;
         if (doc.y > 700) doc.addPage();
-        const examNames = { sat: '📝 SAT', toefl_ielts: '🗣️ 托福/雅思', gpa: '📚 GPA' };
         doc.fontSize(11).fillColor('#1e40af').text(examNames[exam] || exam);
         doc.fontSize(10).fillColor('#64748b').text(`  当前: ${data.current || '-'} → 目标: ${data.target || '-'}`);
         doc.fontSize(10).fillColor('#1e293b');
@@ -460,9 +478,9 @@ router.post('/generate-pdf', requireAuth, requireStudent, async (req, res) => {
       if (doc.y > 600) doc.addPage();
       doc.fontSize(14).fillColor('#1e40af').text('🎓 选校路径', { underline: true });
       doc.moveDown(0.3);
+      const tierColor = { '冲刺': '#dc2626', '匹配': '#d4a853', '保底': '#059669' };
       plan.universityRoadmap.forEach((u, i) => {
         if (doc.y > 700) doc.addPage();
-        const tierColor = { '冲刺': '#dc2626', '匹配': '#d4a853', '保底': '#059669' };
         doc.fontSize(11).fillColor(tierColor[u.tier] || '#1e40af').text(`  ${u.tier}: ${u.name}`);
         doc.fontSize(9).fillColor('#64748b').text(`    录取要求: ${u.requirement || '-'}`);
         doc.fontSize(9).fillColor('#64748b').text(`    当前达标: ${u.myStatus || '-'} | 差距: ${u.gap || '-'}`);
@@ -478,7 +496,6 @@ router.post('/generate-pdf', requireAuth, requireStudent, async (req, res) => {
       doc.moveDown(0.3);
       plan.riskPoints.forEach((r, i) => {
         if (doc.y > 730) doc.addPage();
-        const likColor = { '高': '#dc2626', '中': '#d97706', '低': '#059669' };
         doc.fontSize(10).fillColor('#1e293b').text(`  ${i + 1}. ${r.risk} [可能性: ${r.likelihood || '-'}, 应对: ${r.mitigation || '-'}]`, { lineGap: 2 });
       });
     }
@@ -507,7 +524,7 @@ router.post('/generate-pdf', requireAuth, requireStudent, async (req, res) => {
 
     doc.end();
   } catch (err) {
-    console.error('PDF generation error:', err);
+    console.error('[plan/generate-pdf] Error:', err);
     res.status(500).json({ error: 'PDF生成失败: ' + err.message });
   }
 });
